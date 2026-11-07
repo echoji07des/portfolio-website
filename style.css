@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+.split-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.split-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: background 0.3s ease;
+}
+.design-side {
+        background: url("./images/redbg.png") center / cover no-repeat;
+        color: #333333;
+    }
+
+.design-btn {
+    border-color: #ffffff;
+    color: #ffffff;
+    background: transparent;
+}
+
+.design-btn:hover {
+    background: #ffffff;
+    color: #5a100d;
+}
+.art-side {
+    background: url("./images/bluebg.png") center / cover no-repeat;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.design-btn {
+    border-color: #333;
+    color: #333;
+    background: transparent;
+}
+.design-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+.art-btn {
+    border-color: #fff;
+    color: #fff;
+    background: transparent;
+}
+.art-btn:hover {
+    background: #fff;
+    color: #222;
+}
+
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column;
+    }
+}
