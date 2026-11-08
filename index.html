@@ -3,25 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio Hub</title>
+    <title>echoji07 — Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="hub-page">
 
-    <div class="split-container">
+    <!-- Пошук (по центру між двома половинами) -->
+    <form class="search" role="search" onsubmit="return false;">
+        <div class="search-field">
+            <input class="search-input" type="text" placeholder="Search by keywords..." aria-label="Search by keywords" autocomplete="off">
+            <button class="search-clear" type="button" aria-label="Clear" hidden>
+                <img src="images/close-icon.svg" alt="">
+            </button>
+            <img class="search-icon" src="images/search-icon.svg" alt="">
+        </div>
+        <div class="search-results"></div>
+    </form>
+
+    <main class="split-container">
+
+        <!-- ===== DESIGN SIDE ===== -->
         <section class="split-side design-side">
-            <h1>Design</h1>
-            <p style="margin-bottom: 30px;">Portfolio / About Me</p>
-            <!-- Веде на сторінку design.html -->
-            <a href="design.html" class="btn design-btn">Enter</a>
+            <div class="stage">
+
+                <div class="hero-text">
+                    <h1 class="hero-title">Design Side</h1>
+                    <p class="hero-desc">Hi! I’m Anhelina, UI/UX designer that don’t just design interfaces — I bring them to life with code, creating digital products from idea to launch.</p>
+                </div>
+
+                <a href="design.html" class="btn">explore</a>
+
+                <nav class="nav-chips" aria-label="Design navigation">
+                    <div class="chip-row">
+                        <a href="design.html#ui-ux" class="chip">UI/UX Projects</a>
+                        <a href="design.html#cv" class="chip">CV</a>
+                        <a href="design.html#about" class="chip">About Me</a>
+                        <a href="design.html#contacts" class="chip">Contacts</a>
+                    </div>
+                    <div class="chip-row">
+                        <a href="design.html#products" class="chip">Products</a>
+                        <a href="design.html#graphic" class="chip">Graphic design Projects</a>
+                    </div>
+                </nav>
+            </div>
         </section>
+
+        <!-- ===== ARTIST SIDE ===== -->
         <section class="split-side art-side">
-            <h1>Art</h1>
-            <p style="margin-bottom: 30px;">Characters / Locations / Gallery</p>
-            <a href="art.html" class="btn art-btn">Enter</a>
+            <div class="stage">
+
+                <div class="hero-text">
+                    <h1 class="hero-title">Artist Side</h1>
+                    <p class="hero-desc">Hi! I’m Anhelina, an artist who specializes in digital 2D illustration with original characters. I also write stories about them.</p>
+                </div>
+
+                <a href="art.html" class="btn">explore</a>
+
+                <nav class="nav-chips" aria-label="Art navigation">
+                    <div class="chip-row">
+                        <a href="art.html#characters" class="chip">Characters</a>
+                        <a href="art.html#stories" class="chip">Stories</a>
+                        <a href="art.html#shop" class="chip">Shop</a>
+                        <a href="art.html#social" class="chip">Social Media</a>
+                    </div>
+                    <div class="chip-row">
+                        <a href="art.html#gallery" class="chip">Art Gallery</a>
+                        <a href="art.html#commission" class="chip">Commission Price</a>
+                    </div>
+                </nav>
+            </div>
         </section>
 
-    </div>
+    </main>
 
+    <script src="search.js"></script>
 </body>
 </html>

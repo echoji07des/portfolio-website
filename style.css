@@ -1,89 +1,414 @@
+/* ==========================================================
+   echoji07 website — перший екран (Design side / Artist side)
+   Макет Figma: 1920x1080, кожна половина 960x1080.
+   Усі розміри задані через --u (1 піксель макета).
+   ========================================================== */
+
+:root {
+    --u: min(calc(100vw / 1920), calc(100vh / 1080));
+    --cream: #FFF2E3;
+    --red-bg: #270001;
+    --blue-bg: #08072F;
+    --red-star: #121032;
+    --blue-star: #270001;
+    --btn-text: #2E0908;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body, html {
+html, body {
     height: 100%;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+    font-family: "Inter", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
+
+body.hub-page {
+    overflow: hidden;
+    background: #000;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---------- Він'єтка на весь екран (~20% затемнення по краях) ---------- */
+
+body.hub-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* ---------- Контейнер з двома половинами ---------- */
+
 .split-container {
     display: flex;
     width: 100%;
     height: 100vh;
+    position: relative;
 }
+
 .split-side {
+    position: relative;
     flex: 1;
+    overflow: hidden;
+    color: var(--cream);
+}
+
+.design-side {
+    background: var(--red-bg) url("./images/redbg.png") center / cover no-repeat;
+}
+
+.art-side {
+    background: var(--blue-bg) url("./images/bluebg.png") center / cover no-repeat;
+}
+
+/* Сцена 960x1080 — по центру половини, масштабується разом з вікном */
+.stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(960 * var(--u));
+    height: calc(1080 * var(--u));
+    transform: translate(-50%, -50%);
+}
+
+/* ---------- Заголовок + опис ---------- */
+
+.hero-text {
+    position: absolute;
+    left: 50%;
+    top: calc(100 * var(--u));
+    width: calc(588 * var(--u));
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: calc(12 * var(--u));
+}
+
+.hero-title {
+    width: 100%;
+    height: calc(124 * var(--u));
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 20px;
-    transition: background 0.3s ease;
-}
-.design-side {
-        background: url("./images/redbg.png") center / cover no-repeat;
-        color: #333333;
-    }
-
-.design-btn {
-    border-color: #ffffff;
-    color: #ffffff;
-    background: transparent;
-}
-
-.design-btn:hover {
-    background: #ffffff;
-    color: #5a100d;
-}
-.art-side {
-    background: url("./images/bluebg.png") center / cover no-repeat;
-    color: #ffffff;
-}
-
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 100;
+    font-size: calc(108 * var(--u));
+    line-height: 1;
+    letter-spacing: -0.08em;
+    /* компенсація від'ємного letter-spacing після останньої літери, щоб текст був точно по центру */
+    padding-right: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    white-space: nowrap;
+    color: var(--cream);
+    margin: 0;
 }
+
+.hero-desc {
+    width: calc(526 * var(--u));
+    max-width: 100%;
+    text-align: center;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 200; /* Inter Extra Light */
+    font-size: max(10px, calc(14 * var(--u)));
+    line-height: calc(18 * var(--u));
+    letter-spacing: -0.02em;
+    color: rgba(255, 242, 227, 0.8);
+}
+
+/* ---------- Кнопка EXPLORE ---------- */
 
 .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    font-size: 1rem;
-    text-decoration: none;
-    border: 2px solid;
-    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: calc(795 * var(--u));
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(14 * var(--u)) calc(24 * var(--u));
+    border-radius: 999px;
+    background: var(--cream);
+    color: var(--btn-text);
+    font-weight: 400;
+    font-size: max(12px, calc(18 * var(--u)));
+    text-transform: uppercase;
+    line-height: 1.2;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.design-btn {
-    border-color: #333;
-    color: #333;
-    background: transparent;
-}
-.design-btn:hover {
-    background: #333;
-    color: #fff;
+.btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 242, 227, 0.25);
 }
 
-.art-btn {
-    border-color: #fff;
-    color: #fff;
+/* Кнопки EXPLORE: текст 24, відступи 16 / 32 (задані окремо для кожної сторони) */
+.design-side .btn {
+    font-size: max(16px, calc(24 * var(--u)));
+    padding: calc(16 * var(--u)) calc(32 * var(--u));
+}
+
+.art-side .btn {
+    font-size: max(16px, calc(24 * var(--u)));
+    padding: calc(16 * var(--u)) calc(32 * var(--u));
+}
+
+/* ---------- Навігаційні «таблетки» ---------- */
+
+.nav-chips {
+    position: absolute;
+    left: 50%;
+    top: calc(914 * var(--u));
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(12 * var(--u));
+}
+
+.chip-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(12 * var(--u));
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(14 * var(--u)) calc(24 * var(--u));
+    border: 1px solid var(--cream);
+    border-radius: 999px;
+    color: var(--cream);
+    font-weight: 400;
+    font-size: max(11px, calc(16 * var(--u)));
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.chip:hover {
+    background: var(--cream);
+    color: var(--btn-text);
+}
+
+/* ---------- Пошук (по центру зверху, через обидві половини) ---------- */
+
+.search {
+    position: fixed;
+    z-index: 5;
+    left: 50%;
+    top: clamp(16px, calc(50 * var(--u)), 50px);
+    transform: translateX(-50%);
+    width: 279px;
+    background: var(--cream);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Рядок вводу: 279 x 48, відступи 12 / 24 */
+.search-field {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 12px 24px;
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
     background: transparent;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    height: 24px;
+    letter-spacing: -0.02em;
+    color: #000;
 }
-.art-btn:hover {
-    background: #fff;
-    color: #222;
+
+.search input::placeholder {
+    color: rgba(0, 0, 0, 0.32);
 }
+
+.search input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.search-icon {
+    flex: none;
+    display: block;
+    width: 24px;
+    height: 24px;
+    opacity: 0.32;
+    transition: opacity 0.2s ease;
+}
+
+.search-icon:hover {
+    opacity: 0.6;
+}
+
+/* Хрестик очищення: з'являється, коли є текст; відступ 12px до лупи */
+.search-clear {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-clear[hidden] {
+    display: none;
+}
+
+.search-clear img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.32;
+    transition: opacity 0.2s ease;
+}
+
+.search-clear:hover img {
+    opacity: 0.6;
+}
+
+/* Випадаючі підказки (Variant3) */
+.search-results {
+    display: none;
+    padding: 0 24px;
+}
+
+.search.is-open .search-results {
+    display: block;
+}
+
+.search-result {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 0;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #000;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.search-result-title {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-result-side {
+    flex: none;
+    font-size: 14px;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+}
+
+.search-result-arrow {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    opacity: 0.5;
+}
+
+.search-result:hover .search-result-side {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Внутрішні сторінки (design.html / art.html) ---------- */
+
+body.sub-page {
+    min-height: 100vh;
+    padding: 50px;
+    color: var(--cream);
+}
+
+body.sub-page.design { background: var(--red-bg); }
+body.sub-page.art    { background: var(--blue-bg); }
+
+body.sub-page h1 {
+    font-weight: 100;
+    font-size: 3rem;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+body.sub-page p {
+    font-weight: 200;
+    opacity: 0.8;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 14px 24px;
+    border: 1px solid var(--cream);
+    border-radius: 999px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.back-link:hover {
+    background: var(--cream);
+    color: var(--btn-text);
+}
+
+/* ---------- Мобільна версія: половини одна під одною ---------- */
 
 @media (max-width: 768px) {
+    body.hub-page {
+        overflow-y: auto;
+    }
+
+    :root {
+        --u: calc(100vw / 700);
+    }
+
     .split-container {
         flex-direction: column;
+        height: auto;
+    }
+
+    .split-side {
+        flex: none;
+        height: calc(1080 * var(--u));
+    }
+
+    .stage {
+        top: 0;
+        transform: translateX(-50%);
+    }
+
+    .search {
+        top: 20px;
     }
 }
