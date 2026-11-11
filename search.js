@@ -7,7 +7,12 @@
 
 const SUGGESTIONS = [];
 
-const SIDE_LABEL = { design: "Design side", art: "Artist side" };
+// Підпис сторони береться з перекладів (site.js), щоб відповідати вибраній мові
+function sideLabel(side) {
+    const t = window.SiteI18n && window.SiteI18n.t;
+    if (t) return t("side." + side);
+    return side === "art" ? "Artist side" : "Design side";
+}
 
 (function () {
     const box     = document.querySelector(".search");
@@ -36,7 +41,7 @@ const SIDE_LABEL = { design: "Design side", art: "Artist side" };
 
             const side = document.createElement("span");
             side.className = "search-result-side";
-            side.textContent = SIDE_LABEL[s.side] || "";
+            side.textContent = sideLabel(s.side);
 
             const arrow = document.createElement("img");
             arrow.className = "search-result-arrow";

@@ -9,9 +9,14 @@
     --cream: #FFF2E3;
     --red-bg: #270001;
     --blue-bg: #08072F;
-    --red-star: #121032;
-    --blue-star: #270001;
-    --btn-text: #2E0908;
+    --red-ink: #2E0908;   /* текст кнопки на Design side */
+    --blue-ink: #131032;  /* текст кнопки на Artist side */
+    --btn-text: var(--red-ink);
+
+    /* розмір іконок 24 з макета (на малих екранах не менше 16px) */
+    --icon: max(16px, calc(24 * var(--u)));
+    /* відступ від країв екрана до кутових елементів (32 у макеті) */
+    --edge: max(14px, calc(32 * var(--u)));
 }
 
 * {
@@ -34,6 +39,26 @@ body.hub-page {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+/* SVG-спрайт з іконками (не відображається, але symbol доступні через <use>) */
+.sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    flex: none;
+    display: block;
+    width: var(--icon);
+    height: var(--icon);
 }
 
 /* ---------- Він'єтка на весь екран (~20% затемнення по краях) ---------- */
@@ -69,6 +94,7 @@ body.hub-page::after {
 
 .art-side {
     background: var(--blue-bg) url("./images/bluebg.png") center / cover no-repeat;
+    --btn-text: var(--blue-ink);
 }
 
 /* Сцена 960x1080 — по центру половини, масштабується разом з вікном */
@@ -95,6 +121,7 @@ body.hub-page::after {
     gap: calc(12 * var(--u));
 }
 
+/* Inter Extra Light, 108, letter-spacing -0.08em */
 .hero-title {
     width: 100%;
     height: calc(124 * var(--u));
@@ -103,7 +130,7 @@ body.hub-page::after {
     justify-content: center;
     text-align: center;
     font-family: "Inter", Arial, sans-serif;
-    font-weight: 100;
+    font-weight: 200;
     font-size: calc(108 * var(--u));
     line-height: 1;
     letter-spacing: -0.08em;
@@ -115,19 +142,41 @@ body.hub-page::after {
     margin: 0;
 }
 
+/* Inter Extra Light, 14 / 18, letter-spacing 0.04em, колір #FFF2E3 */
 .hero-desc {
     width: calc(526 * var(--u));
     max-width: 100%;
     text-align: center;
     font-family: "Inter", Arial, sans-serif;
-    font-weight: 200; /* Inter Extra Light */
+    font-weight: 200;
     font-size: max(10px, calc(14 * var(--u)));
     line-height: calc(18 * var(--u));
-    letter-spacing: -0.02em;
-    color: rgba(255, 242, 227, 0.8);
+    letter-spacing: 0.04em;
+    color: var(--cream);
 }
 
-/* ---------- Кнопка EXPLORE ---------- */
+/* Розміри блоку з описом задані ОКРЕМО для кожної сторони — вони не залежать один від одного,
+   тому змінювати їх можна незалежно. Текст у 2 рядки для EN і UA. */
+
+/* Design side */
+.design-side .hero-text {
+    width: calc(780 * var(--u));
+}
+
+.design-side .hero-desc {
+    width: calc(760 * var(--u));
+}
+
+/* Artist side */
+.art-side .hero-text {
+    width: calc(760 * var(--u));
+}
+
+.art-side .hero-desc {
+    width: calc(740 * var(--u));
+}
+
+/* ---------- Кнопка EXPLORE (текст 24, відступи 16 / 32, відступ до стрілки 14) ---------- */
 
 .btn {
     position: absolute;
@@ -137,16 +186,22 @@ body.hub-page::after {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: calc(14 * var(--u)) calc(24 * var(--u));
+    gap: calc(14 * var(--u));
+    padding: calc(16 * var(--u)) calc(32 * var(--u));
     border-radius: 999px;
     background: var(--cream);
     color: var(--btn-text);
     font-weight: 400;
-    font-size: max(12px, calc(18 * var(--u)));
+    font-size: max(16px, calc(24 * var(--u)));
     text-transform: uppercase;
     line-height: 1.2;
+    white-space: nowrap;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn .icon {
+    stroke-width: 2;
 }
 
 .btn:hover {
@@ -154,18 +209,7 @@ body.hub-page::after {
     box-shadow: 0 6px 20px rgba(255, 242, 227, 0.25);
 }
 
-/* Кнопки EXPLORE: текст 24, відступи 16 / 32 (задані окремо для кожної сторони) */
-.design-side .btn {
-    font-size: max(16px, calc(24 * var(--u)));
-    padding: calc(16 * var(--u)) calc(32 * var(--u));
-}
-
-.art-side .btn {
-    font-size: max(16px, calc(24 * var(--u)));
-    padding: calc(16 * var(--u)) calc(32 * var(--u));
-}
-
-/* ---------- Навігаційні «таблетки» ---------- */
+/* ---------- Навігаційні «таблетки» з іконками ---------- */
 
 .nav-chips {
     position: absolute;
@@ -186,9 +230,11 @@ body.hub-page::after {
 }
 
 .chip {
+    --doc-line: var(--red-ink);
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: calc(8 * var(--u));
     padding: calc(14 * var(--u)) calc(24 * var(--u));
     border: 1px solid var(--cream);
     border-radius: 999px;
@@ -200,9 +246,95 @@ body.hub-page::after {
     transition: background 0.25s ease, color 0.25s ease;
 }
 
+/* у макеті на Artist side відступ між текстом та іконкою 10 */
+.art-side .chip {
+    gap: calc(10 * var(--u));
+}
+
 .chip:hover {
+    --doc-line: var(--cream);
     background: var(--cream);
-    color: var(--btn-text);
+    color: var(--red-ink);
+}
+
+/* ---------- Локальний час (лівий верхній кут) ---------- */
+
+.local-time {
+    position: absolute;
+    z-index: 3;
+    top: max(14px, calc(24 * var(--u)));
+    left: var(--edge);
+    font-weight: 300;
+    font-size: max(11px, calc(14 * var(--u)));
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255, 242, 227, 0.32);
+    cursor: default;
+}
+
+/* ---------- Перемикач мови EN / UA (правий верхній кут) ---------- */
+
+.lang {
+    position: absolute;
+    z-index: 3;
+    top: max(14px, calc(24 * var(--u)));
+    right: var(--edge);
+    display: flex;
+    align-items: center;
+    gap: max(10px, calc(14 * var(--u)));
+}
+
+.lang-btn {
+    padding: 2px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 300;
+    font-size: max(11px, calc(14 * var(--u)));
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: rgba(255, 242, 227, 0.24);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.lang-btn:hover {
+    color: rgba(255, 242, 227, 0.6);
+}
+
+.lang-btn.is-active {
+    color: var(--cream);
+    border-bottom-color: var(--cream);
+    cursor: default;
+}
+
+/* ---------- Іконки соцмереж по боках ---------- */
+
+.socials {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    transform: translateY(-50%);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: max(14px, calc(32 * var(--u)));
+}
+
+.socials-left  { left: var(--edge); }
+.socials-right { right: var(--edge); }
+
+.socials a {
+    display: block;
+    color: rgba(255, 242, 227, 0.6);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.socials a:hover {
+    color: var(--cream);
+    transform: scale(1.12);
 }
 
 /* ---------- Пошук (по центру зверху, через обидві половини) ---------- */
@@ -264,7 +396,8 @@ body.hub-page::after {
     opacity: 0.6;
 }
 
-/* Хрестик очищення: з'являється, коли є текст; відступ 12px до лупи */
+/* Хрестик очищення: контейнер 24, сам хрестик усередині 16 (як у макеті);
+   з'являється, коли є текст; відступ 12px до лупи */
 .search-clear {
     flex: none;
     display: flex;
@@ -284,8 +417,8 @@ body.hub-page::after {
 }
 
 .search-clear img {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     opacity: 0.32;
     transition: opacity 0.2s ease;
 }
@@ -356,7 +489,7 @@ body.sub-page.design { background: var(--red-bg); }
 body.sub-page.art    { background: var(--blue-bg); }
 
 body.sub-page h1 {
-    font-weight: 100;
+    font-weight: 200;
     font-size: 3rem;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -379,7 +512,7 @@ body.sub-page p {
 
 .back-link:hover {
     background: var(--cream);
-    color: var(--btn-text);
+    color: var(--red-ink);
 }
 
 /* ---------- Мобільна версія: половини одна під одною ---------- */
