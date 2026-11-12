@@ -18,7 +18,7 @@
             "explore": "explore",
             "chip.order": "Order Service",
             "chip.about": "About Me",
-            "chip.tos": "TOS",
+            "chip.legal": "Legal",
             "chip.uiux": "UI/UX Projects",
             "chip.products": "Products",
             "chip.cv": "CV",
@@ -31,7 +31,20 @@
             "search.placeholder": "Search by keyword...",
             "time.label": "Local time (Kyiv):",
             "side.design": "Design side",
-            "side.art": "Artist side"
+            "side.art": "Artist side",
+            "menu.about": "About me",
+            "menu.order": "Order service",
+            "menu.portfolio": "Portfolio",
+            "menu.products": "Products",
+            "menu.legal": "Legal",
+            "menu.open": "Open menu",
+            "menu.close": "Close menu",
+            "nav.home": "Home Page",
+            "nav.art": "Art Side",
+            "cookie.settings": "Settings",
+            "cookie.aria": "Cookie settings",
+            "about.p1": "Hi, I’m Angelina, and I design websites. The development process begins with competitor research to determine how best to help your specific business and make it stand out.",
+            "about.p2": "I seek a development approach that is both original and practical—ensuring a seamless user experience for future clients while making the development process smooth for programmers."
         },
         uk: {
             "design.title": "Дизайн",
@@ -41,7 +54,7 @@
             "explore": "відкрити",
             "chip.order": "Замовити послугу",
             "chip.about": "Про мене",
-            "chip.tos": "Умови",
+            "chip.legal": "Правова інформація",
             "chip.uiux": "UI/UX-проєкти",
             "chip.products": "Продукти",
             "chip.cv": "Резюме",
@@ -54,7 +67,20 @@
             "search.placeholder": "Пошук за словами...",
             "time.label": "Місцевий час (Київ):",
             "side.design": "Дизайн-сторона",
-            "side.art": "Арт-сторона"
+            "side.art": "Арт-сторона",
+            "menu.about": "Про мене",
+            "menu.order": "Замовити послугу",
+            "menu.portfolio": "Портфоліо",
+            "menu.products": "Продукти",
+            "menu.legal": "Правова інформація",
+            "menu.open": "Відкрити меню",
+            "menu.close": "Закрити меню",
+            "nav.home": "На головну",
+            "nav.art": "Арт Сторінка",
+            "cookie.settings": "Налаштування",
+            "cookie.aria": "Налаштування cookie",
+            "about.p1": "Привіт, я Ангеліна, і я проєктую вебсайти. Розробка починається з аналізу конкурентів, щоб визначити, як найкраще допомогти саме вашому бізнесу та виділити його серед інших.",
+            "about.p2": "Я шукаю підхід, який є і оригінальним, і практичним: зручний досвід для майбутніх клієнтів і зрозумілий, плавний процес розробки для програмістів."
         }
     };
 
@@ -122,6 +148,9 @@
         });
         document.querySelectorAll("[data-i18n-aria]").forEach(el => {
             el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+        });
+        document.querySelectorAll("[data-i18n-title]").forEach(el => {
+            el.setAttribute("title", t(el.getAttribute("data-i18n-title")));
         });
 
         document.querySelectorAll(".lang-btn").forEach(btn => {

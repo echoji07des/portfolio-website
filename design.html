@@ -10,12 +10,133 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="sub-page design">
+<!-- menu-open: при відкритті сторінки меню вже відкрите -->
+<body class="design-page menu-open">
 
-    <h1>Design Side</h1>
-    <p>This is a blank frame for your portfolio and about me section.</p>
+    <!-- ===== SVG-спрайт іконок (колір береться з currentColor) ===== -->
+    <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <!-- Бургер (Figma: andrsrxn:menu-burger) -->
+        <symbol id="i-burger" viewBox="0 0 24 24" fill="none">
+            <path d="M2.71997 5.19H21.28M2.71997 11.94H21.28M2.71997 18.81H21.28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <!-- Хрестик (з images/close-icon.svg: той самий контур, хрестик 12px у слоті 24px) -->
+        <symbol id="i-close" viewBox="-4 -4 32 32" fill="none">
+            <path d="M20 20 4 4m16 0L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <!-- Стрілка вправо (з images/arrow-right-icon.svg) -->
+        <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-linejoin="round"/>
+        </symbol>
+        <!-- Стрілка вгору-вправо (як на кнопці EXPLORE) -->
+        <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none">
+            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-linejoin="round"/>
+        </symbol>
+        <!-- Cookie (Figma: boxicons:cookie) -->
+        <symbol id="i-cookie" viewBox="0 0 24 24" fill="none">
+            <path d="M11.1764 4C7.07179 4.51556 4 8.01778 4 11.9822C4 16.4044 7.59711 20 12.0134 20C16.2827 20 19.7551 16.6356 20 11.9822C18.0323 12.4978 15.4858 11.0489 15.5927 8.40889C13.0729 8.83556 10.7045 6.84889 11.1764 4Z" stroke="currentColor" stroke-linejoin="round"/>
+            <path d="M12.2812 11.0813C11.958 11.0813 11.648 11.1982 11.4195 11.4063C11.1909 11.6145 11.0625 11.8967 11.0625 12.1911C11.0625 12.4854 11.1909 12.7677 11.4195 12.9758C11.648 13.1839 11.958 13.3008 12.2812 13.3008C12.6045 13.3008 12.9145 13.1839 13.143 12.9758C13.3716 12.7677 13.5 12.4854 13.5 12.1911C13.5 11.8967 13.3716 11.6145 13.143 11.4063C12.9145 11.1982 12.6045 11.0813 12.2812 11.0813ZM14.7188 4C14.5587 4 14.4002 4.0287 14.2524 4.08448C14.1045 4.14025 13.9701 4.22199 13.857 4.32504C13.7438 4.42809 13.654 4.55043 13.5928 4.68507C13.5315 4.81971 13.5 4.96402 13.5 5.10976C13.5 5.25549 13.5315 5.3998 13.5928 5.53444C13.654 5.66908 13.7438 5.79142 13.857 5.89447C13.9701 5.99752 14.1045 6.07927 14.2524 6.13504C14.4002 6.19081 14.5587 6.21951 14.7188 6.21951C14.8788 6.21951 15.0373 6.19081 15.1851 6.13504C15.333 6.07927 15.4674 5.99752 15.5805 5.89447C15.6937 5.79142 15.7835 5.66908 15.8447 5.53444C15.906 5.3998 15.9375 5.25549 15.9375 5.10976C15.9375 4.96402 15.906 4.81971 15.8447 4.68507C15.7835 4.55043 15.6937 4.42809 15.5805 4.32504C15.4674 4.22199 15.333 4.14025 15.1851 4.08448C15.0373 4.0287 14.8788 4 14.7188 4ZM8.21875 11.8211C8.0587 11.8211 7.90022 11.8498 7.75235 11.9056C7.60449 11.9614 7.47013 12.0431 7.35696 12.1462C7.24379 12.2492 7.15402 12.3716 7.09277 12.5062C7.03152 12.6409 7 12.7852 7 12.9309C7 13.0766 7.03152 13.2209 7.09277 13.3556C7.15402 13.4902 7.24379 13.6126 7.35696 13.7156C7.47013 13.8187 7.60449 13.9004 7.75235 13.9562C7.90022 14.0119 8.0587 14.0407 8.21875 14.0407C8.3788 14.0407 8.53728 14.0119 8.68515 13.9562C8.83301 13.9004 8.96737 13.8187 9.08054 13.7156C9.19371 13.6126 9.28348 13.4902 9.34473 13.3556C9.40598 13.2209 9.4375 13.0766 9.4375 12.9309C9.4375 12.7852 9.40598 12.6409 9.34473 12.5062C9.28348 12.3716 9.19371 12.2492 9.08054 12.1462C8.96737 12.0431 8.83301 11.9614 8.68515 11.9056C8.53728 11.8498 8.3788 11.8211 8.21875 11.8211ZM9.4375 9.60163C9.22201 9.60163 9.01535 9.67957 8.86298 9.81832C8.7106 9.95707 8.625 10.1452 8.625 10.3415C8.625 10.5377 8.7106 10.7259 8.86298 10.8646C9.01535 11.0034 9.22201 11.0813 9.4375 11.0813C9.65299 11.0813 9.85965 11.0034 10.012 10.8646C10.1644 10.7259 10.25 10.5377 10.25 10.3415C10.25 10.1452 10.1644 9.95707 10.012 9.81832C9.85965 9.67957 9.65299 9.60163 9.4375 9.60163ZM14.3125 14.0407C14.097 14.0407 13.8903 14.1186 13.738 14.2573C13.5856 14.3961 13.5 14.5843 13.5 14.7805C13.5 14.9767 13.5856 15.1649 13.738 15.3036C13.8903 15.4424 14.097 15.5203 14.3125 15.5203C14.528 15.5203 14.7347 15.4424 14.887 15.3036C15.0394 15.1649 15.125 14.9767 15.125 14.7805C15.125 14.5843 15.0394 14.3961 14.887 14.2573C14.7347 14.1186 14.528 14.0407 14.3125 14.0407ZM19.1875 6.21951C18.972 6.21951 18.7653 6.29746 18.613 6.43621C18.4606 6.57495 18.375 6.76313 18.375 6.95935C18.375 7.15557 18.4606 7.34375 18.613 7.48249C18.7653 7.62124 18.972 7.69919 19.1875 7.69919C19.403 7.69919 19.6097 7.62124 19.762 7.48249C19.9144 7.34375 20 7.15557 20 6.95935C20 6.76313 19.9144 6.57495 19.762 6.43621C19.6097 6.29746 19.403 6.21951 19.1875 6.21951ZM10.6562 14.7805C10.333 14.7805 10.023 14.8974 9.79446 15.1055C9.5659 15.3136 9.4375 15.5959 9.4375 15.8902C9.4375 16.1846 9.5659 16.4668 9.79446 16.675C10.023 16.8831 10.333 17 10.6562 17C10.9795 17 11.2895 16.8831 11.518 16.675C11.7466 16.4668 11.875 16.1846 11.875 15.8902C11.875 15.5959 11.7466 15.3136 11.518 15.1055C11.2895 14.8974 10.9795 14.7805 10.6562 14.7805Z" fill="currentColor"/>
+        </symbol>
+    </svg>
 
-    <a href="index.html" class="back-link">← Back</a>
+    <!-- Кнопка меню: у відкритому меню це хрестик, у закритому — бургер (одна кнопка, іконки плавно змінюють одна одну) -->
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-menu" aria-expanded="true" aria-label="Close menu">
+        <svg class="icon icon-burger" aria-hidden="true"><use href="#i-burger"/></svg>
+        <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
 
+    <!-- ===== Бічне меню (фіксоване: сторінка гортається, меню лишається на місці) ===== -->
+    <aside class="menu" id="site-menu" aria-label="Site menu">
+
+        <form class="search" role="search" onsubmit="return false;">
+            <div class="search-field">
+                <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keyword" data-i18n-aria="search.placeholder" autocomplete="off">
+                <button class="search-clear" type="button" aria-label="Clear" hidden>
+                    <img src="images/close-icon.svg" alt="">
+                </button>
+                <img class="search-icon" src="images/search-icon.svg" alt="">
+            </div>
+            <div class="search-results"></div>
+        </form>
+
+        <nav class="menu-nav" aria-label="Design sections">
+            <a href="design.html" class="menu-link is-active" aria-current="page">
+                <span data-i18n="menu.about">About me</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="order.html" class="menu-link">
+                <span data-i18n="menu.order">Order service</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="portfolio.html" class="menu-link">
+                <span data-i18n="menu.portfolio">Portfolio</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="products.html" class="menu-link">
+                <span data-i18n="menu.products">Products</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="legal.html" class="menu-link">
+                <span data-i18n="menu.legal">Legal</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+        </nav>
+
+        <p class="menu-handle">echoji07des</p>
+
+        <!-- Art Side: сторінка ще не готова, тому поки що лише hover. Коли з'явиться — замінити <button> на <a href="art.html"> -->
+        <button type="button" class="pill menu-art">
+            <span data-i18n="nav.art">Art Side</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+        </button>
+    </aside>
+
+    <!-- ===== Сторінка ===== -->
+    <div class="page">
+
+        <header class="topbar">
+            <a href="index.html" class="pill">
+                <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                <span data-i18n="nav.home">Home Page</span>
+            </a>
+
+            <!-- Налаштування cookie: поп-ап і сторінка налаштувань будуть пізніше -->
+            <button type="button" class="cookie-settings" id="cookie-settings" aria-label="Cookie settings" data-i18n-aria="cookie.aria">
+                <svg class="icon" aria-hidden="true"><use href="#i-cookie"/></svg>
+                <span data-i18n="cookie.settings">Settings</span>
+            </button>
+
+            <div class="lang" role="group" aria-label="Language">
+                <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="uk" aria-pressed="false">UA</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Фото: сюди потім буде вставлено зображення (замінити div на <img class="photo" src="..." alt="...">) -->
+            <div class="photo" role="img" aria-label="Photo placeholder"></div>
+
+            <p class="local-time">
+                <span data-i18n="time.label">Local time (Kyiv):</span>
+                <span id="kyiv-time">--:--</span>
+            </p>
+
+            <section class="section" id="about">
+                <div class="section-body">
+                    <h2 class="section-title" data-i18n="menu.about">About me</h2>
+                    <!-- CV: якір design.html#cv. Поруч буде кнопка «Завантажити резюме» -->
+                    <div class="section-actions" id="cv"></div>
+                    <div class="section-text">
+                        <p data-i18n="about.p1">Hi, I’m Angelina, and I design websites. The development process begins with competitor research to determine how best to help your specific business and make it stand out.</p>
+                        <p data-i18n="about.p2">I seek a development approach that is both original and practical—ensuring a seamless user experience for future clients while making the development process smooth for programmers.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="site.js"></script>
+    <script src="search.js"></script>
+    <script src="design.js"></script>
 </body>
 </html>

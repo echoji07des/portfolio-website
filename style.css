@@ -345,14 +345,14 @@ body.hub-page::after {
     left: 50%;
     top: clamp(16px, calc(50 * var(--u)), 50px);
     transform: translateX(-50%);
-    width: 279px;
+    width: 280px;
     background: var(--cream);
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Рядок вводу: 279 x 48, відступи 12 / 24 */
+/* Рядок вводу: 280 x 48, відступи 12 / 24 */
 .search-field {
     display: flex;
     align-items: center;
@@ -513,6 +513,421 @@ body.sub-page p {
 .back-link:hover {
     background: var(--cream);
     color: var(--red-ink);
+}
+
+/* ==========================================================
+   Сторінка Design side (design.html)
+   Макети: меню відкрите (1920 x 1939) і меню закрите (бургер).
+   Розтяжка: бічне меню і відступи залежать від ширини вікна,
+   фото та заголовки масштабуються через vw.
+   ========================================================== */
+
+body.design-page {
+    --paper: #FFF9F3;
+    --ink: #2E0908;
+    --ink-soft: rgba(46, 9, 8, 0.32);
+    --menu-w: clamp(320px, 20.8334vw, 400px);   /* 400 у макеті 1920 */
+    --gutter: clamp(16px, 2.3vw, 44px);         /* 44 у макеті */
+    --toggle-space: calc(24px + var(--gutter)); /* місце під бургер, коли меню закрите */
+    --ease: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    height: auto;
+    min-height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 300;
+}
+
+html:has(body.design-page) {
+    height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html:has(body.design-page) {
+        scroll-behavior: smooth;
+    }
+}
+
+.design-page .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.design-page :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* У полі пошуку чорної рамки немає (сама «таблетка» вже має обводку) */
+.design-page .search-input:focus-visible,
+.design-page .search-input:focus {
+    outline: 0;
+}
+
+/* ---------- Кнопка меню: хрестик <-> бургер ---------- */
+
+/* Мені закрите: бургер прив'язаний до верху сторінки і гортається разом з нею.
+   Мені відкрите: хрестик стоїть у фіксованому меню. */
+.design-page .menu-toggle {
+    position: absolute;
+    z-index: 30;
+    top: 36px;
+    left: var(--gutter);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: left var(--ease);
+}
+
+.design-page.menu-open .menu-toggle {
+    position: fixed;
+    left: calc(var(--menu-w) - 56px);   /* x = 344 у меню шириною 400 */
+}
+
+.design-page .menu-toggle .icon {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.25s ease, transform var(--ease);
+}
+
+.design-page .menu-toggle .icon-close {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.design-page.menu-open .menu-toggle .icon-close {
+    opacity: 1;
+    transform: none;
+}
+
+.design-page.menu-open .menu-toggle .icon-burger {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+/* ---------- Бічне меню (fixed: не гортається разом зі сторінкою) ---------- */
+
+.design-page .menu {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--menu-w);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: var(--paper);
+    border-right: 1px solid var(--ink);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform var(--ease), visibility 0s linear 0.35s;
+}
+
+.design-page.menu-open .menu {
+    transform: none;
+    visibility: visible;
+    transition: transform var(--ease), visibility 0s;
+}
+
+/* Пошук у меню: 280 x 48, обводка 1px, радіус 30 */
+.design-page .menu .search {
+    position: relative;
+    z-index: auto;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex: none;
+    width: min(280px, calc(100% - 120px));
+    margin: 24px 0 0 32px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 30px;
+    box-shadow: none;
+}
+
+.design-page .menu .search-field {
+    height: 46px;
+    padding: 0 23px;
+}
+
+.design-page .menu .search-result {
+    border-top-color: rgba(46, 9, 8, 0.12);
+}
+
+/* Навігація: рядки з лініями, стрілка праворуч */
+.design-page .menu-nav {
+    flex: none;
+    margin-top: 60px;
+    border-top: 1px solid var(--ink);
+}
+
+/* Пункти меню мають такий самий hover, як кнопки Home Page / Art Side */
+.design-page .menu-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.design-page .menu-link:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.design-page .menu-link:hover::after {
+    background: var(--paper);
+}
+
+.design-page .menu-arrow {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+}
+
+/* Крапка: показує, у якому розділі зараз користувач */
+.design-page .menu-link::after {
+    content: "";
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ink);
+    transform: scale(0);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.design-page .menu-link.is-active::after {
+    transform: scale(1);
+}
+
+.design-page .menu-handle {
+    flex: none;
+    margin: 24px 0 0 24px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink-soft);
+}
+
+/* ---------- Кнопки-«таблетки» (Home Page, Art Side) ---------- */
+
+.design-page .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 1px solid var(--ink);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.design-page .pill:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.design-page .icon-back {
+    transform: rotate(180deg);
+}
+
+.design-page .menu-art {
+    flex: none;
+    align-self: flex-start;
+    margin: auto 0 24px 24px;
+}
+
+/* ---------- Основна частина ---------- */
+
+.design-page .page {
+    padding: 0 var(--gutter);
+    transition: margin-left var(--ease);
+}
+
+.design-page.menu-open .page {
+    margin-left: var(--menu-w);
+}
+
+.design-page .topbar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 98px;
+    padding-left: var(--toggle-space);   /* бургер займає місце зліва */
+    transition: padding-left var(--ease);
+}
+
+.design-page.menu-open .topbar {
+    padding-left: 0;
+}
+
+/* Налаштування cookie (поп-ап буде пізніше) */
+.design-page .cookie-settings {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    opacity: 0.32;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.design-page .cookie-settings span {
+    text-decoration: underline;
+    text-underline-position: from-font;
+}
+
+.design-page .cookie-settings:hover {
+    opacity: 0.7;
+}
+
+/* Перемикач мови (у макеті праворуч у шапці) */
+.design-page .lang {
+    position: static;
+    flex: none;
+}
+
+.design-page .lang-btn {
+    color: rgba(46, 9, 8, 0.24);
+}
+
+.design-page .lang-btn:hover {
+    color: rgba(46, 9, 8, 0.6);
+}
+
+.design-page .lang-btn.is-active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+}
+
+/* Фото-заглушка: потім замінити на зображення */
+.design-page .photo {
+    width: 100%;
+    height: clamp(180px, 21.35vw, 410px);   /* 410 у макеті 1920 */
+    border-radius: 8px;
+    background: #141414;
+    object-fit: cover;
+}
+
+.design-page .local-time {
+    position: static;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: normal;
+    color: var(--ink);
+}
+
+/* Розділи сторінки */
+.design-page .section {
+    padding: 60px 0;
+}
+
+.design-page .section-body {
+    max-width: min(100%, 900px);
+}
+
+.design-page .section-title {
+    margin: 0;
+    font-size: clamp(48px, 4.9vw, 94px);   /* 94 у макеті 1920 */
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: -0.08em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    color: var(--ink);
+}
+
+.design-page .section-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 546px;
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    text-wrap: pretty;
+}
+
+.design-page .section-text p {
+    opacity: 1;
+}
+
+/* Планшет і телефон: меню накладається поверх сторінки (як панель) */
+@media (max-width: 900px) {
+    body.design-page {
+        --menu-w: min(100vw, 400px);
+    }
+
+    .design-page.menu-open .page {
+        margin-left: 0;
+    }
+
+    .design-page.menu-open .topbar {
+        padding-left: var(--toggle-space);
+    }
+
+    .design-page .menu {
+        box-shadow: 8px 0 24px rgba(46, 9, 8, 0.12);
+    }
+
+    .design-page .topbar {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 560px) {
+    .design-page .topbar {
+        gap: 8px;
+    }
+
+    .design-page .pill {
+        padding: 12px 16px;
+    }
+
+    /* на вузьких екранах лишається тільки іконка cookie */
+    .design-page .cookie-settings span {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-page *,
+    .design-page *::after {
+        transition: none !important;
+    }
 }
 
 /* ---------- Мобільна версія: половини одна під одною ---------- */
