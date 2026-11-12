@@ -24,12 +24,14 @@
             <path d="M20 20 4 4m16 0L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
         <!-- Стрілка вправо (з images/arrow-right-icon.svg) -->
-        <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none">
-            <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-linejoin="round"/>
+        <!-- Блок 24×24, сама стрілка всередині 16×16 (як компонент Icon / Arrow right / 24 у макеті); обводка лишається 1px -->
+        <symbol id="i-arrow-right" viewBox="-1.5 -1.5 27 27" fill="none">
+            <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-width="1.125" stroke-linejoin="round"/>
         </symbol>
         <!-- Стрілка вгору-вправо (як на кнопці EXPLORE) -->
-        <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none">
-            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-linejoin="round"/>
+        <!-- Блок 24×24, стрілка всередині 16×16, обводка 1px -->
+        <symbol id="i-arrow-out" viewBox="-1.4 -1.4 26.8 26.8" fill="none">
+            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-width="1.12" stroke-linejoin="round"/>
         </symbol>
         <!-- Cookie (Figma: boxicons:cookie) -->
         <symbol id="i-cookie" viewBox="0 0 24 24" fill="none">
@@ -49,7 +51,7 @@
 
         <form class="search" role="search" onsubmit="return false;">
             <div class="search-field">
-                <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keyword" data-i18n-aria="search.placeholder" autocomplete="off">
+                <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keywords" data-i18n-aria="search.placeholder" autocomplete="off">
                 <button class="search-clear" type="button" aria-label="Clear" hidden>
                     <img src="images/close-icon.svg" alt="">
                 </button>

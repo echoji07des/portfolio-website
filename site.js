@@ -28,7 +28,7 @@
             "chip.commission": "Commission Price",
             "chip.gallery": "Art Gallery",
             "chip.shop": "Shop",
-            "search.placeholder": "Search by keyword...",
+            "search.placeholder": "Search by keywords...",
             "time.label": "Local time (Kyiv):",
             "side.design": "Design side",
             "side.art": "Artist side",
