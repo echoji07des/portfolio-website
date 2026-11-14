@@ -526,7 +526,7 @@ body.design-page {
     --paper: #FFF9F3;
     --ink: #2E0908;
     --ink-soft: rgba(46, 9, 8, 0.32);
-    --menu-w: clamp(320px, 20.8334vw, 400px);   /* 400 у макеті 1920 */
+    --menu-w: clamp(340px, 20.8334vw, 400px);   /* 400 у макеті 1920 */
     --gutter: clamp(16px, 2.3vw, 44px);         /* 44 у макеті */
     --toggle-space: calc(24px + var(--gutter)); /* місце під бургер, коли меню закрите */
     --ease: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -642,7 +642,7 @@ html:has(body.design-page) {
     left: auto;
     transform: none;
     flex: none;
-    width: min(280px, calc(100% - 120px));
+    width: min(280px, calc(100% - 100px));
     margin: 24px 0 0 32px;
     background: var(--paper);
     border: 1px solid var(--ink);
@@ -657,6 +657,22 @@ html:has(body.design-page) {
 
 .design-page .menu .search-result {
     border-top-color: rgba(46, 9, 8, 0.12);
+}
+
+/* Лупа і хрестик у пошуку: колір #2E0908 з прозорістю 32%, на hover — 100% */
+.design-page .menu .search-icon,
+.design-page .menu .search-clear svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    color: var(--ink);
+    opacity: 0.32;
+    transition: opacity 0.2s ease;
+}
+
+.design-page .menu .search-icon:hover,
+.design-page .menu .search-clear:hover svg {
+    opacity: 1;
 }
 
 /* Навігація: рядки з лініями, стрілка праворуч */
@@ -1054,6 +1070,21 @@ html:has(body.design-page) {
     color: var(--ink);
 }
 
+/* Блок «Download and explore my experience»: підпис в один рядок, блок за шириною підпису */
+.design-page #cv {
+    width: auto;
+}
+
+.design-page #cv .caption {
+    white-space: nowrap;
+}
+
+/* Назви проєктів в описах — Inter Medium */
+.design-page .acc-name {
+    font-weight: 500;
+    color: var(--ink);
+}
+
 /* Права колонка: підпис + кнопка, 293 завширшки */
 .design-page .cta {
     display: flex;
@@ -1095,6 +1126,7 @@ html:has(body.design-page) {
 /* About me: CV зліва, «Columns» праворуч (x = 1687 у макеті) */
 .design-page .row-side--split {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 24px;
     padding-top: 51px;
@@ -1150,7 +1182,7 @@ html:has(body.design-page) {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 12px;   /* між поштою та іконкою копіювання */
 }
 
 /* Пошта: 24 Regular; підводка з'являється при наведенні */
@@ -1176,7 +1208,6 @@ html:has(body.design-page) {
     flex: none;
     width: 24px;
     height: 24px;
-    margin-left: 4px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -1254,7 +1285,7 @@ html:has(body.design-page) {
 .design-page .acc {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 32px;   /* між пунктами списку */
     margin-top: 32px;
 }
 
@@ -1268,7 +1299,6 @@ html:has(body.design-page) {
     align-items: center;
     gap: 12px;
     width: 100%;
-    min-height: 44px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -1285,6 +1315,11 @@ html:has(body.design-page) {
     line-height: normal;
     letter-spacing: -0.02em;
     text-wrap: pretty;
+}
+
+.design-page .acc-head,
+.design-page .acc-chevron .icon {
+    overflow: visible;   /* стрілку не обрізає по краях */
 }
 
 /* Стрілка 24: 60% прозорості, на hover — 100%; відкрито — повернута вгору */
@@ -1328,11 +1363,12 @@ html:has(body.design-page) {
     flex-direction: column;
     gap: 12px;
     max-width: 585px;
-    padding-top: 12px;
+    padding-top: 12px;   /* однаковий відступ від заголовка (в один чи два рядки) */
     font-size: 16px;
     font-weight: 300;
     line-height: 20px;
     letter-spacing: -0.02em;
+    color: rgba(46, 9, 8, 0.6);
     text-wrap: pretty;
 }
 
@@ -1341,7 +1377,7 @@ html:has(body.design-page) {
 .design-page .skills {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
-    gap: 12px 44px;
+    gap: 24px 44px;   /* 24px між рядами блоків, коли вони переносяться */
     margin-top: 32px;
     font-size: 16px;
     font-weight: 300;

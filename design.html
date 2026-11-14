@@ -41,6 +41,20 @@
             <path fill="currentColor" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
             <path fill="currentColor" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
         </symbol>
+        <!-- Копіювання пошти (два квадрати) і галочка «скопійовано» -->
+        <symbol id="i-copy" viewBox="0 0 24 24" fill="none">
+            <path d="M8 7V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="4" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24" fill="none">
+            <path d="M21 20L16.7501 15.7425M19.1053 10.0526C19.1053 12.1883 18.2569 14.2365 16.7467 15.7467C15.2365 17.2569 13.1883 18.1053 11.0526 18.1053C8.91694 18.1053 6.86872 17.2569 5.35856 15.7467C3.8484 14.2365 3 12.1883 3 10.0526C3 7.91694 3.8484 5.86872 5.35856 4.35856C6.86872 2.8484 8.91694 2 11.0526 2C13.1883 2 15.2365 2.8484 16.7467 4.35856C18.2569 5.86872 19.1053 7.91694 19.1053 10.0526Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-clear" viewBox="0 0 24 24" fill="none">
+            <path d="M20 20L4 4M20 4L4 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
         <!-- Соцмережі (ті самі, що на головній) -->
         <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 2.00509C0.000577519 1.47349 0.212013 0.96382 0.587915 0.587918C0.963818 0.212016 1.47349 0.000580192 2.00509 2.67307e-06H21.9927C22.2563 -0.000427747 22.5173 0.0511258 22.7609 0.151712C23.0045 0.252298 23.2258 0.399941 23.4123 0.586188C23.5987 0.772435 23.7466 0.993628 23.8475 1.2371C23.9483 1.48058 24.0001 1.74156 24 2.00509V21.9927C24 22.5249 23.7887 23.0353 23.4125 23.4117C23.0363 23.7881 22.526 23.9997 21.9938 24H2.00509C1.4733 23.9994 0.963464 23.7878 0.58753 23.4117C0.211597 23.0356 0.000288705 22.5256 0 21.9938V2.00509ZM9.49964 9.15055H12.7495V10.7825C13.2185 9.84437 14.4185 9 16.2218 9C19.6789 9 20.4982 10.8687 20.4982 14.2975V20.6487H16.9996V15.0785C16.9996 13.1258 16.5305 12.024 15.3393 12.024C13.6865 12.024 12.9993 13.212 12.9993 15.0785V20.6487H9.49964V9.15055ZM3.49964 20.4993H6.99927V9H3.49964V20.4993ZM7.5 5.24946C7.5066 5.5491 7.45328 5.84704 7.34317 6.1258C7.23306 6.40456 7.06838 6.65851 6.8588 6.87276C6.64921 7.08702 6.39894 7.25725 6.12268 7.37346C5.84641 7.48968 5.54972 7.54955 5.25 7.54955C4.95028 7.54955 4.65359 7.48968 4.37732 7.37346C4.10106 7.25725 3.85079 7.08702 3.6412 6.87276C3.43162 6.65851 3.26694 6.40456 3.15683 6.1258C3.04672 5.84704 2.9934 5.5491 3 5.24946C3.01295 4.6613 3.25569 4.10159 3.67624 3.69021C4.09678 3.27882 4.6617 3.04846 5.25 3.04846C5.8383 3.04846 6.40322 3.27882 6.82376 3.69021C7.24431 4.10159 7.48705 4.6613 7.5 5.24946Z" fill="currentColor"/>
@@ -66,9 +80,9 @@
             <div class="search-field">
                 <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keywords" data-i18n-aria="search.placeholder" autocomplete="off">
                 <button class="search-clear" type="button" aria-label="Clear" hidden>
-                    <img src="images/close-icon.svg" alt="">
+                    <svg class="search-clear-icon" aria-hidden="true"><use href="#i-clear"/></svg>
                 </button>
-                <img class="search-icon" src="images/search-icon.svg" alt="">
+                <svg class="search-icon" aria-hidden="true"><use href="#i-search"/></svg>
             </div>
             <div class="search-results"></div>
         </form>
@@ -206,7 +220,11 @@
                         <div class="email">
                             <!-- Пошта з макета. Щоб змінити — достатньо змінити текст, посилання mailto підставиться саме -->
                             <a class="email-link" id="email-link" href="mailto:bilan02233@gmail.com">bilan02233@gmail.com</a>
-                            <button type="button" class="copy-btn" id="copy-email"><span data-i18n="contacts.copy">Copy</span></button>
+                            <button type="button" class="copy-btn" id="copy-email">
+                                <span class="visually-hidden" data-i18n="contacts.copy">Copy</span>
+                                <svg class="icon icon-copy" aria-hidden="true"><use href="#i-copy"/></svg>
+                                <svg class="icon icon-check" aria-hidden="true"><use href="#i-check"/></svg>
+                            </button>
                             <span class="visually-hidden" id="copy-status" aria-live="polite"></span>
                         </div>
                         <div class="social-row">
@@ -247,8 +265,8 @@
                             <div class="acc-panel" id="exp-1" role="region" aria-labelledby="exp-1-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="exp1.a">Garden Prostir — end-to-end mobile website for an event agency, streamlining service discovery and boosting consultation bookings.</p>
-                                        <p data-i18n="exp1.b">GD Cashmere — desktop and mobile redesign for a premium clothing brand, elevating brand aesthetics and streamlining catalog navigation and checkout.</p>
+                                        <p><strong class="acc-name" data-i18n="exp1.a.name">Garden Prostir</strong> <span data-i18n="exp1.a.text">— end-to-end mobile website for an event agency, streamlining service discovery and boosting consultation bookings.</span></p>
+                                        <p><strong class="acc-name" data-i18n="exp1.b.name">GD Cashmere</strong> <span data-i18n="exp1.b.text">— desktop and mobile redesign for a premium clothing brand, elevating brand aesthetics and streamlining catalog navigation and checkout.</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +282,7 @@
                             <div class="acc-panel" id="exp-2" role="region" aria-labelledby="exp-2-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="exp2.a">Olena Petrochenko — designed a high-converting website and mobile experience to establish a mentor’s personal brand.</p>
+                                        <p><strong class="acc-name" data-i18n="exp2.a.name">Olena Petrochenko</strong> <span data-i18n="exp2.a.text">— designed a high-converting website and mobile experience to establish a mentor’s personal brand.</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +298,7 @@
                             <div class="acc-panel" id="exp-3" role="region" aria-labelledby="exp-3-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="exp3.a">Creating character designs for commercial use—offered for sale on platforms such as VGen and DeviantArt—and producing custom illustrations for clients’ personal use.</p>
+                                        <p data-i18n="exp3.a">Creating character designs for commercial use — offered for sale on platforms such as VGen and DeviantArt — and producing custom illustrations for clients’ personal use.</p>
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +341,7 @@
                             <div class="acc-panel" id="edu-1" role="region" aria-labelledby="edu-1-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="edu1.a">Graphic Design — strong foundation in branding, market positioning, and business-driven visual communication. Deep expertise in typography, composition, color theory, print production, and physical material applications.</p>
+                                        <p><strong class="acc-name" data-i18n="edu1.a.name">Graphic Design</strong> <span data-i18n="edu1.a.text">— strong foundation in branding, market positioning, and business-driven visual communication. Deep expertise in typography, composition, color theory, print production, and physical material applications.</span></p>
                                     </div>
                                 </div>
                             </div>
