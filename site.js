@@ -32,6 +32,7 @@
             "time.label": "Local time (Kyiv):",
             "side.design": "Design side",
             "side.art": "Artist side",
+
             "menu.about": "About me",
             "menu.order": "Order service",
             "menu.portfolio": "Portfolio",
@@ -41,10 +42,52 @@
             "menu.close": "Close menu",
             "nav.home": "Home Page",
             "nav.art": "Art Side",
-            "cookie.settings": "Settings",
-            "cookie.aria": "Cookie settings",
-            "about.p1": "Hi, I’m Angelina, and I design websites. The development process begins with competitor research to determine how best to help your specific business and make it stand out.",
-            "about.p2": "I seek a development approach that is both original and practical—ensuring a seamless user experience for future clients while making the development process smooth for programmers."
+
+            "settings.title": "Settings",
+            "settings.font": "Accessible font",
+            "settings.theme": "Light / Dark theme",
+
+            "about.open": "Open to work",
+            "about.available": "Available: Mon-fri (10:00 - 18:00)",
+            "about.p1": "Hi, I’m Angelina, a UI/UX & Product Designer. I find answers and build products that solve your problems. I develop desktop and mobile websites, as well as Android & iOS apps.",
+            "about.niches": "Working in the following niches:",
+            "about.p3": "I have a 9-year art school background and a degree in Graphic Design. I was mentored by a Senior UI/UX Designer and still do illustration today. I’ve studied English since childhood so I have B1–B2.",
+
+            "cta.cv": "Download and explore my experience",
+            "cta.download": "Download CV",
+            "cta.connect": "Let’s connect and build a product!",
+            "cta.order": "Order Service",
+            "cta.projects": "Check out more about my projects",
+
+            "columns.title": "Columns",
+            "columns.about": "About Me",
+            "columns.contacts": "Contacts",
+            "columns.experience": "Experience",
+            "columns.education": "Education",
+            "columns.skills": "Skills & Tools",
+
+            "h.contacts": "Contacts",
+            "h.experience": "Experience",
+            "h.education": "Education",
+            "h.skills": "Skills & tools",
+
+            "contacts.copy": "Copy",
+            "contacts.copied": "Copied",
+            "contacts.failed": "Copy failed",
+            "contacts.direct": "— for direct contact",
+
+            "exp1.title": "Freelance - UI/UX designer (May 2026 - Present)",
+            "exp1.a": "Garden Prostir — end-to-end mobile website for an event agency, streamlining service discovery and boosting consultation bookings.",
+            "exp1.b": "GD Cashmere — desktop and mobile redesign for a premium clothing brand, elevating brand aesthetics and streamlining catalog navigation and checkout.",
+            "exp2.title": "Junior UI/UX - Assistance for Senior UI/UX designer (Jan 2026 - Apr 2026)",
+            "exp2.a": "Olena Petrochenko — designed a high-converting website and mobile experience to establish a mentor’s personal brand.",
+            "exp3.title": "Freelance - Digital 2D Illustrator / Concept Art (Dec 2023 - Jan 2025)",
+            "exp3.a": "Creating character designs for commercial use—offered for sale on platforms such as VGen and DeviantArt—and producing custom illustrations for clients’ personal use.",
+
+            "edu1.title": "\"Universum\" Professional College of Borys Grinchenko Kyiv Metropolitan University (2023–2027)",
+            "edu1.a": "Graphic Design — strong foundation in branding, market positioning, and business-driven visual communication. Deep expertise in typography, composition, color theory, print production, and physical material applications.",
+            "edu2.title": "Art school (2014–2023)",
+            "edu2.a": "I studied fine arts (drawing and painting), color theory, applied arts, and art history. In the applied arts course, we covered some of the material taught in graphic design (such as stylization, layout, and print production)."
         },
         uk: {
             "design.title": "Дизайн",
@@ -68,6 +111,7 @@
             "time.label": "Місцевий час (Київ):",
             "side.design": "Дизайн-сторона",
             "side.art": "Арт-сторона",
+
             "menu.about": "Про мене",
             "menu.order": "Замовити послугу",
             "menu.portfolio": "Портфоліо",
@@ -77,10 +121,52 @@
             "menu.close": "Закрити меню",
             "nav.home": "На головну",
             "nav.art": "Арт Сторінка",
-            "cookie.settings": "Налаштування",
-            "cookie.aria": "Налаштування cookie",
-            "about.p1": "Привіт, я Ангеліна, і я проєктую вебсайти. Розробка починається з аналізу конкурентів, щоб визначити, як найкраще допомогти саме вашому бізнесу та виділити його серед інших.",
-            "about.p2": "Я шукаю підхід, який є і оригінальним, і практичним: зручний досвід для майбутніх клієнтів і зрозумілий, плавний процес розробки для програмістів."
+
+            "settings.title": "Налаштування",
+            "settings.font": "Доступний шрифт",
+            "settings.theme": "Світла / темна тема",
+
+            "about.open": "Відкрита до роботи",
+            "about.available": "Доступна: пн–пт (10:00 – 18:00)",
+            "about.p1": "Привіт, я Ангеліна, UI/UX та Product-дизайнерка. Я шукаю відповіді та створюю продукти, які розв’язують ваші проблеми. Розробляю десктопні та мобільні вебсайти, а також застосунки для Android та iOS.",
+            "about.niches": "Працюю в таких нішах:",
+            "about.p3": "Маю 9 років мистецької школи та диплом із графічного дизайну. Мене наставляв Senior UI/UX дизайнер, і я досі займаюся ілюстрацією. Англійську вивчаю з дитинства, тож мій рівень — B1–B2.",
+
+            "cta.cv": "Завантажте резюме та ознайомтеся з моїм досвідом",
+            "cta.download": "Завантажити резюме",
+            "cta.connect": "Давайте зв’яжемося та створимо продукт!",
+            "cta.order": "Замовити послугу",
+            "cta.projects": "Дізнайтеся більше про мої проєкти",
+
+            "columns.title": "Розділи",
+            "columns.about": "Про мене",
+            "columns.contacts": "Контакти",
+            "columns.experience": "Досвід",
+            "columns.education": "Освіта",
+            "columns.skills": "Навички та інструменти",
+
+            "h.contacts": "Контакти",
+            "h.experience": "Досвід",
+            "h.education": "Освіта",
+            "h.skills": "Навички та інструменти",
+
+            "contacts.copy": "Копіювати",
+            "contacts.copied": "Скопійовано",
+            "contacts.failed": "Не вдалося",
+            "contacts.direct": "— для прямого зв’язку",
+
+            "exp1.title": "Фріланс — UI/UX дизайнерка (травень 2026 — дотепер)",
+            "exp1.a": "Garden Prostir — мобільний вебсайт «під ключ» для івент-агенції, що спрощує пошук послуг і збільшує кількість записів на консультацію.",
+            "exp1.b": "GD Cashmere — редизайн десктопної та мобільної версій для преміального бренду одягу: підсилена естетика бренду, простіші навігація каталогом і оформлення замовлення.",
+            "exp2.title": "Junior UI/UX — асистування Senior UI/UX дизайнеру (січень 2026 — квітень 2026)",
+            "exp2.a": "Olena Petrochenko — спроєктовано висококонверсійний вебсайт і мобільну версію для побудови особистого бренду наставниці.",
+            "exp3.title": "Фріланс — Digital 2D ілюстраторка / Concept Art (грудень 2023 — січень 2025)",
+            "exp3.a": "Створення дизайнів персонажів для комерційного використання (на продаж на платформах VGen і DeviantArt) та авторських ілюстрацій на замовлення для особистого використання клієнтів.",
+
+            "edu1.title": "Фаховий коледж «Universum» Київського столичного університету імені Бориса Грінченка (2023–2027)",
+            "edu1.a": "Графічний дизайн — міцна база з брендингу, ринкового позиціонування та візуальної комунікації, орієнтованої на бізнес. Глибока експертиза в типографіці, композиції, теорії кольору, друкованій продукції та роботі з фізичними матеріалами.",
+            "edu2.title": "Художня школа (2014–2023)",
+            "edu2.a": "Вивчала образотворче мистецтво (малюнок і живопис), теорію кольору, прикладне мистецтво та історію мистецтв. На курсі прикладного мистецтва ми проходили частину матеріалу з графічного дизайну (стилізація, верстка, підготовка до друку)."
         }
     };
 

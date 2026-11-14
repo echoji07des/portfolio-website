@@ -142,13 +142,13 @@ body.hub-page::after {
     margin: 0;
 }
 
-/* Inter Extra Light, 14 / 18, letter-spacing 0.04em, колір #FFF2E3 */
+/* Inter Light, 14 / 18, letter-spacing 0.04em, колір #FFF2E3 */
 .hero-desc {
     width: calc(526 * var(--u));
     max-width: 100%;
     text-align: center;
     font-family: "Inter", Arial, sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: max(10px, calc(14 * var(--u)));
     line-height: calc(18 * var(--u));
     letter-spacing: 0.04em;
@@ -752,10 +752,17 @@ html:has(body.design-page) {
     transform: rotate(180deg);
 }
 
+/* Art Side: вертикальний відступ 14px */
 .design-page .menu-art {
     flex: none;
     align-self: flex-start;
     margin: auto 0 24px 24px;
+    padding: 14px 24px;
+}
+
+/* Великі кнопки в тексті сторінки: так само 14px зверху й знизу */
+.design-page .pill--lg {
+    padding: 14px 24px;
 }
 
 /* ---------- Основна частина ---------- */
@@ -782,12 +789,16 @@ html:has(body.design-page) {
     padding-left: 0;
 }
 
-/* Налаштування cookie (поп-ап буде пізніше) */
-.design-page .cookie-settings {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+/* Settings: текстова кнопка (без іконки, 100% непрозорість).
+   При наведенні або фокусі з клавіатури під нею з'являється меню з тумблерами. */
+.design-page .settings {
+    position: relative;
+    z-index: 10;
     margin-left: auto;
+}
+
+.design-page .settings-btn {
+    display: block;
     padding: 10px;
     border: 0;
     background: transparent;
@@ -796,18 +807,90 @@ html:has(body.design-page) {
     font-size: 14px;
     font-weight: 300;
     line-height: normal;
-    opacity: 0.32;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.design-page .cookie-settings span {
     text-decoration: underline;
     text-underline-position: from-font;
+    opacity: 1;
+    cursor: pointer;
 }
 
-.design-page .cookie-settings:hover {
-    opacity: 0.7;
+.design-page .settings-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding-top: 8px;            /* невидимий місток, щоб меню не зникало, поки курсор їде до нього */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.design-page .settings:hover .settings-menu,
+.design-page .settings:has(:focus-visible) .settings-menu,
+.design-page .settings.is-open .settings-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+}
+
+.design-page .settings-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 264px;
+    padding: 20px 24px;
+    border: 1px solid var(--ink);
+    border-radius: 16px;
+    background: var(--paper);
+    box-shadow: 0 8px 24px rgba(46, 9, 8, 0.12);
+}
+
+.design-page .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.design-page .settings-label {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+/* Тумблер 44 x 24 */
+.design-page .switch {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid var(--ink);
+    border-radius: 30px;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.design-page .switch-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--ink);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.design-page .switch[aria-checked="true"] {
+    background: var(--ink);
+}
+
+.design-page .switch[aria-checked="true"] .switch-knob {
+    background: var(--paper);
+    transform: translateX(20px);
 }
 
 /* Перемикач мови (у макеті праворуч у шапці) */
@@ -838,51 +921,479 @@ html:has(body.design-page) {
     object-fit: cover;
 }
 
-.design-page .local-time {
-    position: static;
+/* Рядок під фото: місцевий час і години доступності (макет: 14 Light, доступність 60%) */
+.design-page .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 32px;
     margin-top: 18px;
+}
+
+.design-page .local-time,
+.design-page .availability {
+    position: static;
+    margin: 0;
     font-size: 14px;
     font-weight: 300;
-    line-height: 1.2;
+    line-height: normal;
     text-transform: uppercase;
     white-space: normal;
     color: var(--ink);
 }
 
-/* Розділи сторінки */
-.design-page .section {
-    padding: 60px 0;
+.design-page .availability {
+    color: rgba(46, 9, 8, 0.6);
 }
 
-.design-page .section-body {
-    max-width: min(100%, 900px);
+.design-page .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ---------- Розділи: основна колонка 60% + бічна 40% (без ліній між розділами) ----------
+   Розміри в макеті 1920: заголовок 110 Thin, відступ між розділами 80, між заголовком і вмістом 32.
+   Заголовки масштабуються від ширини області (cqw), тому вміщаються при будь-якому розтягуванні. */
+
+.design-page main {
+    container: about / inline-size;
+}
+
+.design-page .row {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    margin-top: 80px;
+}
+
+.design-page .row:last-child {
+    margin-bottom: 120px;
+}
+
+.design-page .row-main,
+.design-page .row-side {
+    min-width: 0;
+}
+
+.design-page .row-main {
+    max-width: 629px;
 }
 
 .design-page .section-title {
     margin: 0;
-    font-size: clamp(48px, 4.9vw, 94px);   /* 94 у макеті 1920 */
-    font-weight: 200;
-    line-height: normal;
-    letter-spacing: -0.08em;
+    scroll-margin-top: 24px;
+    font-size: clamp(40px, 6cqw, 110px);   /* 110 у макеті 1920 */
+    font-weight: 100;
+    line-height: 0.9636;                   /* 106 / 110 */
+    letter-spacing: -0.1em;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     color: var(--ink);
+}
+
+/* Open to work: 16 Regular, колір #30541D */
+.design-page .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #30541D;
+}
+
+.design-page .status-dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #30541D;
+    animation: dot-blink 2s ease-in-out infinite;   /* одне повільне мигання за 2 секунди */
+}
+
+@keyframes dot-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .design-page .status-dot {
+        animation: none;
+    }
 }
 
 .design-page .section-text {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-width: 546px;
-    margin-top: 16px;
+    max-width: 578px;
+    margin-top: 32px;
     font-size: 16px;
     font-weight: 300;
-    line-height: normal;
+    line-height: 20px;
+    letter-spacing: -0.02em;
     text-wrap: pretty;
 }
 
-.design-page .section-text p {
+.design-page .niches ul {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.design-page .caption {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+/* Права колонка: підпис + кнопка, 293 завширшки */
+.design-page .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    width: 293px;
+    max-width: 100%;
+}
+
+.design-page .cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* Кнопки праворуч вирівняні по верху заголовка */
+.design-page div.row-side:not(.row-side--split) {
+    margin-top: -10px;
+}
+
+.design-page .pill--lg {
+    font-weight: 400;
+}
+
+/* Download CV: залита кнопка (Inter Medium) */
+.design-page .pill--primary {
+    background: var(--ink);
+    color: #FFF2E3;
+    font-weight: 500;
+}
+
+.design-page .pill--primary:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+/* About me: CV зліва, «Columns» праворуч (x = 1687 у макеті) */
+.design-page .row-side--split {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 51px;
+}
+
+.design-page .columns {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 83px;
+    margin-right: min(106px, 14.5%);
+}
+
+.design-page .columns .caption {
+    font-weight: 400;
+}
+
+.design-page .columns ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.design-page .columns a {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: rgba(46, 9, 8, 0.6);
+    text-decoration: underline;
+    text-underline-position: from-font;
+    transition: color 0.2s ease;
+}
+
+.design-page .columns a:hover {
+    color: var(--ink);
+}
+
+/* ---------- Contacts ---------- */
+
+.design-page .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.design-page .email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Пошта: 24 Regular; підводка з'являється при наведенні */
+.design-page .email-link {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-position: from-font;
+    transition: text-decoration-color 0.2s ease;
+}
+
+.design-page .email:hover .email-link,
+.design-page .email-link:focus-visible {
+    text-decoration-color: currentColor;
+}
+
+/* Кнопка «Copy» з'являється поруч при наведенні (на сенсорних екранах видно завжди) */
+.design-page .copy-btn {
+    position: relative;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Іконка «копіювати»; після копіювання на короткий час стає галочкою */
+.design-page .copy-btn .icon {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.2s ease;
+}
+
+.design-page .copy-btn .icon-check {
+    opacity: 0;
+}
+
+.design-page .copy-btn.is-copied .icon-copy {
+    opacity: 0;
+}
+
+.design-page .copy-btn.is-copied .icon-check {
     opacity: 1;
+}
+
+.design-page .email:hover .copy-btn,
+.design-page .copy-btn:focus-visible,
+.design-page .copy-btn.is-copied {
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .design-page .copy-btn {
+        opacity: 1;
+    }
+}
+
+.design-page .social-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 14px;
+}
+
+.design-page .social-icons {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.design-page .social-icons a {
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.design-page .social-icons a:hover {
+    opacity: 0.55;
+}
+
+.design-page .social-note {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+/* ---------- Experience / Education: рядки зі стрілкою, текст розкривається ---------- */
+
+.design-page .acc {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.design-page .acc-heading {
+    margin: 0;
+    font-weight: inherit;
+}
+
+.design-page .acc-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+}
+
+.design-page .acc-title {
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(17px, 1.31cqw, 24px);   /* 24 у макеті 1920 */
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+}
+
+/* Стрілка 24: 60% прозорості, на hover — 100%; відкрито — повернута вгору */
+.design-page .acc-chevron {
+    display: block;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+    transition: opacity 0.25s ease, transform var(--ease);
+}
+
+.design-page .acc-head:hover .acc-chevron {
+    opacity: 1;
+}
+
+.design-page .acc-item.is-open .acc-chevron {
+    transform: rotate(180deg);
+}
+
+.design-page .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows var(--ease), visibility 0s linear 0.35s;
+}
+
+.design-page .acc-item.is-open .acc-panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition: grid-template-rows var(--ease), visibility 0s;
+}
+
+.design-page .acc-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.design-page .acc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 585px;
+    padding-top: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+}
+
+/* ---------- Skills & tools: 4 колонки (проміжок 44) ---------- */
+
+.design-page .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+    gap: 12px 44px;
+    margin-top: 32px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.design-page .skills ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@container about (max-width: 1200px) {
+    .design-page .columns {
+        margin-right: 0;
+    }
+
+    .design-page .row-main {
+        padding-right: 32px;
+    }
+}
+
+/* Вузька основна область: колонки одна під одною */
+@container about (max-width: 760px) {
+    .design-page .row {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 40px;
+        margin-top: 60px;
+    }
+
+    .design-page .row-main {
+        padding-right: 0;
+    }
+
+    .design-page .section-title {
+        font-size: clamp(40px, 12cqw, 110px);
+    }
+
+    .design-page .acc-title {
+        font-size: clamp(18px, 3cqw, 24px);
+    }
+
+    .design-page div.row-side:not(.row-side--split) {
+        margin-top: 0;
+    }
+
+    .design-page .row-side--split {
+        flex-wrap: wrap;
+        padding-top: 0;
+    }
 }
 
 /* Планшет і телефон: меню накладається поверх сторінки (як панель) */
@@ -917,9 +1428,9 @@ html:has(body.design-page) {
         padding: 12px 16px;
     }
 
-    /* на вузьких екранах лишається тільки іконка cookie */
-    .design-page .cookie-settings span {
-        display: none;
+    .design-page .settings-panel {
+        min-width: 232px;
+        padding: 16px 20px;
     }
 }
 
@@ -928,6 +1439,14 @@ html:has(body.design-page) {
     .design-page *::after {
         transition: none !important;
     }
+}
+
+/* ---------- Accessible font: увесь сайт на Atkinson Hyperlegible (тумблер у Settings) ---------- */
+
+html.font-accessible,
+html.font-accessible *,
+html.font-accessible *::placeholder {
+    font-family: "Atkinson Hyperlegible", Arial, sans-serif !important;
 }
 
 /* ---------- Мобільна версія: половини одна під одною ---------- */
@@ -959,4 +1478,10 @@ html:has(body.design-page) {
     .search {
         top: 20px;
     }
+}
+
+/* Пошук у меню: довгий підпис не обрізається під іконкою різким краєм */
+.design-page .menu .search-input {
+    min-width: 0;
+    text-overflow: ellipsis;
 }

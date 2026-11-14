@@ -7,8 +7,9 @@
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="prefs.js"></script>
 </head>
 <!-- menu-open: при відкритті сторінки меню вже відкрите -->
 <body class="design-page menu-open">
@@ -23,20 +24,32 @@
         <symbol id="i-close" viewBox="-4 -4 32 32" fill="none">
             <path d="M20 20 4 4m16 0L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
-        <!-- Стрілка вправо (з images/arrow-right-icon.svg) -->
-        <!-- Блок 24×24, сама стрілка всередині 16×16 (як компонент Icon / Arrow right / 24 у макеті); обводка лишається 1px -->
+        <!-- Стрілка вправо (з images/arrow-right-icon.svg).
+             Блок 24×24, сама стрілка всередині рівно 16×16 (як компонент Icon / Arrow right / 24 у макеті), обводка 1px -->
         <symbol id="i-arrow-right" viewBox="-1.5 -1.5 27 27" fill="none">
             <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-width="1.125" stroke-linejoin="round"/>
         </symbol>
-        <!-- Стрілка вгору-вправо (як на кнопці EXPLORE) -->
-        <!-- Блок 24×24, стрілка всередині 16×16, обводка 1px -->
-        <symbol id="i-arrow-out" viewBox="-1.4 -1.4 26.8 26.8" fill="none">
-            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-width="1.12" stroke-linejoin="round"/>
+        <!-- Стрілка вгору-вправо (як на кнопці EXPLORE): блок 24×24, стрілка всередині 16×16, обводка 1px -->
+        <symbol id="i-arrow-out" viewBox="-1.288 -0.834 26.093 26.093" fill="none">
+            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-width="1.087" stroke-linejoin="round"/>
         </symbol>
-        <!-- Cookie (Figma: boxicons:cookie) -->
-        <symbol id="i-cookie" viewBox="0 0 24 24" fill="none">
-            <path d="M11.1764 4C7.07179 4.51556 4 8.01778 4 11.9822C4 16.4044 7.59711 20 12.0134 20C16.2827 20 19.7551 16.6356 20 11.9822C18.0323 12.4978 15.4858 11.0489 15.5927 8.40889C13.0729 8.83556 10.7045 6.84889 11.1764 4Z" stroke="currentColor" stroke-linejoin="round"/>
-            <path d="M12.2812 11.0813C11.958 11.0813 11.648 11.1982 11.4195 11.4063C11.1909 11.6145 11.0625 11.8967 11.0625 12.1911C11.0625 12.4854 11.1909 12.7677 11.4195 12.9758C11.648 13.1839 11.958 13.3008 12.2812 13.3008C12.6045 13.3008 12.9145 13.1839 13.143 12.9758C13.3716 12.7677 13.5 12.4854 13.5 12.1911C13.5 11.8967 13.3716 11.6145 13.143 11.4063C12.9145 11.1982 12.6045 11.0813 12.2812 11.0813ZM14.7188 4C14.5587 4 14.4002 4.0287 14.2524 4.08448C14.1045 4.14025 13.9701 4.22199 13.857 4.32504C13.7438 4.42809 13.654 4.55043 13.5928 4.68507C13.5315 4.81971 13.5 4.96402 13.5 5.10976C13.5 5.25549 13.5315 5.3998 13.5928 5.53444C13.654 5.66908 13.7438 5.79142 13.857 5.89447C13.9701 5.99752 14.1045 6.07927 14.2524 6.13504C14.4002 6.19081 14.5587 6.21951 14.7188 6.21951C14.8788 6.21951 15.0373 6.19081 15.1851 6.13504C15.333 6.07927 15.4674 5.99752 15.5805 5.89447C15.6937 5.79142 15.7835 5.66908 15.8447 5.53444C15.906 5.3998 15.9375 5.25549 15.9375 5.10976C15.9375 4.96402 15.906 4.81971 15.8447 4.68507C15.7835 4.55043 15.6937 4.42809 15.5805 4.32504C15.4674 4.22199 15.333 4.14025 15.1851 4.08448C15.0373 4.0287 14.8788 4 14.7188 4ZM8.21875 11.8211C8.0587 11.8211 7.90022 11.8498 7.75235 11.9056C7.60449 11.9614 7.47013 12.0431 7.35696 12.1462C7.24379 12.2492 7.15402 12.3716 7.09277 12.5062C7.03152 12.6409 7 12.7852 7 12.9309C7 13.0766 7.03152 13.2209 7.09277 13.3556C7.15402 13.4902 7.24379 13.6126 7.35696 13.7156C7.47013 13.8187 7.60449 13.9004 7.75235 13.9562C7.90022 14.0119 8.0587 14.0407 8.21875 14.0407C8.3788 14.0407 8.53728 14.0119 8.68515 13.9562C8.83301 13.9004 8.96737 13.8187 9.08054 13.7156C9.19371 13.6126 9.28348 13.4902 9.34473 13.3556C9.40598 13.2209 9.4375 13.0766 9.4375 12.9309C9.4375 12.7852 9.40598 12.6409 9.34473 12.5062C9.28348 12.3716 9.19371 12.2492 9.08054 12.1462C8.96737 12.0431 8.83301 11.9614 8.68515 11.9056C8.53728 11.8498 8.3788 11.8211 8.21875 11.8211ZM9.4375 9.60163C9.22201 9.60163 9.01535 9.67957 8.86298 9.81832C8.7106 9.95707 8.625 10.1452 8.625 10.3415C8.625 10.5377 8.7106 10.7259 8.86298 10.8646C9.01535 11.0034 9.22201 11.0813 9.4375 11.0813C9.65299 11.0813 9.85965 11.0034 10.012 10.8646C10.1644 10.7259 10.25 10.5377 10.25 10.3415C10.25 10.1452 10.1644 9.95707 10.012 9.81832C9.85965 9.67957 9.65299 9.60163 9.4375 9.60163ZM14.3125 14.0407C14.097 14.0407 13.8903 14.1186 13.738 14.2573C13.5856 14.3961 13.5 14.5843 13.5 14.7805C13.5 14.9767 13.5856 15.1649 13.738 15.3036C13.8903 15.4424 14.097 15.5203 14.3125 15.5203C14.528 15.5203 14.7347 15.4424 14.887 15.3036C15.0394 15.1649 15.125 14.9767 15.125 14.7805C15.125 14.5843 15.0394 14.3961 14.887 14.2573C14.7347 14.1186 14.528 14.0407 14.3125 14.0407ZM19.1875 6.21951C18.972 6.21951 18.7653 6.29746 18.613 6.43621C18.4606 6.57495 18.375 6.76313 18.375 6.95935C18.375 7.15557 18.4606 7.34375 18.613 7.48249C18.7653 7.62124 18.972 7.69919 19.1875 7.69919C19.403 7.69919 19.6097 7.62124 19.762 7.48249C19.9144 7.34375 20 7.15557 20 6.95935C20 6.76313 19.9144 6.57495 19.762 6.43621C19.6097 6.29746 19.403 6.21951 19.1875 6.21951ZM10.6562 14.7805C10.333 14.7805 10.023 14.8974 9.79446 15.1055C9.5659 15.3136 9.4375 15.5959 9.4375 15.8902C9.4375 16.1846 9.5659 16.4668 9.79446 16.675C10.023 16.8831 10.333 17 10.6562 17C10.9795 17 11.2895 16.8831 11.518 16.675C11.7466 16.4668 11.875 16.1846 11.875 15.8902C11.875 15.5959 11.7466 15.3136 11.518 15.1055C11.2895 14.8974 10.9795 14.7805 10.6562 14.7805Z" fill="currentColor"/>
+        <!-- Шеврон і завантаження (Bootstrap Icons, сітка 16 у блоці 24) -->
+        <symbol id="i-chevron-down" viewBox="-4 -4 24 24" fill="none">
+            <path fill="currentColor" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+        </symbol>
+        <symbol id="i-download" viewBox="-4 -4 24 24" fill="none">
+            <path fill="currentColor" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path fill="currentColor" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </symbol>
+        <!-- Соцмережі (ті самі, що на головній) -->
+        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 2.00509C0.000577519 1.47349 0.212013 0.96382 0.587915 0.587918C0.963818 0.212016 1.47349 0.000580192 2.00509 2.67307e-06H21.9927C22.2563 -0.000427747 22.5173 0.0511258 22.7609 0.151712C23.0045 0.252298 23.2258 0.399941 23.4123 0.586188C23.5987 0.772435 23.7466 0.993628 23.8475 1.2371C23.9483 1.48058 24.0001 1.74156 24 2.00509V21.9927C24 22.5249 23.7887 23.0353 23.4125 23.4117C23.0363 23.7881 22.526 23.9997 21.9938 24H2.00509C1.4733 23.9994 0.963464 23.7878 0.58753 23.4117C0.211597 23.0356 0.000288705 22.5256 0 21.9938V2.00509ZM9.49964 9.15055H12.7495V10.7825C13.2185 9.84437 14.4185 9 16.2218 9C19.6789 9 20.4982 10.8687 20.4982 14.2975V20.6487H16.9996V15.0785C16.9996 13.1258 16.5305 12.024 15.3393 12.024C13.6865 12.024 12.9993 13.212 12.9993 15.0785V20.6487H9.49964V9.15055ZM3.49964 20.4993H6.99927V9H3.49964V20.4993ZM7.5 5.24946C7.5066 5.5491 7.45328 5.84704 7.34317 6.1258C7.23306 6.40456 7.06838 6.65851 6.8588 6.87276C6.64921 7.08702 6.39894 7.25725 6.12268 7.37346C5.84641 7.48968 5.54972 7.54955 5.25 7.54955C4.95028 7.54955 4.65359 7.48968 4.37732 7.37346C4.10106 7.25725 3.85079 7.08702 3.6412 6.87276C3.43162 6.65851 3.26694 6.40456 3.15683 6.1258C3.04672 5.84704 2.9934 5.5491 3 5.24946C3.01295 4.6613 3.25569 4.10159 3.67624 3.69021C4.09678 3.27882 4.6617 3.04846 5.25 3.04846C5.8383 3.04846 6.40322 3.27882 6.82376 3.69021C7.24431 4.10159 7.48705 4.6613 7.5 5.24946Z" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24" fill="none">
+            <path d="M11.9968 7.9983C9.79333 7.9983 7.99515 9.79651 7.99515 12C7.99515 14.2035 9.79333 16.0017 11.9968 16.0017C14.2002 16.0017 15.9984 14.2035 15.9984 12C15.9984 9.79651 14.2002 7.9983 11.9968 7.9983ZM23.9987 12C23.9987 10.3429 24.0137 8.70077 23.9206 7.04665C23.8275 5.12536 23.3893 3.4202 21.9843 2.01525C20.5764 0.607302 18.8743 0.172008 16.953 0.0789456C15.2959 -0.0141173 13.6539 0.000892936 11.9998 0.000892936C10.3427 0.000892936 8.70061 -0.0141173 7.04652 0.0789456C5.12526 0.172008 3.42014 0.610305 2.01522 2.01525C0.607291 3.42321 0.172005 5.12536 0.0789442 7.04665C-0.014117 8.70377 0.000892919 10.3459 0.000892919 12C0.000892919 13.6541 -0.014117 15.2992 0.0789442 16.9533C0.172005 18.8746 0.610293 20.5798 2.01522 21.9847C3.42314 23.3927 5.12526 23.828 7.04652 23.9211C8.70361 24.0141 10.3457 23.9991 11.9998 23.9991C13.6569 23.9991 15.2989 24.0141 16.953 23.9211C18.8743 23.828 20.5794 23.3897 21.9843 21.9847C23.3923 20.5768 23.8275 18.8746 23.9206 16.9533C24.0167 15.2992 23.9987 13.6571 23.9987 12ZM11.9968 18.1572C8.58954 18.1572 5.83973 15.4073 5.83973 12C5.83973 8.5927 8.58954 5.84284 11.9968 5.84284C15.404 5.84284 18.1538 8.5927 18.1538 12C18.1538 15.4073 15.404 18.1572 11.9968 18.1572ZM18.406 7.02864C17.6105 7.02864 16.968 6.38621 16.968 5.59067C16.968 4.79513 17.6105 4.1527 18.406 4.1527C19.2015 4.1527 19.8439 4.79513 19.8439 5.59067C19.8442 5.77957 19.8071 5.96667 19.735 6.14124C19.6628 6.31581 19.5569 6.47442 19.4233 6.608C19.2897 6.74157 19.1311 6.84748 18.9565 6.91967C18.782 6.99185 18.5949 7.02888 18.406 7.02864Z" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-telegram" viewBox="0 0 24 24" fill="none">
+            <path d="M11.944 3.26458e-05C8.77113 0.0148349 5.73325 1.28565 3.4949 3.53448C1.25656 5.78331 -3.4527e-05 8.8271 7.11527e-10 12C7.11529e-10 15.1826 1.26428 18.2349 3.51472 20.4853C5.76515 22.7357 8.8174 24 12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2349 24 15.1826 24 12C24 8.81742 22.7357 5.76518 20.4853 3.51475C18.2348 1.26431 15.1826 3.26458e-05 12 3.26458e-05C11.9813 -1.08819e-05 11.9627 -1.08819e-05 11.944 3.26458e-05ZM16.906 7.22402C17.006 7.22201 17.227 7.24703 17.371 7.36403C17.4667 7.44714 17.5277 7.56311 17.542 7.68902C17.558 7.78202 17.578 7.99502 17.562 8.16101C17.382 10.059 16.6 14.663 16.202 16.788C16.034 17.688 15.703 17.989 15.382 18.018C14.686 18.083 14.157 17.558 13.482 17.116C12.426 16.423 11.829 15.992 10.804 15.316C9.61899 14.536 10.387 14.106 11.062 13.406C11.239 13.222 14.309 10.429 14.369 10.176C14.376 10.144 14.383 10.026 14.313 9.96401C14.243 9.902 14.139 9.92303 14.064 9.94001C13.958 9.96401 12.271 11.08 9.003 13.285C8.523 13.615 8.09001 13.775 7.701 13.765C7.27299 13.757 6.44901 13.524 5.83599 13.325C5.08401 13.08 4.48701 12.951 4.539 12.536C4.566 12.32 4.86399 12.099 5.43201 11.873C8.93001 10.349 11.262 9.34403 12.43 8.85902C15.762 7.47302 16.455 7.23203 16.906 7.22402Z" fill="currentColor"/>
         </symbol>
     </svg>
 
@@ -101,11 +114,23 @@
                 <span data-i18n="nav.home">Home Page</span>
             </a>
 
-            <!-- Налаштування cookie: поп-ап і сторінка налаштувань будуть пізніше -->
-            <button type="button" class="cookie-settings" id="cookie-settings" aria-label="Cookie settings" data-i18n-aria="cookie.aria">
-                <svg class="icon" aria-hidden="true"><use href="#i-cookie"/></svg>
-                <span data-i18n="cookie.settings">Settings</span>
-            </button>
+            <!-- Settings: при наведенні (або фокусі з клавіатури) з'являється меню з тумблерами.
+                 Далі сюди додасться перехід на загальну сторінку налаштувань. -->
+            <div class="settings" id="settings">
+                <button type="button" class="settings-btn" id="settings-btn" aria-expanded="false" aria-controls="settings-menu" data-i18n="settings.title">Settings</button>
+                <div class="settings-menu" id="settings-menu">
+                    <div class="settings-panel">
+                        <div class="settings-row">
+                            <span class="settings-label" id="label-font" data-i18n="settings.font">Accessible font</span>
+                            <button type="button" class="switch" id="switch-font" role="switch" aria-checked="false" aria-labelledby="label-font"><span class="switch-knob"></span></button>
+                        </div>
+                        <div class="settings-row">
+                            <span class="settings-label" id="label-theme" data-i18n="settings.theme">Light / Dark theme</span>
+                            <button type="button" class="switch" id="switch-theme" role="switch" aria-checked="false" aria-labelledby="label-theme"><span class="switch-knob"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="lang" role="group" aria-label="Language">
                 <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
@@ -117,22 +142,243 @@
             <!-- Фото: сюди потім буде вставлено зображення (замінити div на <img class="photo" src="..." alt="...">) -->
             <div class="photo" role="img" aria-label="Photo placeholder"></div>
 
-            <p class="local-time">
-                <span data-i18n="time.label">Local time (Kyiv):</span>
-                <span id="kyiv-time">--:--</span>
-            </p>
+            <div class="meta-row">
+                <p class="local-time">
+                    <span data-i18n="time.label">Local time (Kyiv):</span>
+                    <span id="kyiv-time">--:--</span>
+                </p>
+                <p class="availability" data-i18n="about.available">Available: Mon-fri (10:00 - 18:00)</p>
+            </div>
 
-            <section class="section" id="about">
-                <div class="section-body">
-                    <h2 class="section-title" data-i18n="menu.about">About me</h2>
-                    <!-- CV: якір design.html#cv. Поруч буде кнопка «Завантажити резюме» -->
-                    <div class="section-actions" id="cv"></div>
+            <!-- ===== About me ===== -->
+            <div class="row">
+                <section class="row-main" aria-labelledby="about">
+                    <p class="status">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span data-i18n="about.open">Open to work</span>
+                    </p>
+                    <h2 class="section-title" id="about" data-i18n="menu.about">About me</h2>
                     <div class="section-text">
-                        <p data-i18n="about.p1">Hi, I’m Angelina, and I design websites. The development process begins with competitor research to determine how best to help your specific business and make it stand out.</p>
-                        <p data-i18n="about.p2">I seek a development approach that is both original and practical—ensuring a seamless user experience for future clients while making the development process smooth for programmers.</p>
+                        <p data-i18n="about.p1">Hi, I’m Angelina, a UI/UX &amp; Product Designer. I find answers and build products that solve your problems. I develop desktop and mobile websites, as well as Android &amp; iOS apps.</p>
+                        <div class="niches">
+                            <p data-i18n="about.niches">Working in the following niches:</p>
+                            <ul>
+                                <li>FinTech</li>
+                                <li>B2B/B2C</li>
+                                <li>E-Commerce</li>
+                                <li>EventTech</li>
+                            </ul>
+                        </div>
+                        <p data-i18n="about.p3">I have a 9-year art school background and a degree in Graphic Design. I was mentored by a Senior UI/UX Designer and still do illustration today. I’ve studied English since childhood so I have B1–B2.</p>
+                    </div>
+                </section>
+
+                <div class="row-side row-side--split">
+                    <!-- id="cv": сюди веде чіп CV з головної сторінки -->
+                    <div class="cta" id="cv">
+                        <p class="caption" data-i18n="cta.cv">Download and explore my experience</p>
+                        <!-- Файл резюме покладіть у папку files/ під цією назвою (або змініть href) -->
+                        <a class="pill pill--lg pill--primary" href="files/CV.pdf" download>
+                            <span data-i18n="cta.download">Download CV</span>
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Колонки: посилання на заголовки сторінки -->
+                    <nav class="columns" aria-labelledby="columns-title">
+                        <p class="caption" id="columns-title" data-i18n="columns.title">Columns</p>
+                        <ul>
+                            <li><a href="#about" data-i18n="columns.about">About Me</a></li>
+                            <li><a href="#contacts" data-i18n="columns.contacts">Contacts</a></li>
+                            <li><a href="#experience" data-i18n="columns.experience">Experience</a></li>
+                            <li><a href="#education" data-i18n="columns.education">Education</a></li>
+                            <li><a href="#skills" data-i18n="columns.skills">Skills &amp; Tools</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- ===== Contacts ===== -->
+            <div class="row row--contacts">
+                <section class="row-main" aria-labelledby="contacts">
+                    <h2 class="section-title" id="contacts" data-i18n="h.contacts">Contacts</h2>
+                    <div class="contacts">
+                        <div class="email">
+                            <!-- Пошта з макета. Щоб змінити — достатньо змінити текст, посилання mailto підставиться саме -->
+                            <a class="email-link" id="email-link" href="mailto:bilan02233@gmail.com">bilan02233@gmail.com</a>
+                            <button type="button" class="copy-btn" id="copy-email"><span data-i18n="contacts.copy">Copy</span></button>
+                            <span class="visually-hidden" id="copy-status" aria-live="polite"></span>
+                        </div>
+                        <div class="social-row">
+                            <ul class="social-icons" aria-label="Social links">
+                                <li><a href="https://www.linkedin.com/in/angelina-bilan-2b3ba3410/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+                                <li><a href="https://www.instagram.com/echoji07des/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+                                <li><a href="https://t.me/angelinabilan" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg></a></li>
+                            </ul>
+                            <p class="social-note" data-i18n="contacts.direct">— for direct contact</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row-side">
+                    <div class="cta">
+                        <p class="caption" data-i18n="cta.connect">Let’s connect and build a product!</p>
+                        <a class="pill pill--lg" href="order.html">
+                            <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                            <span data-i18n="cta.order">Order Service</span>
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- ===== Experience ===== -->
+            <div class="row row--experience">
+                <section class="row-main" aria-labelledby="experience">
+                    <h2 class="section-title" id="experience" data-i18n="h.experience">Experience</h2>
+                    <div class="acc">
+
+                        <div class="acc-item">
+                            <h3 class="acc-heading">
+                                <button type="button" class="acc-head" id="exp-1-head" aria-expanded="false" aria-controls="exp-1">
+                                    <span class="acc-title" data-i18n="exp1.title">Freelance - UI/UX designer (May 2026 - Present)</span>
+                                    <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+                                </button>
+                            </h3>
+                            <div class="acc-panel" id="exp-1" role="region" aria-labelledby="exp-1-head">
+                                <div class="acc-inner">
+                                    <div class="acc-body">
+                                        <p data-i18n="exp1.a">Garden Prostir — end-to-end mobile website for an event agency, streamlining service discovery and boosting consultation bookings.</p>
+                                        <p data-i18n="exp1.b">GD Cashmere — desktop and mobile redesign for a premium clothing brand, elevating brand aesthetics and streamlining catalog navigation and checkout.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acc-item">
+                            <h3 class="acc-heading">
+                                <button type="button" class="acc-head" id="exp-2-head" aria-expanded="false" aria-controls="exp-2">
+                                    <span class="acc-title" data-i18n="exp2.title">Junior UI/UX - Assistance for Senior UI/UX designer (Jan 2026 - Apr 2026)</span>
+                                    <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+                                </button>
+                            </h3>
+                            <div class="acc-panel" id="exp-2" role="region" aria-labelledby="exp-2-head">
+                                <div class="acc-inner">
+                                    <div class="acc-body">
+                                        <p data-i18n="exp2.a">Olena Petrochenko — designed a high-converting website and mobile experience to establish a mentor’s personal brand.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acc-item">
+                            <h3 class="acc-heading">
+                                <button type="button" class="acc-head" id="exp-3-head" aria-expanded="false" aria-controls="exp-3">
+                                    <span class="acc-title" data-i18n="exp3.title">Freelance - Digital 2D Illustrator / Concept Art (Dec 2023 - Jan 2025)</span>
+                                    <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+                                </button>
+                            </h3>
+                            <div class="acc-panel" id="exp-3" role="region" aria-labelledby="exp-3-head">
+                                <div class="acc-inner">
+                                    <div class="acc-body">
+                                        <p data-i18n="exp3.a">Creating character designs for commercial use—offered for sale on platforms such as VGen and DeviantArt—and producing custom illustrations for clients’ personal use.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Кнопки збоку ведуть на однойменні розділи сайту -->
+                <div class="row-side">
+                    <div class="cta">
+                        <p class="caption" data-i18n="cta.projects">Check out more about my projects</p>
+                        <div class="cta-actions">
+                            <a class="pill pill--lg pill--primary" href="portfolio.html">
+                                <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                                <span data-i18n="menu.portfolio">Portfolio</span>
+                            </a>
+                            <a class="pill pill--lg" href="products.html">
+                                <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                                <span data-i18n="menu.products">Products</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Education + Skills & tools ===== -->
+            <div class="row">
+                <section class="row-main" aria-labelledby="education">
+                    <h2 class="section-title" id="education" data-i18n="h.education">Education</h2>
+                    <div class="acc">
+
+                        <div class="acc-item">
+                            <h3 class="acc-heading">
+                                <button type="button" class="acc-head" id="edu-1-head" aria-expanded="false" aria-controls="edu-1">
+                                    <span class="acc-title" data-i18n="edu1.title">"Universum" Professional College of Borys Grinchenko Kyiv Metropolitan University (2023–2027)</span>
+                                    <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+                                </button>
+                            </h3>
+                            <div class="acc-panel" id="edu-1" role="region" aria-labelledby="edu-1-head">
+                                <div class="acc-inner">
+                                    <div class="acc-body">
+                                        <p data-i18n="edu1.a">Graphic Design — strong foundation in branding, market positioning, and business-driven visual communication. Deep expertise in typography, composition, color theory, print production, and physical material applications.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acc-item">
+                            <h3 class="acc-heading">
+                                <button type="button" class="acc-head" id="edu-2-head" aria-expanded="false" aria-controls="edu-2">
+                                    <span class="acc-title" data-i18n="edu2.title">Art school (2014–2023)</span>
+                                    <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+                                </button>
+                            </h3>
+                            <div class="acc-panel" id="edu-2" role="region" aria-labelledby="edu-2-head">
+                                <div class="acc-inner">
+                                    <div class="acc-body">
+                                        <p data-i18n="edu2.a">I studied fine arts (drawing and painting), color theory, applied arts, and art history. In the applied arts course, we covered some of the material taught in graphic design (such as stylization, layout, and print production).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="row-side" aria-labelledby="skills">
+                    <h2 class="section-title" id="skills" data-i18n="h.skills">Skills &amp; tools</h2>
+                    <div class="skills">
+                        <ul>
+                            <li>Figma (+ Motion &amp; AI)</li>
+                            <li>Photoshop</li>
+                            <li>Illustrator</li>
+                            <li>After Effects</li>
+                            <li>InDesign</li>
+                        </ul>
+                        <ul>
+                            <li>Claude</li>
+                            <li>VS Code</li>
+                            <li>Gemini</li>
+                            <li>ChatGPT</li>
+                            <li>Google AI Studio</li>
+                        </ul>
+                        <ul>
+                            <li>Magnific</li>
+                            <li>Jitter</li>
+                            <li>GitHub</li>
+                            <li>Procreate</li>
+                            <li>Google Analytics 4</li>
+                        </ul>
+                        <ul>
+                            <li>Miro</li>
+                            <li>Milanote</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
 
         </main>
     </div>
