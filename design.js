@@ -25,11 +25,18 @@
         const toggle = document.getElementById("menu-toggle");
         const menu   = document.getElementById("site-menu");
         if (!toggle || !menu) return;
+        const scrollKey = "design-menu-scroll";
 
         function setOpen(open) {
             body.classList.toggle("menu-open", open);
             toggle.setAttribute("aria-expanded", open ? "true" : "false");
             toggle.setAttribute("aria-label", open ? t("menu.close", "Close menu") : t("menu.open", "Open menu"));
+        }
+
+        const savedScroll = sessionStorage.getItem(scrollKey);
+        if (savedScroll !== null) {
+            menu.scrollTop = Number(savedScroll);
+            sessionStorage.removeItem(scrollKey);
         }
 
         // При відкритті сторінки меню завжди відкрите
@@ -39,10 +46,17 @@
             setOpen(!body.classList.contains("menu-open"));
         });
 
-        // На планшеті й телефоні меню лежить поверх сторінки — після кліку по поточній сторінці закриваємо
+        // На мобільному меню закриваємо лише при повторному кліку на поточний розділ.
         menu.querySelectorAll(".menu-link").forEach(link => {
-            link.addEventListener("click", () => {
-                if (mobile.matches) setOpen(false);
+            link.addEventListener("click", event => {
+                const currentPage = new URL(link.href).pathname === window.location.pathname;
+                if (currentPage && mobile.matches) {
+                    event.preventDefault();
+                    setOpen(false);
+                    return;
+                }
+
+                sessionStorage.setItem(scrollKey, String(menu.scrollTop));
             });
         });
 

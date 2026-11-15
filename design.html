@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Side — echoji07</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="prefs.js"></script>
 </head>
@@ -29,9 +26,9 @@
         <symbol id="i-arrow-right" viewBox="-1.5 -1.5 27 27" fill="none">
             <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-width="1.125" stroke-linejoin="round"/>
         </symbol>
-        <!-- Стрілка вгору-вправо (як на кнопці EXPLORE): блок 24×24, стрілка всередині 16×16, обводка 1px -->
-        <symbol id="i-arrow-out" viewBox="-1.288 -0.834 26.093 26.093" fill="none">
-            <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-width="1.087" stroke-linejoin="round"/>
+        <!-- Стрілка Art Side: надана іконка у слоті 24×24 -->
+        <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none">
+            <path d="M6.65685 17.6569L17.9706 6.34315M17.6877 17.9397L17.9706 6.34315L6.37401 6.62599" stroke="currentColor" stroke-linejoin="round"/>
         </symbol>
         <!-- Шеврон і завантаження (Bootstrap Icons, сітка 16 у блоці 24) -->
         <symbol id="i-chevron-down" viewBox="-4 -4 24 24" fill="none">
@@ -57,9 +54,6 @@
         </symbol>
         <symbol id="i-search" viewBox="0 0 24 24" fill="none">
             <path d="M21 20L16.7501 15.7425M19.1053 10.0526C19.1053 12.1883 18.2569 14.2365 16.7467 15.7467C15.2365 17.2569 13.1883 18.1053 11.0526 18.1053C8.91694 18.1053 6.86872 17.2569 5.35856 15.7467C3.8484 14.2365 3 12.1883 3 10.0526C3 7.91694 3.8484 5.86872 5.35856 4.35856C6.86872 2.8484 8.91694 2 11.0526 2C13.1883 2 15.2365 2.8484 16.7467 4.35856C18.2569 5.86872 19.1053 7.91694 19.1053 10.0526Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </symbol>
-        <symbol id="i-clear" viewBox="0 0 24 24" fill="none">
-            <path d="M20 20L4 4M20 4L4 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
         <symbol id="i-check" viewBox="0 0 24 24" fill="none">
             <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,7 +83,7 @@
             <div class="search-field">
                 <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keywords" data-i18n-aria="search.placeholder" autocomplete="off">
                 <button class="search-clear" type="button" aria-label="Clear" hidden>
-                    <svg class="search-clear-icon" aria-hidden="true"><use href="#i-clear"/></svg>
+                    <svg class="search-clear-icon" aria-hidden="true"><use href="#i-close"/></svg>
                 </button>
                 <svg class="search-icon" aria-hidden="true"><use href="#i-search"/></svg>
             </div>
@@ -369,7 +363,7 @@
                         <div class="acc-item">
                             <h3 class="acc-heading">
                                 <button type="button" class="acc-head" id="edu-2-head" aria-expanded="false" aria-controls="edu-2">
-                                    <span class="acc-title" data-i18n="edu2.title">Art school (2014–2023)</span>
+                                    <span class="acc-title" data-i18n="edu2.title">Art School (2014–2023)</span>
                                     <span class="acc-chevron" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
                                 </button>
                             </h3>
@@ -389,7 +383,7 @@
                     <h2 class="section-title" id="skills" data-i18n="h.skills">Skills &amp; tools</h2>
                     <div class="skills">
                         <ul>
-                            <li>Figma</li>
+                            <li>Figma (Motion + AI)</li>
                             <li>Photoshop</li>
                             <li>Illustrator</li>
                             <li>After Effects</li>

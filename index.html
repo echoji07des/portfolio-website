@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>echoji07 — Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="prefs.js"></script>
 </head>
@@ -17,6 +14,9 @@
     <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 
         <!-- UI -->
+        <symbol id="i-close" viewBox="-4 -4 32 32" fill="none">
+            <path d="M20 20 4 4m16 0L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
         <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none">
             <path d="M3.48528 20.4853L20.4558 3.51472M20.0316 20.9095L20.4558 3.51472L3.06102 3.93898" stroke="currentColor" stroke-linejoin="round"/>
         </symbol>
@@ -128,7 +128,7 @@
         <div class="search-field">
             <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keywords" data-i18n-aria="search.placeholder" autocomplete="off">
             <button class="search-clear" type="button" aria-label="Clear" hidden>
-                <img src="images/close-icon.svg" alt="">
+                <svg class="search-clear-icon" aria-hidden="true"><use href="#i-close"/></svg>
             </button>
             <img class="search-icon" src="images/search-icon.svg" alt="">
         </div>

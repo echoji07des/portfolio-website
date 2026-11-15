@@ -4,6 +4,24 @@
    Усі розміри задані через --u (1 піксель макета).
    ========================================================== */
 
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 500;
+    font-display: block;
+    src: url("./fonts/inter-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 500;
+    font-display: block;
+    src: url("./fonts/inter-cyrillic.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
 :root {
     --u: min(calc(100vw / 1920), calc(100vh / 1080));
     --cream: #FFF2E3;
@@ -90,10 +108,12 @@ body.hub-page::after {
 
 .design-side {
     background: var(--red-bg) url("./images/redbg.png") center / cover no-repeat;
+    background-image: image-set(url("./images/redbg-2x.jpg") 2x, url("./images/redbg.png") 4x);
 }
 
 .art-side {
     background: var(--blue-bg) url("./images/bluebg.png") center / cover no-repeat;
+    background-image: image-set(url("./images/bluebg-2x.jpg") 2x, url("./images/bluebg.png") 4x);
     --btn-text: var(--blue-ink);
 }
 
@@ -148,7 +168,7 @@ body.hub-page::after {
     max-width: 100%;
     text-align: center;
     font-family: "Inter", Arial, sans-serif;
-    font-weight: 300;
+    font-weight: 200;
     font-size: max(10px, calc(14 * var(--u)));
     line-height: calc(18 * var(--u));
     letter-spacing: 0.04em;
@@ -592,14 +612,15 @@ body.design-page .settings-panel {
     display: none;
 }
 
-.search-clear img {
+.search-clear svg {
     width: 24px;
     height: 24px;
+    color: #000;
     opacity: 0.32;
     transition: opacity 0.2s ease;
 }
 
-.search-clear:hover img {
+.search-clear:hover svg {
     opacity: 0.6;
 }
 
@@ -797,6 +818,7 @@ html:has(body.design-page) {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-anchor: none;
     background: var(--paper);
     border-right: 1px solid var(--ink);
     transform: translateX(-100%);
@@ -869,7 +891,7 @@ html:has(body.design-page) {
     color: var(--ink);
     font-size: 16px;
     font-weight: 300;
-    line-height: normal;
+    line-height: 20px;
     text-transform: uppercase;
     transition: background 0.25s ease, color 0.25s ease;
 }
@@ -950,6 +972,7 @@ html:has(body.design-page) {
     align-self: flex-start;
     margin: auto 0 24px 24px;
     padding: 14px 24px;
+    gap: 8px;
 }
 
 /* Великі кнопки в тексті сторінки: так само 14px зверху й знизу */
@@ -1191,7 +1214,7 @@ html:has(body.design-page) {
 /* Download CV: залита кнопка (Inter Medium) */
 .design-page .pill--primary {
     background: var(--ink);
-    color: #FFF2E3;
+    color: var(--paper);
     font-weight: 500;
 }
 
@@ -1592,4 +1615,311 @@ html.font-accessible *::placeholder {
 .design-page .menu .search-input {
     min-width: 0;
     text-overflow: ellipsis;
+    color: var(--ink);
+}
+
+/* ==========================================================
+   Сторінка Portfolio (portfolio.html)
+   Каркас той самий, що в design.html (меню, шапка, Settings, мова, час).
+   Відрізняється лише вмістом: заголовок + категорії Commercial / Studies & Volunteer.
+   ========================================================== */
+
+/* Верх: ліворуч статус, заголовок, опис і кнопка; праворуч години роботи і місцевий час */
+.design-page .portfolio-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px 48px;
+    margin-top: 49.5px;
+}
+
+.design-page .portfolio-intro {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 629px;
+}
+
+.design-page .portfolio-intro .section-text {
+    margin-top: 12px;
+    font-size: 16px;
+    color: rgba(46, 9, 8, 0.6);
+}
+
+.design-page .portfolio-intro .pill {
+    margin-top: 32px;
+}
+
+.design-page .portfolio-controls {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: 80px;
+}
+
+.design-page .portfolio-controls .tabs {
+    margin-top: 0;
+}
+
+.design-page .portfolio-tools {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 24px;
+}
+
+.design-page .portfolio-type-filter {
+    position: relative;
+}
+
+/* Ті самі відступи та висота рядка, що у вкладок (.tab), тому текст стоїть на одній лінії з ними */
+.design-page .portfolio-type-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0 8px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* При наведенні, натисканні і кліку жодної лінії або рамки немає.
+   (Кільце фокусу з клавіатури — .design-page :focus-visible — лишається для доступності.) */
+.design-page .portfolio-type-toggle:hover,
+.design-page .portfolio-type-toggle:active,
+.design-page .portfolio-type-toggle:focus:not(:focus-visible),
+.design-page .portfolio-type-toggle[aria-expanded="true"] {
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    background: transparent;
+    text-decoration: none;
+}
+
+.design-page .portfolio-chevron {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    transition: transform 0.2s ease;
+}
+
+.design-page .portfolio-type-toggle[aria-expanded="true"] .portfolio-chevron {
+    transform: rotate(180deg);
+}
+
+.design-page .portfolio-type-menu {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 4px);
+    right: 0;                /* правий край стабільний, навіть якщо змінюється довжина назви */
+    width: max-content;
+    min-width: 100%;         /* не вужче за кнопку «текст + стрілка» */
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    border-radius: 12px;
+    background: var(--paper);
+}
+
+.design-page .portfolio-type-menu[hidden],
+.design-page .portfolio-sort-menu[hidden] {
+    display: none;
+}
+
+.design-page .portfolio-type-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px 16px;
+    white-space: nowrap;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 300 16px/1.2 "Inter", Arial, sans-serif;
+    text-align: left;
+    cursor: pointer;
+}
+
+.design-page .portfolio-check {
+    display: block;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+    opacity: 0;
+    color: currentColor;
+    transition: opacity 0.15s ease;
+}
+
+.design-page .portfolio-type-option[aria-checked="true"] .portfolio-check,
+.design-page .portfolio-sort-option[aria-checked="true"] .portfolio-check {
+    opacity: 1;
+}
+
+.design-page .portfolio-type-option + .portfolio-type-option {
+    border-top: 1px solid var(--ink);
+}
+
+.design-page .portfolio-type-option:hover,
+.design-page .portfolio-type-option:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.design-page .portfolio-sort {
+    display: grid;
+    width: 24px;
+    height: 24px;
+    flex: none;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.design-page .portfolio-sort-control {
+    position: relative;
+}
+
+.design-page .portfolio-sort svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.design-page .portfolio-sort:hover {
+    opacity: 0.65;
+}
+
+.design-page .portfolio-sort-menu {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 205px;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    border-radius: 12px;
+    background: var(--paper);
+}
+
+.design-page .portfolio-sort-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 300 16px/1.2 "Inter", Arial, sans-serif;
+    text-align: left;
+    cursor: pointer;
+}
+
+.design-page .portfolio-sort-option + .portfolio-sort-option {
+    border-top: 1px solid var(--ink);
+}
+
+.design-page .portfolio-sort-option:hover,
+.design-page .portfolio-sort-option:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.design-page .portfolio-sort:active,
+.design-page .portfolio-sort:focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Тонша лінія стрілок сортування (було 1.5) */
+.design-page .portfolio-sort path {
+    stroke-width: 1;
+}
+
+.design-page .portfolio-meta {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    text-align: left;
+}
+
+/* Вкладки категорій портфоліо */
+.design-page .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 40px;
+}
+
+.design-page .tab {
+    padding: 4px 4px 8px;
+    border: 0;
+    border-bottom: 1px solid rgba(46, 9, 8, 0.12);
+    background: transparent;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    transition: border-color 0.25s ease;
+}
+
+.design-page .tab:hover {
+    border-bottom-color: rgba(46, 9, 8, 0.4);
+}
+
+.design-page .tab[aria-selected="true"] {
+    border-bottom-color: var(--ink);
+    cursor: default;
+}
+
+.design-page .tab:not([aria-selected="true"]) {
+    opacity: 0.32;
+}
+
+.design-page .tab-panel {
+    min-height: 40vh;
+    margin: 48px 0 120px;
+}
+
+.design-page .tab-panel[hidden] {
+    display: none;
+}
+
+/* Вузька область: блок з годинами роботи переходить під кнопку */
+@container about (max-width: 760px) {
+    .design-page .portfolio-head {
+        flex-direction: column;
+    }
+
+    .design-page .portfolio-meta {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .design-page .portfolio-controls {
+        flex-wrap: wrap;
+    }
+
+    .design-page .portfolio-tools {
+        margin-left: auto;
+    }
 }

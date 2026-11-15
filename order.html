@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Service — echoji07</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="prefs.js"></script>
+</head>
+<!-- menu-open: як і на сторінці About me, меню при відкритті сторінки вже відкрите -->
+<body class="design-page menu-open">
+
+    <!-- ===== SVG-спрайт іконок (колір береться з currentColor) ===== -->
+    <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="i-burger" viewBox="0 0 24 24" fill="none">
+            <path d="M2.71997 5.19H21.28M2.71997 11.94H21.28M2.71997 18.81H21.28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-close" viewBox="-4 -4 32 32" fill="none">
+            <path d="M20 20 4 4m16 0L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-arrow-right" viewBox="-1.5 -1.5 27 27" fill="none">
+            <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-width="1.125" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none">
+            <path d="M6.65685 17.6569L17.9706 6.34315M17.6877 17.9397L17.9706 6.34315L6.37401 6.62599" stroke="currentColor" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-cookie" viewBox="-3 -3 30 30" fill="none">
+            <path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 3.8 3.8 0 0 1-4.75-4.75A3.8 3.8 0 0 1 12 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8.5 8.5v.01M16 15.5v.01M12 12v.01M11 17v.01M7 14v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-contrast" viewBox="-3 -3 30 30" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24" fill="none">
+            <path d="M21 20L16.7501 15.7425M19.1053 10.0526C19.1053 12.1883 18.2569 14.2365 16.7467 15.7467C15.2365 17.2569 13.1883 18.1053 11.0526 18.1053C8.91694 18.1053 6.86872 17.2569 5.35856 15.7467C3.8484 14.2365 3 12.1883 3 10.0526C3 7.91694 3.8484 5.86872 5.35856 4.35856C6.86872 2.8484 8.91694 2 11.0526 2C13.1883 2 15.2365 2.8484 16.7467 4.35856C18.2569 5.86872 19.1053 7.91694 19.1053 10.0526Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <!-- Кнопка меню: у відкритому меню це хрестик, у закритому — бургер -->
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-menu" aria-expanded="true" aria-label="Close menu">
+        <svg class="icon icon-burger" aria-hidden="true"><use href="#i-burger"/></svg>
+        <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+
+    <!-- ===== Бічне меню (те саме, що на design.html; крапка стоїть біля Order service) ===== -->
+    <aside class="menu" id="site-menu" aria-label="Site menu">
+
+        <form class="search" role="search" onsubmit="return false;">
+            <div class="search-field">
+                <input class="search-input" type="text" placeholder="Search by keywords..." data-i18n-placeholder="search.placeholder" aria-label="Search by keywords" data-i18n-aria="search.placeholder" autocomplete="off">
+                <button class="search-clear" type="button" aria-label="Clear" hidden>
+                    <svg class="search-clear-icon" aria-hidden="true"><use href="#i-close"/></svg>
+                </button>
+                <svg class="search-icon" aria-hidden="true"><use href="#i-search"/></svg>
+            </div>
+            <div class="search-results"></div>
+        </form>
+
+        <nav class="menu-nav" aria-label="Design sections">
+            <a href="design.html" class="menu-link">
+                <span data-i18n="menu.about">About me</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="order.html" class="menu-link is-active" aria-current="page">
+                <span data-i18n="menu.order">Order service</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="portfolio.html" class="menu-link">
+                <span data-i18n="menu.portfolio">Portfolio</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="products.html" class="menu-link">
+                <span data-i18n="menu.products">Products</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="legal.html" class="menu-link">
+                <span data-i18n="menu.legal">Legal</span>
+                <svg class="icon menu-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+        </nav>
+
+        <p class="menu-handle">echoji07des</p>
+
+        <!-- Art Side: сторінка ще не готова, тому поки що лише hover. Коли з'явиться — замінити <button> на <a href="art.html"> -->
+        <button type="button" class="pill menu-art">
+            <span data-i18n="nav.art">Art Side</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+        </button>
+    </aside>
+
+    <!-- ===== Сторінка ===== -->
+    <div class="page">
+
+        <header class="topbar">
+            <a href="index.html" class="pill">
+                <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                <span data-i18n="nav.home">Home Page</span>
+            </a>
+
+            <div class="settings" id="settings">
+                <button type="button" class="settings-btn" id="settings-btn" aria-expanded="false" aria-controls="settings-menu" data-i18n="settings.title">Settings</button>
+                <div class="settings-menu" id="settings-menu">
+                    <div class="settings-panel">
+                        <div class="settings-row">
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-cookie"/></svg>
+                            <span class="settings-label" data-i18n="settings.cookies">Cookies</span>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                        <div class="settings-row">
+                            <span class="settings-icon settings-icon--text" aria-hidden="true">Aa</span>
+                            <span class="settings-label" id="label-font" data-i18n="settings.font">Accessible Font</span>
+                            <button type="button" class="switch" id="switch-font" role="switch" aria-checked="false" aria-labelledby="label-font"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                        <div class="settings-row">
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-contrast"/></svg>
+                            <span class="settings-label" id="label-theme" data-i18n="settings.theme">Light / Dark theme</span>
+                            <button type="button" class="switch" id="switch-theme" role="switch" aria-checked="false" aria-labelledby="label-theme"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lang" role="group" aria-label="Language">
+                <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="uk" aria-pressed="false">UA</button>
+            </div>
+        </header>
+
+        <!-- Вміст сторінки Order Service додасться тут -->
+        <main></main>
+    </div>
+
+    <script src="site.js"></script>
+    <script src="search.js"></script>
+    <script src="settings.js"></script>
+    <script src="design.js"></script>
+</body>
+</html>

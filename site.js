@@ -60,6 +60,21 @@
             "cta.order": "Order Service",
             "cta.projects": "Check out more about my projects",
 
+            "portfolio.tabs": "Portfolio categories",
+            "portfolio.description": "Here you will find a collection of my projects—including desktop websites, mobile versions, apps, and software—presented as a portfolio with detailed descriptions and explanations.",
+            "portfolio.all": "All",
+            "portfolio.commercial": "Commercial",
+            "portfolio.studies": "Studies & Volunteer",
+            "portfolio.filter": "Filter by project type",
+            "portfolio.types": "Project types",
+            "portfolio.type.uiux": "UI/UX & Product design",
+            "portfolio.type.graphic": "Graphic Design",
+            "portfolio.type.illustration": "Illustration",
+            "portfolio.sort.label": "Sort projects",
+            "portfolio.sort.relevant": "Relevant",
+            "portfolio.sort.newOld": "New to Old",
+            "portfolio.sort.oldNew": "Old to New",
+
             "columns.title": "Columns",
             "columns.about": "About Me",
             "columns.contacts": "Contacts",
@@ -91,7 +106,7 @@
             "edu1.title": "\"Universum\" Professional College of Borys Grinchenko Kyiv Metropolitan University (2023–2027)",
             "edu1.a.name": "Graphic Design",
             "edu1.a.text": "— strong foundation in branding, market positioning, and business-driven visual communication. Deep expertise in typography, composition, color theory, print production, and physical material applications.",
-            "edu2.title": "Art school (2014–2023)",
+            "edu2.title": "Art School (2014–2023)",
             "edu2.a": "I studied fine arts (drawing and painting), color theory, applied arts, and art history. In the applied arts course, we covered some of the material taught in graphic design (such as stylization, layout, and print production)."
         },
         uk: {
@@ -143,6 +158,21 @@
             "cta.connect": "Давайте зв’яжемося та створимо продукт!",
             "cta.order": "Замовити послугу",
             "cta.projects": "Дізнайтеся більше про мої проєкти",
+
+            "portfolio.tabs": "Категорії портфоліо",
+            "portfolio.description": "Тут ви знайдете добірку моїх проєктів — десктопні вебсайти, мобільні версії, застосунки та програмне забезпечення, зібрані в портфоліо з детальними описами й поясненнями.",
+            "portfolio.all": "Усі",
+            "portfolio.commercial": "Комерційні",
+            "portfolio.studies": "Навчання та волонтерство",
+            "portfolio.filter": "Фільтрувати за типом проєкту",
+            "portfolio.types": "Типи проєктів",
+            "portfolio.type.uiux": "UI/UX та продуктовий дизайн",
+            "portfolio.type.graphic": "Графічний дизайн",
+            "portfolio.type.illustration": "Ілюстрація",
+            "portfolio.sort.label": "Сортувати проєкти",
+            "portfolio.sort.relevant": "За релевантністю",
+            "portfolio.sort.newOld": "Від нових до старих",
+            "portfolio.sort.oldNew": "Від старих до нових",
 
             "columns.title": "Розділи",
             "columns.about": "Про мене",
@@ -198,10 +228,16 @@
             try {
                 const opts = kind === "offset"
                     ? { timeZone: tz, timeZoneName: "shortOffset" }
-                    : kind === "en"
-                        ? { timeZone: tz, hour: "numeric", minute: "2-digit", hour12: true }
-                        : { timeZone: tz, hour: "2-digit", minute: "2-digit", hour12: false };
-                const locale = kind === "uk" ? "en-GB" : "en-US";
+                    : kind === "weekday-en" || kind === "weekday-uk"
+                        ? { timeZone: tz, weekday: "short" }
+                        : kind === "en"
+                            ? { timeZone: tz, hour: "numeric", minute: "2-digit", hour12: true }
+                            : { timeZone: tz, hour: "2-digit", minute: "2-digit", hour12: false };
+                const locale = kind === "uk"
+                    ? "en-GB"
+                    : kind === "weekday-uk"
+                        ? "uk-UA"
+                        : "en-US";
                 formatters[kind] = new Intl.DateTimeFormat(locale, opts);
                 return formatters[kind];
             } catch (e) { /* пробуємо наступну назву зони */ }
@@ -214,12 +250,14 @@
         if (!el) return;
         const now = new Date();
         const fmt = kyivFormatter(lang === "uk" ? "uk" : "en");
-        if (!fmt) { el.textContent = ""; return; }
+        const weekdayFmt = kyivFormatter(lang === "uk" ? "weekday-uk" : "weekday-en");
+        if (!fmt || !weekdayFmt) { el.textContent = ""; return; }
 
         // EN: "4:56PM" (без пробілу, як у макеті), UA: "16:56"
         let text = fmt.format(now).replace(/\s/g, "");
         if (lang === "uk") text = text.replace(/^24:/, "00:");
-        el.textContent = text;
+        const weekday = weekdayFmt.format(now).replace(/\.$/, "").toLocaleUpperCase(lang === "uk" ? "uk-UA" : "en-US");
+        el.textContent = `${text} ${weekday}`;
 
         // Підказка при наведенні: поточне зміщення відносно UTC (допомагає іноземцям)
         const offFmt = kyivFormatter("offset");
