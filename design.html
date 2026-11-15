@@ -46,6 +46,15 @@
             <path d="M8 7V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <rect x="4" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         </symbol>
+        <!-- Settings: cookie і напівколо (тема): блок 24×24, сама іконка всередині 16×16 -->
+        <symbol id="i-cookie" viewBox="-3 -3 30 30" fill="none">
+            <path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 3.8 3.8 0 0 1-4.75-4.75A3.8 3.8 0 0 1 12 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8.5 8.5v.01M16 15.5v.01M12 12v.01M11 17v.01M7 14v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-contrast" viewBox="-3 -3 30 30" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+        </symbol>
         <symbol id="i-search" viewBox="0 0 24 24" fill="none">
             <path d="M21 20L16.7501 15.7425M19.1053 10.0526C19.1053 12.1883 18.2569 14.2365 16.7467 15.7467C15.2365 17.2569 13.1883 18.1053 11.0526 18.1053C8.91694 18.1053 6.86872 17.2569 5.35856 15.7467C3.8484 14.2365 3 12.1883 3 10.0526C3 7.91694 3.8484 5.86872 5.35856 4.35856C6.86872 2.8484 8.91694 2 11.0526 2C13.1883 2 15.2365 2.8484 16.7467 4.35856C18.2569 5.86872 19.1053 7.91694 19.1053 10.0526Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </symbol>
@@ -135,12 +144,22 @@
                 <div class="settings-menu" id="settings-menu">
                     <div class="settings-panel">
                         <div class="settings-row">
-                            <span class="settings-label" id="label-font" data-i18n="settings.font">Accessible font</span>
-                            <button type="button" class="switch" id="switch-font" role="switch" aria-checked="false" aria-labelledby="label-font"><span class="switch-knob"></span></button>
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-cookie"/></svg>
+                            <span class="settings-label" data-i18n="settings.cookies">Cookies</span>
+                            <!-- Тут буде перехід на сторінку: замініть <span> на <a href="..."> -->
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
                         </div>
                         <div class="settings-row">
+                            <span class="settings-icon settings-icon--text" aria-hidden="true">Aa</span>
+                            <span class="settings-label" id="label-font" data-i18n="settings.font">Accessible Font</span>
+                            <button type="button" class="switch" id="switch-font" role="switch" aria-checked="false" aria-labelledby="label-font"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                        <div class="settings-row">
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-contrast"/></svg>
                             <span class="settings-label" id="label-theme" data-i18n="settings.theme">Light / Dark theme</span>
                             <button type="button" class="switch" id="switch-theme" role="switch" aria-checked="false" aria-labelledby="label-theme"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
                         </div>
                     </div>
                 </div>
@@ -370,7 +389,7 @@
                     <h2 class="section-title" id="skills" data-i18n="h.skills">Skills &amp; tools</h2>
                     <div class="skills">
                         <ul>
-                            <li>Figma (+ Motion &amp; AI)</li>
+                            <li>Figma</li>
                             <li>Photoshop</li>
                             <li>Illustrator</li>
                             <li>After Effects</li>
@@ -403,6 +422,7 @@
 
     <script src="site.js"></script>
     <script src="search.js"></script>
+    <script src="settings.js"></script>
     <script src="design.js"></script>
 </body>
 </html>

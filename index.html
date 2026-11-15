@@ -109,6 +109,18 @@
         <symbol id="i-star" viewBox="0 0 24 24" fill="none">
             <path d="M21.2836 8.27578L15.3328 7.41093L12.6726 2.01797C12.6 1.87031 12.4805 1.75078 12.3328 1.67812C11.9625 1.49531 11.5125 1.64765 11.3273 2.01797L8.66717 7.41093L2.71639 8.27578C2.55233 8.29922 2.40233 8.37656 2.28748 8.49375C2.14864 8.63645 2.07214 8.82843 2.07477 9.02752C2.07741 9.2266 2.15897 9.41649 2.30155 9.55547L6.60701 13.7531L5.58983 19.6805C5.56597 19.8183 5.58123 19.9602 5.63387 20.0898C5.68651 20.2195 5.77442 20.3318 5.88764 20.414C6.00086 20.4962 6.13486 20.5451 6.27444 20.555C6.41401 20.565 6.55359 20.5356 6.67733 20.4703L12 17.6719L17.3226 20.4703C17.468 20.5477 17.6367 20.5734 17.7984 20.5453C18.2062 20.475 18.4805 20.0883 18.4101 19.6805L17.393 13.7531L21.6984 9.55547C21.8156 9.44062 21.893 9.29062 21.9164 9.12656C21.9797 8.7164 21.6937 8.33672 21.2836 8.27578Z" fill="currentColor"/>
         </symbol>
+        <!-- Settings -->
+        <symbol id="i-arrow-right" viewBox="-1.5 -1.5 27 27" fill="none">
+            <path d="M3 12H21M11.55 21L21 12L11.55 3" stroke="currentColor" stroke-width="1.125" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-cookie" viewBox="-3 -3 30 30" fill="none">
+            <path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 3.8 3.8 0 0 1-4.75-4.75A3.8 3.8 0 0 1 12 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8.5 8.5v.01M16 15.5v.01M12 12v.01M11 17v.01M7 14v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-contrast" viewBox="-3 -3 30 30" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+        </symbol>
     </svg>
 
     <!-- Пошук (по центру між двома половинами) -->
@@ -177,10 +189,38 @@
         <!-- ===== ARTIST SIDE ===== -->
         <section class="split-side art-side">
 
-            <!-- Перемикач мови -->
+            <!-- Settings (меню при наведенні) і перемикач мови -->
+            <div class="top-right">
+            <div class="settings" id="settings">
+                <button type="button" class="settings-btn" id="settings-btn" aria-expanded="false" aria-controls="settings-menu" data-i18n="settings.title">Settings</button>
+                <div class="settings-menu" id="settings-menu">
+                    <div class="settings-panel">
+                        <div class="settings-row">
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-cookie"/></svg>
+                            <span class="settings-label" data-i18n="settings.cookies">Cookies</span>
+                            <!-- Тут буде перехід на сторінку: замініть <span> на <a href="..."> -->
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                        <div class="settings-row">
+                            <span class="settings-icon settings-icon--text" aria-hidden="true">Aa</span>
+                            <span class="settings-label" id="label-font" data-i18n="settings.font">Accessible Font</span>
+                            <button type="button" class="switch" id="switch-font" role="switch" aria-checked="false" aria-labelledby="label-font"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                        <div class="settings-row">
+                            <svg class="icon settings-icon" aria-hidden="true"><use href="#i-contrast"/></svg>
+                            <span class="settings-label" id="label-theme" data-i18n="settings.theme">Light / Dark theme</span>
+                            <button type="button" class="switch" id="switch-theme" role="switch" aria-checked="false" aria-labelledby="label-theme"><span class="switch-knob"></span></button>
+                            <span class="settings-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="lang" role="group" aria-label="Language">
                 <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
                 <button type="button" class="lang-btn" data-lang="uk" aria-pressed="false">UA</button>
+            </div>
             </div>
 
             <!-- Соцмережі Artist side -->
@@ -227,5 +267,6 @@
 
     <script src="site.js"></script>
     <script src="search.js"></script>
+    <script src="settings.js"></script>
 </body>
 </html>

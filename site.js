@@ -44,7 +44,8 @@
             "nav.art": "Art Side",
 
             "settings.title": "Settings",
-            "settings.font": "Accessible font",
+            "settings.cookies": "Cookies",
+            "settings.font": "Accessible Font",
             "settings.theme": "Light / Dark theme",
 
             "about.open": "Open to work",
@@ -127,6 +128,7 @@
             "nav.art": "Арт Сторінка",
 
             "settings.title": "Налаштування",
+            "settings.cookies": "Кукі",
             "settings.font": "Доступний шрифт",
             "settings.theme": "Світла / темна тема",
 

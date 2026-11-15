@@ -1,7 +1,7 @@
 /* ==========================================================
    Сторінка Design side:
    1) бічне меню: відкрите при завантаженні, кнопка хрестик <-> бургер
-   2) Settings: меню при наведенні з тумблерами (шрифт, тема)
+   2) (Settings — у спільному файлі settings.js)
    3) списки Experience / Education, що розкриваються (незалежно один від одного)
    4) копіювання пошти в Contacts
    Розділи меню (Order service, Portfolio, Products, Legal) — окремі сторінки,
@@ -13,7 +13,6 @@
 
     const body    = document.body;
     const mobile  = window.matchMedia("(max-width: 900px)");
-    const canHover = window.matchMedia("(hover: hover)");
 
     function t(key, fallback) {
         const i18n = window.SiteI18n;
@@ -57,60 +56,6 @@
         document.addEventListener("sitelanguagechange", () => {
             setOpen(body.classList.contains("menu-open"));
         });
-    })();
-
-    /* ---------- 2. Settings ---------- */
-
-    (function initSettings() {
-        const box = document.getElementById("settings");
-        const btn = document.getElementById("settings-btn");
-        if (!box || !btn) return;
-
-        // На комп'ютері меню відкривається наведенням (чистий CSS) і з клавіатури (focus).
-        // На сенсорних екранах, де наведення немає, воно відкривається дотиком.
-        function setOpen(open) {
-            box.classList.toggle("is-open", open);
-            btn.setAttribute("aria-expanded", open ? "true" : "false");
-        }
-
-        btn.addEventListener("click", () => {
-            if (canHover.matches) return;
-            setOpen(!box.classList.contains("is-open"));
-        });
-
-        document.addEventListener("click", e => {
-            if (!box.contains(e.target)) setOpen(false);
-        });
-
-        document.addEventListener("keydown", e => {
-            if (e.key === "Escape" && box.classList.contains("is-open")) {
-                setOpen(false);
-                btn.focus();
-            }
-        });
-
-        // Тумблери
-        const prefs = window.SitePrefs;
-        if (!prefs) return;
-
-        function bindSwitch(id, getState, setState) {
-            const el = document.getElementById(id);
-            if (!el) return;
-            const paint = () => el.setAttribute("aria-checked", getState() ? "true" : "false");
-            paint();
-            el.addEventListener("click", () => {
-                setState(!getState());
-                paint();
-            });
-        }
-
-        bindSwitch("switch-font",
-            () => prefs.isAccessibleFont(),
-            on => prefs.setAccessibleFont(on));
-
-        bindSwitch("switch-theme",
-            () => prefs.getTheme() === "dark",
-            on => prefs.setTheme(on ? "dark" : "light"));
     })();
 
     /* ---------- 3. Списки, що розкриваються ---------- */
