@@ -143,7 +143,7 @@
                     </p>
                     <h1 class="section-title" id="portfolio" data-i18n="menu.portfolio">Portfolio</h1>
                     <div class="section-text">
-                        <p data-i18n="portfolio.description">Here you will find a collection of my projects—including desktop websites, mobile versions, apps, and software—presented as a portfolio with detailed descriptions and explanations.</p>
+                        <p data-i18n="portfolio.description">Here you will find a collection of my projects — including desktop websites, mobile versions, apps, and software — presented as a portfolio with detailed descriptions and explanations.</p>
                     </div>
                     <a class="pill pill--lg pill--primary" href="order.html">
                         <svg class="icon icon-back" aria-hidden="true"><use href="#i-arrow-right"/></svg>
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                     <div class="portfolio-case-filters" role="group" aria-label="Filter cases by tags" data-i18n-aria="portfolio.caseFilters">
-                        <button type="button" class="portfolio-case-filter" data-tag="ai-shipped" aria-pressed="false" data-i18n="portfolio.tag.aiShipped">AI-Shipped</button>
+                        <button type="button" class="portfolio-case-filter" data-tag="shipped" aria-pressed="false" data-i18n="portfolio.tag.shipped">Shipped (+AI)</button>
                         <button type="button" class="portfolio-case-filter" data-tag="redesign" aria-pressed="false" data-i18n="portfolio.tag.redesign">Redesign</button>
                         <button type="button" class="portfolio-case-filter" data-tag="interactive" aria-pressed="false" data-i18n="portfolio.tag.interactive">Interactive</button>
                         <button type="button" class="portfolio-case-filter" data-tag="motion" aria-pressed="false" data-i18n="portfolio.tag.motion">Motion</button>
@@ -226,8 +226,97 @@
                 </div>
             </div>
 
-            <!-- Cards use data-category, data-type, data-design-type, and comma-separated data-industries and data-tags; data-order and data-date control sorting. -->
-            <section class="tab-panel portfolio-grid" role="tabpanel" id="portfolio-projects" aria-labelledby="tab-all" tabindex="0"></section>
+            <section class="tab-panel portfolio-grid" role="tabpanel" id="portfolio-projects" aria-labelledby="tab-all" tabindex="0">
+                <article class="portfolio-card" data-category="studies" data-type="uiux" data-design-type="landing-page" data-industries="fintech" data-tags="study,fintech,landing,motion" data-order="1" data-date="2026-10-18">
+                    <img class="portfolio-card-image" src="images/velox.png" alt="Velox website displayed on a laptop" loading="lazy">
+                    <div class="portfolio-card-content">
+                        <div class="portfolio-card-heading">
+                            <h2>VELOX</h2>
+                            <time datetime="2026-10-18">18.10.2026</time>
+                        </div>
+                        <p class="portfolio-card-description" data-i18n="portfolio.project.velox.description">Velox is a website operating on a B2B/B2C basis to provide credit services and sell ready-made credit products.</p>
+                        <div class="portfolio-card-footer">
+                            <span class="portfolio-card-cta" aria-hidden="true">
+                                <span class="portfolio-card-cta-label" data-i18n="portfolio.takeALook">Take a Look</span>
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                            </span>
+                            <div class="portfolio-card-tags" role="group" aria-label="Project tags" data-i18n-aria="portfolio.card.tags">
+                                <span class="portfolio-card-tag-row"><span>#study</span><span>#fintech</span></span>
+                                <span class="portfolio-card-tag-row"><span>#landing</span><span>#motion</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="portfolio-card" data-category="commercial" data-type="uiux" data-design-type="product-design" data-industries="e-commerce" data-tags="commercial,e-commerce,product,redesign" data-order="2" data-date="2026-08-26">
+                    <img class="portfolio-card-image" src="images/gd-cashmere.png" alt="GD Cashmere website shown on a laptop and phone" loading="lazy">
+                    <div class="portfolio-card-content">
+                        <div class="portfolio-card-heading">
+                            <h2>GD Cashmere</h2>
+                            <time datetime="2026-08-26">26.08.2026</time>
+                        </div>
+                        <p class="portfolio-card-description" data-i18n="portfolio.project.cashmere.description">A full-scale redesign of a premium clothing website. It required improved usability and the creation of a luxury brand feel.</p>
+                        <div class="portfolio-card-footer">
+                            <span class="portfolio-card-cta" aria-hidden="true">
+                                <span class="portfolio-card-cta-label" data-i18n="portfolio.takeALook">Take a Look</span>
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                            </span>
+                            <div class="portfolio-card-tags" role="group" aria-label="Project tags" data-i18n-aria="portfolio.card.tags">
+                                <span class="portfolio-card-tag-row"><span>#comm</span><span>#e_commerce</span></span>
+                                <span class="portfolio-card-tag-row"><span>#product</span><span>#redesign</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="portfolio-card" data-category="commercial" data-type="uiux" data-design-type="product-design" data-industries="b2b-b2c" data-tags="commercial,b2b-b2c,product,shipped" data-order="3" data-date="2026-05-26">
+                    <img class="portfolio-card-image" src="images/olena-petrochenko.png" alt="Olena Petrochenko personal website shown on a laptop" loading="lazy">
+                    <div class="portfolio-card-content">
+                        <div class="portfolio-card-heading">
+                            <h2>Olena Petrochenko</h2>
+                            <time datetime="2026-05-26">26.05.2026</time>
+                        </div>
+                        <p class="portfolio-card-description" data-i18n="portfolio.project.olena.description">Personal website for a Senior UI/UX Designer, offering design services, mentoring and consulting.</p>
+                        <div class="portfolio-card-footer">
+                            <span class="portfolio-card-cta" aria-hidden="true">
+                                <span class="portfolio-card-cta-label" data-i18n="portfolio.takeALook">Take a Look</span>
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                            </span>
+                            <div class="portfolio-card-tags" role="group" aria-label="Project tags" data-i18n-aria="portfolio.card.tags">
+                                <span class="portfolio-card-tag-row"><span>#comm</span><span>#b2b_b2c</span></span>
+                                <span class="portfolio-card-tag-row"><span>#product</span><span>#shipped</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="portfolio-card" data-category="studies" data-type="uiux" data-design-type="landing-page" data-industries="real-estate" data-tags="study,real-estate,landing" data-order="4" data-date="2026-04-14">
+                    <img class="portfolio-card-image" src="images/urbanlife.png" alt="Urbanlife real estate website displayed on a laptop" loading="lazy">
+                    <div class="portfolio-card-content">
+                        <div class="portfolio-card-heading">
+                            <h2>Urbanlife</h2>
+                            <time datetime="2026-04-14">14.04.2026</time>
+                        </div>
+                        <p class="portfolio-card-description" data-i18n="portfolio.project.urbanlife.description">This is my first UI/UX training project. Urbanlife is a company that sells and rents out various types of real estate.</p>
+                        <div class="portfolio-card-footer">
+                            <span class="portfolio-card-cta" aria-hidden="true">
+                                <span class="portfolio-card-cta-label" data-i18n="portfolio.takeALook">Take a Look</span>
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow-out"/></svg>
+                            </span>
+                            <div class="portfolio-card-tags" role="group" aria-label="Project tags" data-i18n-aria="portfolio.card.tags">
+                                <span class="portfolio-card-tag-row"><span>#study</span><span>#real estate</span></span>
+                                <span class="portfolio-card-tag-row"><span>#landing</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <nav class="portfolio-pagination" id="portfolio-pagination" aria-label="Portfolio pages" data-i18n-aria="portfolio.pagination">
+                <button type="button" class="portfolio-page-arrow" data-page-direction="-1" aria-label="Previous page" data-i18n-aria="portfolio.pagination.previous" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+                <div class="portfolio-page-numbers" id="portfolio-page-numbers"></div>
+                <button type="button" class="portfolio-page-arrow" data-page-direction="1" aria-label="Next page" data-i18n-aria="portfolio.pagination.next" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+            </nav>
         </main>
     </div>
 

@@ -25,13 +25,17 @@
     const sortOptions = sortMenu
         ? Array.from(sortMenu.querySelectorAll(".portfolio-sort-option"))
         : [];
-    if (!tabs.length || !projectGrid || !typeToggle || !typeMenu || !typeLabel || !designToggle || !designMenu || !designLabel || !sortControl || !sortButton || !sortMenu) return;
+    const pagination = document.getElementById("portfolio-pagination");
+    const pageNumbers = document.getElementById("portfolio-page-numbers");
+    if (!tabs.length || !projectGrid || !typeToggle || !typeMenu || !typeLabel || !designToggle || !designMenu || !designLabel || !sortControl || !sortButton || !sortMenu || !pagination || !pageNumbers) return;
 
     const keyOf = tab => tab.id.replace(/^tab-/, "");
+    const pageSize = 5;
     const initialTab = tabs.find(tab => tab.getAttribute("aria-selected") === "true") || tabs[0];
     let activeCategory = keyOf(initialTab);
     let activeType = typeLabel.dataset.type;
     let activeDesignType = "";
+    let activePage = 1;
     const activeIndustries = new Set();
     const activeTags = new Set();
     let activeSort = "relevant";
@@ -46,7 +50,7 @@
         if (state.animation) state.animation.cancel();
         card.hidden = false;
 
-        if (!animate || prefersReducedMotion.matches || typeof card.animate !== "function") {
+        if (!animate || document.hidden || prefersReducedMotion.matches || typeof card.animate !== "function") {
             cardAnimations.set(card, { token: state.token, animation: null });
             return;
         }
@@ -75,7 +79,7 @@
         state.token += 1;
         if (state.animation) state.animation.cancel();
 
-        if (!animate || prefersReducedMotion.matches || typeof card.animate !== "function") {
+        if (!animate || document.hidden || prefersReducedMotion.matches || typeof card.animate !== "function") {
             card.hidden = true;
             cardAnimations.set(card, { token: state.token, animation: null });
             return;
@@ -109,6 +113,7 @@
             t.tabIndex = on ? 0 : -1;
         });
         activeCategory = keyOf(tab);
+        activePage = 1;
         projectGrid.setAttribute("aria-labelledby", tab.id);
         updateProjects(true);
         if (opts.focus) tab.focus();
@@ -119,7 +124,8 @@
     }
 
     function updateProjects(animate) {
-        const cards = projectGrid.querySelectorAll(".portfolio-card");
+        const cards = Array.from(projectGrid.querySelectorAll(".portfolio-card"));
+        const matchingCards = [];
         cards.forEach(card => {
             const matchesCategory = activeCategory === "all" || card.dataset.category === activeCategory;
             const matchesType = card.dataset.type === activeType;
@@ -128,13 +134,23 @@
             const matchesIndustries = !activeIndustries.size || cardIndustries.some(industry => activeIndustries.has(industry));
             const cardTags = (card.dataset.tags || "").split(",").map(tag => tag.trim()).filter(Boolean);
             const matchesTags = !activeTags.size || cardTags.some(tag => activeTags.has(tag));
-            const shouldShow = matchesCategory && matchesType && matchesDesignType && matchesIndustries && matchesTags;
-            if (shouldShow) {
+            if (matchesCategory && matchesType && matchesDesignType && matchesIndustries && matchesTags) {
+                matchingCards.push(card);
+            }
+        });
+
+        const pageCount = Math.ceil(matchingCards.length / pageSize);
+        activePage = Math.min(activePage, Math.max(pageCount, 1));
+        const firstCardIndex = (activePage - 1) * pageSize;
+        const visibleCards = new Set(matchingCards.slice(firstCardIndex, firstCardIndex + pageSize));
+        cards.forEach(card => {
+            if (visibleCards.has(card)) {
                 showCard(card, animate);
             } else if (!card.hidden) {
                 hideCard(card, animate);
             }
         });
+        updatePagination(pageCount);
         typeOptions.forEach(option => {
             const selected = option.dataset.type === activeType;
             option.setAttribute("aria-checked", selected ? "true" : "false");
@@ -148,6 +164,27 @@
         caseFilters.forEach(filter => {
             filter.setAttribute("aria-pressed", activeTags.has(filter.dataset.tag) ? "true" : "false");
         });
+    }
+
+    function updatePagination(pageCount) {
+        const displayedPageCount = Math.max(pageCount, 2);
+        const previousButton = pagination.querySelector('[data-page-direction="-1"]');
+        const nextButton = pagination.querySelector('[data-page-direction="1"]');
+        previousButton.disabled = activePage <= 1;
+        nextButton.disabled = activePage >= pageCount;
+        pageNumbers.replaceChildren();
+
+        for (let page = 1; page <= displayedPageCount; page += 1) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "portfolio-page-number";
+            button.textContent = String(page);
+            const pageLabel = document.documentElement.lang === "uk" ? "Сторінка" : "Page";
+            button.setAttribute("aria-label", `${pageLabel} ${page}`);
+            if (page === activePage) button.setAttribute("aria-current", "page");
+            if (page > pageCount) button.disabled = true;
+            pageNumbers.appendChild(button);
+        }
     }
 
     function setFilterOpen(open) {
@@ -220,6 +257,7 @@
         const option = event.target.closest(".portfolio-type-option");
         if (!option || option.hidden) return;
         activeType = option.dataset.type;
+        activePage = 1;
         typeLabel.dataset.type = activeType;
         const label = option.querySelector("[data-i18n]");
         if (!label) return;
@@ -241,11 +279,16 @@
     designMenu.addEventListener("click", event => {
         const option = event.target.closest(".portfolio-type-option");
         if (!option) return;
-        activeDesignType = option.dataset.designType;
         const label = option.querySelector("[data-i18n]");
         if (!label) return;
-        designLabel.dataset.i18n = label.dataset.i18n;
-        designLabel.textContent = label.textContent;
+        const isSelected = activeDesignType === option.dataset.designType;
+        activeDesignType = isSelected ? "" : option.dataset.designType;
+        activePage = 1;
+        const labelKey = isSelected ? "portfolio.designType.label" : label.dataset.i18n;
+        designLabel.dataset.i18n = labelKey;
+        designLabel.textContent = window.SiteI18n
+            ? window.SiteI18n.t(labelKey)
+            : isSelected ? "Design type" : label.textContent;
         updateProjects(true);
         setDesignFilterOpen(false);
         designToggle.focus();
@@ -256,6 +299,7 @@
             const tag = filter.dataset.tag;
             if (activeTags.has(tag)) activeTags.delete(tag);
             else activeTags.add(tag);
+            activePage = 1;
             updateProjects(true);
         });
     });
@@ -265,8 +309,24 @@
             const industry = filter.dataset.industry;
             if (activeIndustries.has(industry)) activeIndustries.delete(industry);
             else activeIndustries.add(industry);
+            activePage = 1;
             updateProjects(true);
         });
+    });
+
+    pagination.addEventListener("click", event => {
+        const pageButton = event.target.closest(".portfolio-page-number");
+        const directionButton = event.target.closest("[data-page-direction]");
+        if (pageButton && !pageButton.disabled) {
+            activePage = Number(pageButton.textContent);
+        } else if (directionButton && !directionButton.disabled) {
+            activePage += Number(directionButton.dataset.pageDirection);
+        } else {
+            return;
+        }
+        updateProjects(true);
+        const selectedPage = pageNumbers.querySelector('[aria-current="page"]');
+        if (selectedPage) selectedPage.focus();
     });
 
     sortButton.addEventListener("click", () => {
