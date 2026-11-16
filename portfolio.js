@@ -10,18 +10,30 @@
     const typeOptions = typeMenu
         ? Array.from(typeMenu.querySelectorAll(".portfolio-type-option"))
         : [];
+    const designFilter = document.getElementById("portfolio-design-filter");
+    const designToggle = document.getElementById("portfolio-design-toggle");
+    const designMenu = document.getElementById("portfolio-design-menu");
+    const designLabel = designFilter && designFilter.querySelector(".portfolio-design-label");
+    const designOptions = designMenu
+        ? Array.from(designMenu.querySelectorAll(".portfolio-type-option"))
+        : [];
+    const industryFilters = Array.from(document.querySelectorAll(".portfolio-industry-filter"));
+    const caseFilters = Array.from(document.querySelectorAll(".portfolio-case-filter"));
     const sortControl = document.getElementById("portfolio-sort-control");
     const sortButton = document.getElementById("portfolio-sort");
     const sortMenu = document.getElementById("portfolio-sort-menu");
     const sortOptions = sortMenu
         ? Array.from(sortMenu.querySelectorAll(".portfolio-sort-option"))
         : [];
-    if (!tabs.length || !projectGrid || !typeToggle || !typeMenu || !typeLabel || !sortControl || !sortButton || !sortMenu) return;
+    if (!tabs.length || !projectGrid || !typeToggle || !typeMenu || !typeLabel || !designToggle || !designMenu || !designLabel || !sortControl || !sortButton || !sortMenu) return;
 
     const keyOf = tab => tab.id.replace(/^tab-/, "");
     const initialTab = tabs.find(tab => tab.getAttribute("aria-selected") === "true") || tabs[0];
     let activeCategory = keyOf(initialTab);
     let activeType = typeLabel.dataset.type;
+    let activeDesignType = "";
+    const activeIndustries = new Set();
+    const activeTags = new Set();
     let activeSort = "relevant";
     const sourceOrder = new WeakMap();
     const cardAnimations = new WeakMap();
@@ -110,7 +122,13 @@
         const cards = projectGrid.querySelectorAll(".portfolio-card");
         cards.forEach(card => {
             const matchesCategory = activeCategory === "all" || card.dataset.category === activeCategory;
-            const shouldShow = matchesCategory && card.dataset.type === activeType;
+            const matchesType = card.dataset.type === activeType;
+            const matchesDesignType = !activeDesignType || card.dataset.designType === activeDesignType;
+            const cardIndustries = (card.dataset.industries || "").split(",").map(industry => industry.trim()).filter(Boolean);
+            const matchesIndustries = !activeIndustries.size || cardIndustries.some(industry => activeIndustries.has(industry));
+            const cardTags = (card.dataset.tags || "").split(",").map(tag => tag.trim()).filter(Boolean);
+            const matchesTags = !activeTags.size || cardTags.some(tag => activeTags.has(tag));
+            const shouldShow = matchesCategory && matchesType && matchesDesignType && matchesIndustries && matchesTags;
             if (shouldShow) {
                 showCard(card, animate);
             } else if (!card.hidden) {
@@ -121,11 +139,25 @@
             const selected = option.dataset.type === activeType;
             option.setAttribute("aria-checked", selected ? "true" : "false");
         });
+        designOptions.forEach(option => {
+            option.setAttribute("aria-checked", option.dataset.designType === activeDesignType ? "true" : "false");
+        });
+        industryFilters.forEach(filter => {
+            filter.setAttribute("aria-pressed", activeIndustries.has(filter.dataset.industry) ? "true" : "false");
+        });
+        caseFilters.forEach(filter => {
+            filter.setAttribute("aria-pressed", activeTags.has(filter.dataset.tag) ? "true" : "false");
+        });
     }
 
     function setFilterOpen(open) {
         typeMenu.hidden = !open;
         typeToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    function setDesignFilterOpen(open) {
+        designMenu.hidden = !open;
+        designToggle.setAttribute("aria-expanded", open ? "true" : "false");
     }
 
     function setSortOpen(open) {
@@ -179,6 +211,7 @@
 
     typeToggle.addEventListener("click", () => {
         const open = typeMenu.hidden;
+        setDesignFilterOpen(false);
         setSortOpen(false);
         setFilterOpen(open);
     });
@@ -198,9 +231,48 @@
         typeToggle.focus();
     });
 
+    designToggle.addEventListener("click", () => {
+        const open = designMenu.hidden;
+        setFilterOpen(false);
+        setSortOpen(false);
+        setDesignFilterOpen(open);
+    });
+
+    designMenu.addEventListener("click", event => {
+        const option = event.target.closest(".portfolio-type-option");
+        if (!option) return;
+        activeDesignType = option.dataset.designType;
+        const label = option.querySelector("[data-i18n]");
+        if (!label) return;
+        designLabel.dataset.i18n = label.dataset.i18n;
+        designLabel.textContent = label.textContent;
+        updateProjects(true);
+        setDesignFilterOpen(false);
+        designToggle.focus();
+    });
+
+    caseFilters.forEach(filter => {
+        filter.addEventListener("click", () => {
+            const tag = filter.dataset.tag;
+            if (activeTags.has(tag)) activeTags.delete(tag);
+            else activeTags.add(tag);
+            updateProjects(true);
+        });
+    });
+
+    industryFilters.forEach(filter => {
+        filter.addEventListener("click", () => {
+            const industry = filter.dataset.industry;
+            if (activeIndustries.has(industry)) activeIndustries.delete(industry);
+            else activeIndustries.add(industry);
+            updateProjects(true);
+        });
+    });
+
     sortButton.addEventListener("click", () => {
         const open = sortMenu.hidden;
         setFilterOpen(false);
+        setDesignFilterOpen(false);
         setSortOpen(open);
     });
 
@@ -215,6 +287,7 @@
 
     document.addEventListener("click", event => {
         if (!typeFilter.contains(event.target)) setFilterOpen(false);
+        if (!designFilter.contains(event.target)) setDesignFilterOpen(false);
         if (!sortControl.contains(event.target)) setSortOpen(false);
     });
 
@@ -222,6 +295,9 @@
         if (event.key === "Escape" && !typeMenu.hidden) {
             setFilterOpen(false);
             typeToggle.focus();
+        } else if (event.key === "Escape" && !designMenu.hidden) {
+            setDesignFilterOpen(false);
+            designToggle.focus();
         } else if (event.key === "Escape" && !sortMenu.hidden) {
             setSortOpen(false);
             sortButton.focus();

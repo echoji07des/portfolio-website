@@ -1652,11 +1652,19 @@ html.font-accessible *::placeholder {
 .design-page .portfolio-controls {
     position: relative;
     z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
     gap: 24px;
     margin-top: 80px;
+}
+
+.design-page .portfolio-category-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
 }
 
 .design-page .portfolio-controls .tabs {
@@ -1665,12 +1673,25 @@ html.font-accessible *::placeholder {
 
 .design-page .portfolio-tools {
     display: flex;
-    flex: none;
-    align-items: center;
-    gap: 24px;
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    min-width: 0;
+    max-width: 100%;
 }
 
-.design-page .portfolio-type-filter {
+.design-page .portfolio-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+    max-width: 100%;
+}
+
+.design-page .portfolio-type-filter,
+.design-page .portfolio-design-filter {
     position: relative;
 }
 
@@ -1776,6 +1797,41 @@ html.font-accessible *::placeholder {
 .design-page .portfolio-type-option:focus-visible {
     background: var(--ink);
     color: var(--paper);
+}
+
+.design-page .portfolio-case-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+    max-width: 100%;
+}
+
+.design-page .portfolio-industry-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px;
+    max-width: 100%;
+}
+
+.design-page .portfolio-case-filter,
+.design-page .portfolio-industry-filter {
+    padding: 12px 24px;
+    border: 1px solid var(--ink-soft);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    font: 300 16px/1.2 "Inter", Arial, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.design-page .portfolio-case-filter[aria-pressed="true"],
+.design-page .portfolio-industry-filter[aria-pressed="true"] {
+    border-color: var(--ink);
+    color: var(--ink);
 }
 
 .design-page .portfolio-sort {
@@ -1916,10 +1972,14 @@ html.font-accessible *::placeholder {
     }
 
     .design-page .portfolio-controls {
-        flex-wrap: wrap;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .design-page .portfolio-tools {
-        margin-left: auto;
+        align-items: flex-start;
+    }
+
+    .design-page .portfolio-case-filters {
+        justify-content: flex-start;
     }
 }

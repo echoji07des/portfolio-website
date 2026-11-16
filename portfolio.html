@@ -161,42 +161,72 @@
             </div>
 
             <div class="portfolio-controls">
-                <div class="tabs" role="tablist" aria-label="Portfolio categories" data-i18n-aria="portfolio.tabs">
-                    <button type="button" class="tab" role="tab" id="tab-all" aria-controls="portfolio-projects" aria-selected="true" data-i18n="portfolio.all">All</button>
-                    <button type="button" class="tab" role="tab" id="tab-commercial" aria-controls="portfolio-projects" aria-selected="false" tabindex="-1" data-i18n="portfolio.commercial">Commercial</button>
-                    <button type="button" class="tab" role="tab" id="tab-studies" aria-controls="portfolio-projects" aria-selected="false" tabindex="-1" data-i18n="portfolio.studies">Studies &amp; Volunteer</button>
+                <div class="portfolio-category-controls">
+                    <div class="tabs" role="tablist" aria-label="Portfolio categories" data-i18n-aria="portfolio.tabs">
+                        <button type="button" class="tab" role="tab" id="tab-all" aria-controls="portfolio-projects" aria-selected="true" data-i18n="portfolio.all">All</button>
+                        <button type="button" class="tab" role="tab" id="tab-commercial" aria-controls="portfolio-projects" aria-selected="false" tabindex="-1" data-i18n="portfolio.commercial">Commercial</button>
+                        <button type="button" class="tab" role="tab" id="tab-studies" aria-controls="portfolio-projects" aria-selected="false" tabindex="-1" data-i18n="portfolio.studies">Studies &amp; Volunteer</button>
+                    </div>
+                    <div class="portfolio-industry-filters" role="group" aria-label="Filter cases by industry" data-i18n-aria="portfolio.industryFilters">
+                        <button type="button" class="portfolio-industry-filter" data-industry="fintech" aria-pressed="false" data-i18n="portfolio.industry.fintech">FinTech</button>
+                        <button type="button" class="portfolio-industry-filter" data-industry="e-commerce" aria-pressed="false" data-i18n="portfolio.industry.ecommerce">E-Commerce</button>
+                        <button type="button" class="portfolio-industry-filter" data-industry="real-estate" aria-pressed="false" data-i18n="portfolio.industry.realEstate">Real Estate</button>
+                        <button type="button" class="portfolio-industry-filter" data-industry="event-tech" aria-pressed="false" data-i18n="portfolio.industry.eventTech">EventTech</button>
+                        <button type="button" class="portfolio-industry-filter" data-industry="b2b-b2c" aria-pressed="false" data-i18n="portfolio.industry.b2bB2c">B2B/B2C</button>
+                    </div>
                 </div>
 
                 <div class="portfolio-tools">
-                    <div class="portfolio-type-filter" id="portfolio-type-filter">
-                        <button type="button" class="portfolio-type-toggle" id="portfolio-type-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="portfolio-type-menu" aria-label="Filter by project type" data-i18n-aria="portfolio.filter">
-                            <span class="portfolio-type-label" data-type="uiux" data-i18n="portfolio.type.uiux">UI/UX &amp; Product design</span>
-                            <svg class="portfolio-chevron" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <div class="portfolio-type-menu" id="portfolio-type-menu" role="menu" aria-label="Project types" data-i18n-aria="portfolio.types" hidden>
-                            <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="uiux"><span data-i18n="portfolio.type.uiux">UI/UX &amp; Product design</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
-                            <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="graphic-design"><span data-i18n="portfolio.type.graphic">Graphic Design</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
-                            <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="illustration"><span data-i18n="portfolio.type.illustration">Illustration</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                    <div class="portfolio-filter-row">
+                        <div class="portfolio-type-filter" id="portfolio-type-filter">
+                            <button type="button" class="portfolio-type-toggle" id="portfolio-type-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="portfolio-type-menu" aria-label="Filter by project type" data-i18n-aria="portfolio.filter">
+                                <span class="portfolio-type-label" data-type="uiux" data-i18n="portfolio.type.uiux">UI/UX &amp; Product design</span>
+                                <svg class="portfolio-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="portfolio-type-menu" id="portfolio-type-menu" role="menu" aria-label="Project types" data-i18n-aria="portfolio.types" hidden>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="uiux"><span data-i18n="portfolio.type.uiux">UI/UX &amp; Product design</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="graphic-design"><span data-i18n="portfolio.type.graphic">Graphic Design</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-type="illustration"><span data-i18n="portfolio.type.illustration">Illustration</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                            </div>
+                        </div>
+                        <div class="portfolio-design-filter" id="portfolio-design-filter">
+                            <button type="button" class="portfolio-type-toggle" id="portfolio-design-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="portfolio-design-menu" aria-label="Filter by design type" data-i18n-aria="portfolio.designType.label">
+                                <span class="portfolio-design-label" data-i18n="portfolio.designType.label">Design type</span>
+                                <svg class="portfolio-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="portfolio-type-menu portfolio-design-menu" id="portfolio-design-menu" role="menu" aria-label="Design types" data-i18n-aria="portfolio.designType.options" hidden>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-design-type="landing-page"><span data-i18n="portfolio.designType.landingPage">Landing Page</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-design-type="ui-ux"><span data-i18n="portfolio.designType.uiux">UI/UX</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-type-option" role="menuitemradio" aria-checked="false" data-design-type="product-design"><span data-i18n="portfolio.designType.product">Product Design</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                            </div>
+                        </div>
+                        <div class="portfolio-sort-control" id="portfolio-sort-control">
+                            <button type="button" class="portfolio-sort" id="portfolio-sort" aria-label="Sort projects" title="Sort projects" aria-haspopup="menu" aria-expanded="false" aria-controls="portfolio-sort-menu" data-i18n-aria="portfolio.sort.label" data-i18n-title="portfolio.sort.label">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M7 19V5m0 0L3.5 8.5M7 5l3.5 3.5M17 5v14m0 0 3.5-3.5M17 19l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="portfolio-sort-menu" id="portfolio-sort-menu" role="menu" aria-label="Sort projects" data-i18n-aria="portfolio.sort.label" hidden>
+                                <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="true" data-sort="relevant"><span data-i18n="portfolio.sort.relevant">Relevant</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="false" data-sort="new-to-old"><span data-i18n="portfolio.sort.newOld">New to Old</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                                <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="false" data-sort="old-to-new"><span data-i18n="portfolio.sort.oldNew">Old to New</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="portfolio-sort-control" id="portfolio-sort-control">
-                        <button type="button" class="portfolio-sort" id="portfolio-sort" aria-label="Sort projects" title="Sort projects" aria-haspopup="menu" aria-expanded="false" aria-controls="portfolio-sort-menu" data-i18n-aria="portfolio.sort.label" data-i18n-title="portfolio.sort.label">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M7 19V5m0 0L3.5 8.5M7 5l3.5 3.5M17 5v14m0 0 3.5-3.5M17 19l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <div class="portfolio-sort-menu" id="portfolio-sort-menu" role="menu" aria-label="Sort projects" data-i18n-aria="portfolio.sort.label" hidden>
-                            <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="true" data-sort="relevant"><span data-i18n="portfolio.sort.relevant">Relevant</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
-                            <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="false" data-sort="new-to-old"><span data-i18n="portfolio.sort.newOld">New to Old</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
-                            <button type="button" class="portfolio-sort-option" role="menuitemradio" aria-checked="false" data-sort="old-to-new"><span data-i18n="portfolio.sort.oldNew">Old to New</span><svg class="portfolio-check" aria-hidden="true"><use href="#i-select-tick"/></svg></button>
-                        </div>
+                    <div class="portfolio-case-filters" role="group" aria-label="Filter cases by tags" data-i18n-aria="portfolio.caseFilters">
+                        <button type="button" class="portfolio-case-filter" data-tag="ai-shipped" aria-pressed="false" data-i18n="portfolio.tag.aiShipped">AI-Shipped</button>
+                        <button type="button" class="portfolio-case-filter" data-tag="redesign" aria-pressed="false" data-i18n="portfolio.tag.redesign">Redesign</button>
+                        <button type="button" class="portfolio-case-filter" data-tag="interactive" aria-pressed="false" data-i18n="portfolio.tag.interactive">Interactive</button>
+                        <button type="button" class="portfolio-case-filter" data-tag="motion" aria-pressed="false" data-i18n="portfolio.tag.motion">Motion</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Cards need data-category and data-type; data-order sets relevance, data-date (YYYY-MM-DD) sets date sorting. -->
+            <!-- Cards use data-category, data-type, data-design-type, and comma-separated data-industries and data-tags; data-order and data-date control sorting. -->
             <section class="tab-panel portfolio-grid" role="tabpanel" id="portfolio-projects" aria-labelledby="tab-all" tabindex="0"></section>
         </main>
     </div>
