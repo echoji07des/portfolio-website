@@ -50,9 +50,8 @@
 
             "about.open": "Open to work",
             "about.available": "Available: Mon-fri (10:00 - 18:00)",
-            "about.p1": "Hi, I’m Angelina, a UI/UX & Product Designer. I find answers and build products that solve your problems. I develop desktop and mobile websites, as well as Android & iOS apps.",
-            "about.niches": "Working in the following niches:",
-            "about.p3": "I have a 9-year art school background and a degree in Graphic Design. I was mentored by a Senior UI/UX Designer and still do illustration today. I’ve studied English since childhood so I have B1–B2.",
+            "about.p1": "Hi! I’m Angelina, a UI/UX & Product Designer who turns ideas into user-friendly, profitable digital products. I design intuitive websites and iOS/Android apps, combining modern aesthetics with seamless usability gained under Senior Designer mentorship.",
+            "about.p2": "Beyond digital interfaces, I create impactful graphic design, including branding, print, media, and custom illustrations. My Graphic Design degree and 9 years of art school bring a sharp sense of color, composition, and detail to every project. With B1–B2 English, I collaborate smoothly with international clients and global teams.",
 
             "cta.cv": "Download and explore my experience",
             "cta.download": "Download CV",
@@ -429,9 +428,8 @@
 
             "about.open": "Відкрита до роботи",
             "about.available": "Доступна: пн–пт (10:00 – 18:00)",
-            "about.p1": "Привіт, я Ангеліна, UI/UX та Product-дизайнерка. Я шукаю відповіді та створюю продукти, які розв’язують ваші проблеми. Розробляю десктопні та мобільні вебсайти, а також застосунки для Android та iOS.",
-            "about.niches": "Працюю в таких нішах:",
-            "about.p3": "Маю 9 років мистецької школи та диплом із графічного дизайну. Мене наставляв Senior UI/UX дизайнер, і я досі займаюся ілюстрацією. Англійську вивчаю з дитинства, тож мій рівень — B1–B2.",
+            "about.p1": "Привіт! Я Ангеліна, UI/UX та Product-дизайнерка, яка перетворює ідеї на зручні та прибуткові цифрові продукти. Створюю інтуїтивні вебсайти та застосунки для iOS і Android, поєднуючи сучасну естетику з бездоганною зручністю, здобутою під наставництвом Senior-дизайнера.",
+            "about.p2": "Окрім цифрових інтерфейсів, я створюю впливовий графічний дизайн: брендинг, друковану продукцію, медіаматеріали та авторські ілюстрації. Ступінь із графічного дизайну та 9 років художньої школи дали мені гостре відчуття кольору, композиції та деталей у кожному проєкті. Рівень англійської B1–B2 дозволяє вільно працювати з міжнародними клієнтами та глобальними командами.",
 
             "cta.cv": "Завантажте резюме та ознайомтеся з моїм досвідом",
             "cta.download": "Завантажити резюме",

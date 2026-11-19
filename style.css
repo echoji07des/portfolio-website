@@ -1097,6 +1097,16 @@ html:has(body.design-page) {
     margin-bottom: 120px;
 }
 
+.design-page .row--about {
+    margin-top: 32px;
+    grid-template-columns: minmax(0, 72fr) minmax(0, 28fr);
+}
+
+.design-page .row--about .row-main {
+    width: 100%;
+    max-width: none;
+}
+
 .design-page .row-main,
 .design-page .row-side {
     min-width: 0;
@@ -1161,6 +1171,15 @@ html:has(body.design-page) {
     line-height: 20px;
     letter-spacing: -0.02em;
     text-wrap: pretty;
+}
+
+.design-page .row--about .section-text {
+    gap: 12px;
+    width: 100%;
+    max-width: 590px;
+    margin-top: 12px;
+    color: rgba(46, 9, 8, 0.6);
+    text-wrap: wrap;
 }
 
 .design-page .niches ul {
@@ -1509,6 +1528,10 @@ html:has(body.design-page) {
     .design-page .row-main {
         padding-right: 32px;
     }
+
+    .design-page .row--about .row-main {
+        padding-right: 0;
+    }
 }
 
 /* Вузька основна область: колонки одна під одною */
@@ -1521,6 +1544,11 @@ html:has(body.design-page) {
 
     .design-page .row-main {
         padding-right: 0;
+    }
+
+    .design-page .row--about .section-text {
+        width: 100%;
+        max-width: none;
     }
 
     .design-page .section-title {
@@ -2520,6 +2548,10 @@ html.font-accessible *::placeholder {
 
 .design-page .legal-copy p {
     margin: 0;
+}
+
+.design-page #privacy-policy .legal-copy > p:first-of-type {
+    margin-bottom: 1.35em;
 }
 
 .design-page .legal-copy a {
