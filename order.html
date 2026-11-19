@@ -233,8 +233,6 @@
                             </div>
                         </div>
 
-                        <!-- TODO: опис Graphic design і Illustration у макеті не показаний (списки згорнуті).
-                             Замініть <p data-i18n="order.soon"> на реальний текст і додайте його переклад у site.js. -->
                         <div class="acc-item">
                             <h3 class="acc-heading">
                                 <button type="button" class="acc-head" id="order-graphic-head" aria-expanded="false" aria-controls="order-graphic">
@@ -245,7 +243,18 @@
                             <div class="acc-panel" id="order-graphic" role="region" aria-labelledby="order-graphic-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="order.soon">Details coming soon.</p>
+                                        <p data-i18n="order.graphic.desc">I create print-ready designs—from business cards to large-format banners—alongside engaging digital assets like social media posts, Stories, and simple custom animations.</p>
+                                        <div>
+                                            <p class="order-list-title" data-i18n="order.graphic.list.title">In general, here is what I do:</p>
+                                            <ul>
+                                                <li data-i18n="order.graphic.polygraphy">Polygraphy Production</li>
+                                                <li data-i18n="order.graphic.digital">Digital Production</li>
+                                                <li data-i18n="order.graphic.illustration">Illustration (Vector + Raster)</li>
+                                                <li data-i18n="order.graphic.redesign">Redesign</li>
+                                                <li data-i18n="order.graphic.brand">Brand Identity</li>
+                                            </ul>
+                                        </div>
+                                        <p data-i18n="order.graphic.closing">I work across all niches, so you can confidently order designs from me—whether you run a medical center or a coffee shop.</p>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +270,8 @@
                             <div class="acc-panel" id="order-illustration" role="region" aria-labelledby="order-illustration-head">
                                 <div class="acc-inner">
                                     <div class="acc-body">
-                                        <p data-i18n="order.soon">Details coming soon.</p>
+                                        <p data-i18n="order.illustration.desc">I create custom vector and raster illustrations for any purpose— from wallpaper and packaging patterns to sticker sets, book illustrations, and apparel prints.</p>
+                                        <p data-i18n="order.illustration.tools">Proficient in Photoshop, Illustrator, Figma, and Procreate, I prepare print-ready illustrations and provide realistic mockups of the final product.</p>
                                     </div>
                                 </div>
                             </div>
@@ -273,12 +283,15 @@
                 </section>
 
                 <!-- ===== Контактна форма =====
-                     Без сервера форма відкриває лист у поштовій програмі (data-mailto).
-                     Щоб надсилати напряму, додайте до <form> data-endpoint="https://..." (Formspree, Getform тощо). -->
+                     Заявки надходять на пошту через сервіс FormSubmit (data-endpoint). Перший раз він надішле лист
+                     з кнопкою Activate — її треба натиснути одноразово. Якщо data-endpoint прибрати,
+                     форма відкриватиме лист у поштовій програмі відвідувача (data-mailto). -->
                 <section class="order-contact" aria-labelledby="order-form-title">
                     <h2 class="order-form-title" id="order-form-title" data-i18n="order.form.title">Contact Form</h2>
 
-                    <form class="order-form" id="order-form" novalidate data-mailto="bilan02233@gmail.com">
+                    <form class="order-form" id="order-form" novalidate data-endpoint="https://formsubmit.co/ajax/bilan02233@gmail.com" data-mailto="bilan02233@gmail.com">
+                        <!-- Пастка для ботів: людина її не бачить і не заповнює -->
+                        <input type="text" name="_honey" id="order-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
                         <input class="order-field" id="order-name" name="name" type="text" autocomplete="name" required placeholder="Name*" data-i18n-placeholder="order.form.name" aria-label="Name*" data-i18n-aria="order.form.name">
                         <input class="order-field" id="order-email" name="email" type="email" autocomplete="email" required placeholder="E-mail*" data-i18n-placeholder="order.form.email" aria-label="E-mail*" data-i18n-aria="order.form.email">
                         <input class="order-field" id="order-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+380 (__) ___ __ __" data-i18n-placeholder="order.form.phone" aria-label="+380 (__) ___ __ __" data-i18n-aria="order.form.phone">

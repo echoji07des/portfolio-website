@@ -281,6 +281,10 @@
         e.preventDefault();
         if (!validate()) return;
 
+        // Пастка для ботів заповнена — нічого не відправляємо
+        const honey = document.getElementById("order-honey");
+        if (honey && honey.value) return;
+
         const phoneDigits = localDigits(phoneEl.value);
         const data = {
             name:  nameEl.value.trim(),
@@ -295,12 +299,22 @@
         if (endpoint) {
             submitBtn.disabled = true;
             try {
+                const payload = new URLSearchParams(Object.entries({
+                    ...data,
+                    _replyto: data.email,
+                    _subject: "Order service — " + data.name,
+                    _template: "table"
+                }));
                 const res = await fetch(endpoint, {
                     method: "POST",
-                    headers: { "Accept": "application/json", "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
+                    headers: { "Accept": "application/json" },
+                    body: payload
                 });
                 if (!res.ok) throw new Error("HTTP " + res.status);
+                const result = await res.json();
+                if (result.success === false || result.success === "false") {
+                    throw new Error(result.message || "FormSubmit rejected the submission");
+                }
                 resetForm();
                 setStatus("order.status.sent", false);
             } catch (err) {

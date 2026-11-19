@@ -1097,16 +1097,6 @@ html:has(body.design-page) {
     margin-bottom: 120px;
 }
 
-.design-page .row--about {
-    margin-top: 32px;
-    grid-template-columns: minmax(0, 72fr) minmax(0, 28fr);
-}
-
-.design-page .row--about .row-main {
-    width: 100%;
-    max-width: none;
-}
-
 .design-page .row-main,
 .design-page .row-side {
     min-width: 0;
@@ -1126,6 +1116,10 @@ html:has(body.design-page) {
     text-transform: uppercase;
     overflow-wrap: break-word;
     color: var(--ink);
+}
+
+.design-page .row-main[aria-labelledby="about"] .status {
+    margin-bottom: 38px;
 }
 
 /* Open to work: 16 Regular, колір #30541D */
@@ -1173,7 +1167,7 @@ html:has(body.design-page) {
     text-wrap: pretty;
 }
 
-.design-page .row--about .section-text {
+.design-page .row-main[aria-labelledby="about"] .section-text {
     gap: 12px;
     width: 100%;
     max-width: 590px;
@@ -1529,9 +1523,6 @@ html:has(body.design-page) {
         padding-right: 32px;
     }
 
-    .design-page .row--about .row-main {
-        padding-right: 0;
-    }
 }
 
 /* Вузька основна область: колонки одна під одною */
@@ -1544,11 +1535,6 @@ html:has(body.design-page) {
 
     .design-page .row-main {
         padding-right: 0;
-    }
-
-    .design-page .row--about .section-text {
-        width: 100%;
-        max-width: none;
     }
 
     .design-page .section-title {
@@ -2722,12 +2708,12 @@ body.design-page:not(.menu-open) .order-layout {
     grid-row: 1;
 }
 
-/* Список послуг починається на рівні першого поля форми: висота заголовка «Contact Form» (32px × 1.2) + його нижній відступ 24px.
+/* Список послуг починається на рівні першого поля форми: висота заголовка «Contact Form» (32px × 1.2) + його нижній відступ 18px.
    Тоді лінія під UI/UX = Name, під Graphic Design = E-mail, під Illustration = телефон. */
 .design-page .order-services {
     grid-column: 2;
     grid-row: 1;
-    margin-top: 62.4px;
+    margin-top: 56.4px;
 }
 
 /* ---------- Послуги: той самий список, що розкривається, але з лініями між пунктами ---------- */
@@ -2781,12 +2767,12 @@ body.design-page:not(.menu-open) .order-layout {
     color: rgba(46, 9, 8, 0.6);
 }
 
-.design-page .order-cols ul {
+.design-page .order-acc .acc-body ul {
     margin: 0;
     padding-left: 24px;
 }
 
-.design-page .order-cols li + li {
+.design-page .order-acc .acc-body li + li {
     margin-top: 4px;
 }
 
@@ -2815,7 +2801,7 @@ body.design-page:not(.menu-open) .order-layout {
 }
 
 .design-page .order-form-title {
-    margin: 0 0 24px;
+    margin: 0 0 18px;
     text-align: center;
     font-size: 32px;
     font-weight: 200;
