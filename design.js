@@ -90,18 +90,6 @@
     /* ---------- 4. Пошта: копіювання ---------- */
 
     (function initEmail() {
-        const link   = document.getElementById("email-link");
-        const btn    = document.getElementById("copy-email");
-        const status = document.getElementById("copy-status");
-        if (!link || !btn) return;
-
-        const label = btn.querySelector("span");
-        let timer = null;
-
-        // Адреса береться з тексту посилання — змінювати її потрібно лише в одному місці
-        const address = () => link.textContent.trim();
-        link.href = "mailto:" + address();
-
         async function copyText(text) {
             if (navigator.clipboard && window.isSecureContext) {
                 try {
@@ -122,19 +110,34 @@
             return ok;
         }
 
-        btn.addEventListener("click", async () => {
-            const ok = await copyText(address());
-            const message = t(ok ? "contacts.copied" : "contacts.failed", ok ? "Copied" : "Copy failed");
-            label.textContent = message;
-            btn.classList.toggle("is-copied", ok);
-            if (status) status.textContent = message;
+        document.querySelectorAll(".email").forEach(box => {
+            const link = box.querySelector(".email-link");
+            const btn = box.querySelector(".copy-btn");
+            const status = box.querySelector("[aria-live='polite']");
+            if (!link || !btn) return;
 
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                label.textContent = t("contacts.copy", "Copy");
-                btn.classList.remove("is-copied");
-                if (status) status.textContent = "";
-            }, 1800);
+            const label = btn.querySelector("span");
+            if (!label) return;
+            let timer = null;
+
+            // Адреса береться з тексту посилання — змінювати її потрібно лише в одному місці
+            const address = () => link.textContent.trim();
+            link.href = "mailto:" + address();
+
+            btn.addEventListener("click", async () => {
+                const ok = await copyText(address());
+                const message = t(ok ? "contacts.copied" : "contacts.failed", ok ? "Copied" : "Copy failed");
+                label.textContent = message;
+                btn.classList.toggle("is-copied", ok);
+                if (status) status.textContent = message;
+
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    label.textContent = t("contacts.copy", "Copy");
+                    btn.classList.remove("is-copied");
+                    if (status) status.textContent = "";
+                }, 1800);
+            });
         });
     })();
 })();

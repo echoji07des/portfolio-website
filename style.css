@@ -1180,6 +1180,7 @@ html:has(body.design-page) {
 /* Блок «Download and explore my experience»: підпис в один рядок, блок за шириною підпису */
 .design-page #cv {
     width: auto;
+    margin-top: 6px;
 }
 
 .design-page #cv .caption {
@@ -1209,9 +1210,9 @@ html:has(body.design-page) {
     gap: 12px;
 }
 
-/* Кнопки праворуч вирівняні по верху заголовка */
+/* Підписи й кнопки праворуч вирівняні по верху заголовка */
 .design-page div.row-side:not(.row-side--split) {
-    margin-top: -10px;
+    margin-top: 5px;
 }
 
 .design-page .pill--lg {
@@ -1246,6 +1247,7 @@ html:has(body.design-page) {
     gap: 18px;
     min-width: 83px;
     margin-right: min(106px, 14.5%);
+    margin-top: 6px;
 }
 
 .design-page .columns .caption {
@@ -1536,6 +1538,14 @@ html:has(body.design-page) {
     .design-page .row-side--split {
         flex-wrap: wrap;
         padding-top: 0;
+    }
+
+    .design-page #cv {
+        margin-top: 0;
+    }
+
+    .design-page .columns {
+        margin-top: 0;
     }
 }
 
@@ -1962,6 +1972,11 @@ html.font-accessible *::placeholder {
     opacity: 0.32;
 }
 
+.design-page .portfolio-controls:not(.products-controls) .portfolio-category-controls .tab:not([aria-selected="true"]) {
+    color: var(--ink-soft);
+    opacity: 1;
+}
+
 .design-page .tab-panel {
     min-height: 40vh;
     margin: 48px 0 120px;
@@ -2314,11 +2329,10 @@ html.font-accessible *::placeholder {
     cursor: default;
 }
 
-/* Текст «All» приглушений, а риска під ним така сама по прозорістю, як на інших сторінках
-   (повний колір --ink). Інші вкладки мають звичайну прозорість .32 від .tab. */
+/* Риска під «All» має прозорість 12%. */
 .design-page .products-controls .tab[aria-selected="true"] {
     color: rgba(46, 9, 8, 0.32);
-    border-bottom-color: var(--ink);
+    border-bottom-color: rgba(46, 9, 8, 0.12);
 }
 
 .design-page .products-controls .portfolio-sort {
@@ -2330,16 +2344,29 @@ html.font-accessible *::placeholder {
     margin-top: 60px;
 }
 
+.design-page .products-empty #products-empty-title {
+    text-transform: none;
+}
+
 .design-page .section-title--sm {
     max-width: 10em;                          /* заголовок переноситься на два рядки */
     font-size: clamp(24px, 3.5cqw, 64px);     /* 64px на широкому екрані; зменшується разом із шириною, як основні заголовки */
     text-wrap: balance;
 }
 
+.design-page .products-empty .section-title--sm {
+    font-size: clamp(24px, 4.2cqw, 54px);
+    line-height: 1.1111;
+}
+
 .design-page .section-text--muted {
     max-width: 440px;
     margin-top: 16px;
     color: rgba(46, 9, 8, 0.6);
+}
+
+.design-page .products-empty .section-text--muted {
+    margin-top: 12px;
 }
 
 .design-page .products-empty .row-side {
@@ -2360,9 +2387,9 @@ html.font-accessible *::placeholder {
 }
 
 .design-page .contacts-or {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
-    color: var(--ink-soft);
+    color: rgba(46, 9, 8, 0.6);
 }
 
 /* Кнопка «копіювати» не займає місця, поки не наведено на пошту:
@@ -2397,7 +2424,526 @@ html.font-accessible *::placeholder {
         justify-content: flex-start;
     }
 
-    .design-page .section-title--sm {
-        font-size: clamp(24px, 7cqw, 64px);   /* у вузькій області основні заголовки теж збільшуються відносно ширини */
+    .design-page .products-empty .section-title--sm {
+        font-size: clamp(24px, 7cqw, 54px);   /* у вузькій області основні заголовки теж збільшуються відносно ширини */
+        line-height: 1.1111;
+    }
+}
+
+/* ==========================================================
+   Legal: Privacy Policy with section navigation
+   ========================================================== */
+
+.design-page .legal-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px 48px;
+    margin-top: 60px;
+}
+
+.design-page .legal-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 40px;
+}
+
+.design-page .legal-tab {
+    padding: 0 6px 8px;
+    border-bottom: 1px solid rgba(46, 9, 8, 0.12);
+    color: var(--ink-soft);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.design-page .legal-tab.is-active {
+    border-bottom-color: var(--ink);
+    color: var(--ink);
+}
+
+.design-page .legal-tab.is-unavailable {
+    cursor: default;
+}
+
+/* Вкладки, які можна відкрити, при наведенні темнішають */
+.design-page .legal-tab[href]:not(.is-active):hover {
+    color: var(--ink);
+}
+
+.design-page .legal-layout {
+    display: grid;
+    grid-template-areas:
+        "article sidebar"
+        "contact contact";
+    grid-template-columns: minmax(0, 3fr) minmax(200px, 2fr);
+    align-items: start;
+    gap: 32px 48px;
+    margin-top: 60px;
+    margin-bottom: 120px;
+}
+
+/* legal.js aligns the document text and title to the "P" in the page heading. */
+.design-page .legal-article {
+    grid-area: article;
+    margin-left: var(--legal-article-x, min(16vw, 200px));
+    min-width: 0;
+    max-width: 760px;
+}
+
+.design-page #copyright-dmca-policy {
+    width: min(900px, 48vw);
+    max-width: none;
+}
+
+.design-page .legal-policy-title {
+    margin-left: var(--legal-title-shift, 0px);
+    margin-bottom: 12px;
+    font-size: clamp(32px, 3.8cqw, 64px);
+    line-height: 1;
+}
+
+.design-page #copyright-dmca-policy-title {
+    white-space: nowrap;
+}
+
+.design-page .legal-copy {
+    max-width: 100%;
+    color: rgba(46, 9, 8, 0.6);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.35;
+    text-wrap: pretty;
+}
+
+.design-page .legal-copy p {
+    margin: 0;
+}
+
+.design-page .legal-copy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-position: from-font;
+    overflow-wrap: anywhere;
+}
+
+.design-page .legal-section {
+    margin-top: 28px;
+    scroll-margin-top: 24px;
+}
+
+.design-page .legal-section h3 {
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-size: clamp(22px, 1.8cqw, 28px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    text-transform: none;
+}
+
+.design-page .legal-section p + p {
+    margin-top: 12px;
+}
+
+.design-page .legal-section ul {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.design-page .legal-section li + li {
+    margin-top: 4px;
+}
+
+.design-page .legal-sidebar {
+    grid-area: sidebar;
+    margin-left: var(--legal-sidebar-x, min(10vw, 125px));
+    min-width: 0;
+}
+
+.design-page .legal-page-contact {
+    grid-area: contact;
+    width: max-content;
+    margin-top: 0;
+    margin-left: var(--legal-article-x, min(16vw, 200px));
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.design-page .legal-page-contact > * {
+    flex: none;
+}
+
+.design-page .legal-page-contact .email {
+    flex-wrap: nowrap;
+}
+
+.design-page .legal-page-contact .email-link {
+    overflow-wrap: normal;
+    white-space: nowrap;
+}
+
+.design-page .legal-page-contact .copy-btn {
+    width: 24px;
+    margin-left: 0;
+    opacity: 1;
+}
+
+.design-page .legal-toc {
+    position: sticky;
+    top: 24px;
+}
+
+.design-page .legal-toc ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.design-page .legal-toc a {
+    color: var(--ink-soft);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.3;
+    text-decoration: underline;
+    text-underline-position: from-font;
+}
+
+.design-page .legal-toc a:hover {
+    color: var(--ink);
+}
+
+@container about (max-width: 760px) {
+    .design-page .legal-toolbar {
+        flex-direction: column;
+    }
+
+    .design-page .legal-layout {
+        grid-template-areas:
+            "sidebar"
+            "article"
+            "contact";
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .design-page .legal-article,
+    .design-page .legal-sidebar {
+        margin-left: 0;
+    }
+
+    .design-page .legal-page-contact {
+        margin-left: 0;
+    }
+
+    .design-page #copyright-dmca-policy {
+        width: auto;
+        max-width: 100%;
+    }
+
+    .design-page .legal-toc {
+        position: static;
+    }
+}
+
+/* ==========================================================
+   Сторінка Order Service (order.html)
+   Шапка — ті самі елементи, що в Portfolio і Products (portfolio-head, status, pill, meta).
+   Нижче: ліворуч послуги (список, що розкривається, як Experience на design.html),
+   праворуч контактна форма. Розміри з макета 1920: колонки 558 і 527, проміжок 339.
+   ========================================================== */
+
+.design-page .order-intro,
+.design-page .order-intro .section-text {
+    max-width: 700px;
+}
+
+.design-page .order-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 527px) minmax(0, 558px);
+    justify-content: space-between;   /* форма притиснута до лівого краю, послуги — до правого */
+    column-gap: 32px;
+    align-items: first baseline;   /* «Contact Form» і перший заголовок послуг стоять на одній лінії тексту */
+    margin-top: 80px;
+    margin-bottom: 120px;
+}
+
+/* Візуально: форма ліворуч, послуги праворуч (у розмітці послуги йдуть першими — так зручніше читати з екранів і на телефоні) */
+.design-page .order-contact {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.design-page .order-services {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* ---------- Послуги: той самий список, що розкривається, але з лініями між пунктами ---------- */
+
+.design-page .order-acc {
+    margin-top: 0;
+    gap: 0;
+}
+
+.design-page .order-acc .acc-item {
+    border-bottom: 1px solid var(--ink);
+    transition: border-color 0.25s ease;
+}
+
+/* Біля відкритого пункту лінія світла, у закритих — темна (як у макеті) */
+.design-page .order-acc .acc-item.is-open {
+    border-bottom-color: rgba(46, 9, 8, 0.12);
+}
+
+.design-page .order-acc .acc-head {
+    padding: 24px;
+}
+
+.design-page .order-acc .acc-item:first-child .acc-head {
+    padding-top: 0;
+}
+
+.design-page .order-acc .acc-title {
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.design-page .order-acc .acc-body {
+    max-width: none;
+    gap: 24px;
+    padding: 0 24px 24px;
+    color: rgba(46, 9, 8, 0.8);
+}
+
+.design-page .order-acc .acc-body > p,
+.design-page .order-acc .order-flow-block {
+    max-width: 460px;
+}
+
+.design-page .order-cols {
+    display: grid;
+    grid-template-columns: 244px minmax(0, 1fr);
+    gap: 24px 0;
+}
+
+.design-page .order-list-title {
+    margin: 0 0 12px;
+    color: rgba(46, 9, 8, 0.6);
+}
+
+.design-page .order-cols ul {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.design-page .order-cols li + li {
+    margin-top: 4px;
+}
+
+.design-page .order-flow-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.design-page .order-flow {
+    text-align: center;
+}
+
+.design-page .order-note {
+    margin: 24px 0 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    color: var(--ink);
+}
+
+/* ---------- Контактна форма ---------- */
+
+.design-page .order-contact {
+    min-width: 0;
+}
+
+.design-page .order-form-title {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 200;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+}
+
+.design-page .order-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Поля з однією лінією знизу; підпис — це placeholder */
+.design-page .order-field {
+    display: block;
+    width: 100%;
+    padding: 22px 0 21px;
+    border: 0;
+    border-bottom: 1px solid var(--ink-soft);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 300 16px/24px "Inter", Arial, sans-serif;
+    letter-spacing: -0.02em;
+    outline: 0;
+    resize: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.design-page .order-field::placeholder {
+    color: rgba(46, 9, 8, 0.6);
+    opacity: 1;
+}
+
+.design-page .order-field:hover {
+    border-bottom-color: rgba(46, 9, 8, 0.6);
+}
+
+/* Фокус: лінія темнішає й товщає до 2px (замість рамки навколо поля) */
+.design-page .order-field:focus,
+.design-page .order-field:focus-visible {
+    outline: 0;
+    border-bottom-color: var(--ink);
+    box-shadow: 0 1px 0 var(--ink);
+}
+
+.design-page .order-field--area {
+    overflow: hidden;
+    field-sizing: content;   /* росте разом з текстом (запасний варіант — order.js) */
+}
+
+.design-page .order-field.is-invalid {
+    border-bottom-color: #9B2C1F;
+    box-shadow: 0 1px 0 #9B2C1F;
+}
+
+/* Згода на обробку даних: світлий підпис, темнішає, коли галочку поставлено */
+.design-page .order-consent {
+    margin-top: 18px;
+}
+
+.design-page .order-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.design-page .order-check:has(input:checked) {
+    color: var(--ink);
+}
+
+.design-page .order-check input {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 1px solid var(--ink-soft);
+    border-radius: 3px;
+    background: transparent center / 12px no-repeat;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.design-page .order-check input:checked {
+    border-color: var(--ink);
+    background-color: var(--ink);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' stroke='%23FFF9F3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.design-page .order-check.is-invalid input {
+    border-color: #9B2C1F;
+}
+
+.design-page .order-check a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-position: from-font;
+}
+
+.design-page .order-submit {
+    align-self: center;
+    margin-top: 24px;
+}
+
+.design-page .order-status {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: var(--ink);
+}
+
+.design-page .order-status:empty {
+    display: none;
+}
+
+.design-page .order-status.is-error {
+    color: #9B2C1F;
+}
+
+.design-page .order-or {
+    margin: 24px 0 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: rgba(46, 9, 8, 0.6);
+}
+
+.design-page .order-contact .order-social {
+    justify-content: center;
+    margin-top: 16px;
+}
+
+/* Вузька область: послуги й форма одна під одною */
+@container about (max-width: 900px) {
+    .design-page .order-layout {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 64px;
+    }
+
+    .design-page .order-contact,
+    .design-page .order-services {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .design-page .order-form-title {
+        text-align: left;
+    }
+}
+
+@media (max-width: 560px) {
+    .design-page .order-cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .design-page .order-acc .acc-head,
+    .design-page .order-acc .acc-body {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
