@@ -34,7 +34,8 @@
 
     /* ---------- 1. Телефон ---------- */
 
-    const PHONE_PREFIX = "+380 (";
+    // Шаблон збігається з placeholder: при кліку поле не змінює вигляд, цифри лише заповнюють «_»
+    const PHONE_TEMPLATE = "+380 (__) ___ __ __";
 
     // Лишає тільки 9 цифр після коду країни (вставлений номер +380…, 380… або 0… теж підходить)
     function localDigits(value) {
@@ -44,23 +45,57 @@
         return d.slice(0, 9);
     }
 
+    // Підставляє цифри замість «_» у шаблоні
     function formatPhone(d) {
-        if (!d) return PHONE_PREFIX;
-        let out = PHONE_PREFIX + d.slice(0, 2);
-        if (d.length >= 2) out += ")";
-        if (d.length > 2) out += " " + d.slice(2, 5);
-        if (d.length > 5) out += " " + d.slice(5, 7);
-        if (d.length > 7) out += " " + d.slice(7, 9);
-        return out;
+        let i = 0;
+        return PHONE_TEMPLATE.replace(/_/g, () => d[i++] || "_");
+    }
+
+    // Курсор — на першому вільному місці (або в кінці, якщо номер заповнено)
+    function caretToFree() {
+        const pos = phoneEl.value.indexOf("_");
+        const at = pos === -1 ? phoneEl.value.length : pos;
+        phoneEl.setSelectionRange(at, at);
+    }
+
+    // Введені цифри й фіксована частина — 100%, незаповнені «_» і все після них — 32%.
+    // У самому <input> різним кольором фарбувати частину тексту не можна, тому поверх нього
+    // рисується дзеркало (CSS: .order-phone-wrap), а текст самого поля прозорий.
+    const phoneWrap = document.createElement("div");
+    phoneWrap.className = "order-phone-wrap";
+    phoneEl.parentNode.insertBefore(phoneWrap, phoneEl);
+    phoneWrap.appendChild(phoneEl);
+
+    const phoneMirror = document.createElement("div");
+    phoneMirror.className = "order-phone-mirror";
+    phoneMirror.setAttribute("aria-hidden", "true");
+    phoneWrap.appendChild(phoneMirror);
+
+    function paintMirror() {
+        const v = phoneEl.value;
+        const i = v.indexOf("_");
+        const filled = document.createElement("span");
+        const free = document.createElement("span");
+        free.className = "is-free";
+        filled.textContent = i === -1 ? v : v.slice(0, i);
+        free.textContent = i === -1 ? "" : v.slice(i);
+        phoneMirror.replaceChildren(filled, free);
     }
 
     let lastPhone = "";
 
     phoneEl.addEventListener("focus", () => {
         if (!phoneEl.value) {
-            phoneEl.value = PHONE_PREFIX;
-            lastPhone = PHONE_PREFIX;
+            phoneEl.value = PHONE_TEMPLATE;
+            lastPhone = PHONE_TEMPLATE;
         }
+        // Після кліку браузер ставить курсор куди завгодно — переносимо на перший «_»
+        paintMirror();
+        setTimeout(caretToFree, 0);
+    });
+
+    phoneEl.addEventListener("click", () => {
+        if (!localDigits(phoneEl.value)) caretToFree();
     });
 
     phoneEl.addEventListener("input", e => {
@@ -76,13 +111,17 @@
 
         phoneEl.value = next;
         lastPhone = next;
+        paintMirror();
+        caretToFree();
     });
 
     phoneEl.addEventListener("blur", () => {
-        if (phoneEl.value === PHONE_PREFIX) {
+        // Нічого не введено — повертаємо порожнє поле з placeholder
+        if (!localDigits(phoneEl.value)) {
             phoneEl.value = "";
             lastPhone = "";
         }
+        paintMirror();
     });
 
     /* ---------- 2. Поле опису росте разом з текстом ---------- */
@@ -94,6 +133,75 @@
 
     taskEl.addEventListener("input", autosize);
     window.addEventListener("resize", autosize);
+
+    /* ---------- 2б. Бажане місце переписки (спадний список) ---------- */
+
+    const selectWrap    = document.getElementById("order-select");
+    const selectToggle  = document.getElementById("order-contact");
+    const selectLabel   = document.getElementById("order-contact-label");
+    const selectMenu    = document.getElementById("order-contact-menu");
+    const contactInput  = document.getElementById("order-contact-value");
+    const selectOptions = Array.from(selectMenu.querySelectorAll(".portfolio-type-option"));
+
+    let contactKey = "";
+
+    // Підпис на кнопці: поки нічого не обрано — підказка (32%), після вибору — обраний пункт (100%)
+    function paintSelect() {
+        const opt = selectOptions.find(o => o.dataset.value === contactKey);
+        const hint = t("order.form.contact");
+        const text = opt ? opt.querySelector("span").textContent : hint;
+        selectLabel.textContent = text;
+        selectToggle.classList.toggle("has-value", !!opt);
+        selectToggle.setAttribute("aria-label", opt ? hint + " " + text : hint);
+        contactInput.value = contactKey;
+        selectOptions.forEach(o => o.setAttribute("aria-selected", String(o === opt)));
+    }
+
+    function setSelectOpen(open) {
+        selectMenu.hidden = !open;
+        selectToggle.setAttribute("aria-expanded", String(open));
+    }
+
+    selectToggle.addEventListener("click", () => setSelectOpen(selectMenu.hidden));
+
+    selectToggle.addEventListener("keydown", e => {
+        if (e.key !== "ArrowDown") return;
+        e.preventDefault();
+        setSelectOpen(true);
+        (selectOptions.find(o => o.dataset.value === contactKey) || selectOptions[0]).focus();
+    });
+
+    selectMenu.addEventListener("keydown", e => {
+        const n = selectOptions.length;
+        const i = selectOptions.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") { e.preventDefault(); selectOptions[(i + 1) % n].focus(); }
+        if (e.key === "ArrowUp")   { e.preventDefault(); selectOptions[(i - 1 + n) % n].focus(); }
+    });
+
+    selectOptions.forEach(opt => {
+        opt.addEventListener("click", () => {
+            contactKey = opt.dataset.value;
+            paintSelect();
+            setSelectOpen(false);
+            setInvalid(selectToggle, false);
+            selectToggle.focus();
+        });
+    });
+
+    // Клік у будь-яке інше місце або Esc закривають список
+    document.addEventListener("click", e => {
+        if (!selectWrap.contains(e.target)) setSelectOpen(false);
+    });
+
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape" && !selectMenu.hidden) {
+            setSelectOpen(false);
+            selectToggle.focus();
+        }
+    });
+
+    document.addEventListener("sitelanguagechange", paintSelect);
+    paintSelect();
 
     /* ---------- 3. Перевірка і відправлення ---------- */
 
@@ -127,12 +235,13 @@
         const name  = nameEl.value.trim();
         const email = emailEl.value.trim();
         const task  = taskEl.value.trim();
-        const phoneDigits = phoneEl.value === PHONE_PREFIX ? "" : localDigits(phoneEl.value);
+        const phoneDigits = localDigits(phoneEl.value);
 
         const missing = {
             name:    name.length < 2,
             email:   email.length === 0,
             task:    task.length === 0,
+            contact: !contactKey,
             consent: !consentEl.checked
         };
         const badEmail = !missing.email && !EMAIL_RE.test(email);
@@ -141,25 +250,30 @@
         setInvalid(nameEl, missing.name);
         setInvalid(emailEl, missing.email || badEmail);
         setInvalid(phoneEl, badPhone);
+        setInvalid(selectToggle, missing.contact);
         setInvalid(taskEl, missing.task);
         setInvalid(consentEl, missing.consent);
 
         let key = "";
-        if (missing.name || missing.email || missing.task || missing.consent) key = "order.status.required";
+        if (missing.name || missing.email || missing.task || missing.contact || missing.consent) key = "order.status.required";
         else if (badEmail) key = "order.status.email";
         else if (badPhone) key = "order.status.phone";
 
         if (!key) return true;
 
-        setStatus(key, true);
-        const firstBad = [nameEl, emailEl, phoneEl, taskEl, consentEl].find(el => el.getAttribute("aria-invalid") === "true");
+        // Підказки під кнопкою немає: незаповнені поля просто підсвічуються лінією
+        setStatus("");
+        const firstBad = [nameEl, emailEl, phoneEl, selectToggle, taskEl, consentEl].find(el => el.getAttribute("aria-invalid") === "true");
         if (firstBad) firstBad.focus();
         return false;
     }
 
     function resetForm() {
         form.reset();
+        contactKey = "";
+        paintSelect();
         lastPhone = "";
+        paintMirror();
         autosize();
     }
 
@@ -167,11 +281,12 @@
         e.preventDefault();
         if (!validate()) return;
 
-        const phoneDigits = phoneEl.value === PHONE_PREFIX ? "" : localDigits(phoneEl.value);
+        const phoneDigits = localDigits(phoneEl.value);
         const data = {
             name:  nameEl.value.trim(),
             email: emailEl.value.trim(),
             phone: phoneDigits ? "+380" + phoneDigits : "",
+            contact: (selectOptions.find(o => o.dataset.value === contactKey) || {}).dataset.label,
             task:  taskEl.value.trim()
         };
 
@@ -201,10 +316,10 @@
         const lines = [
             "Name: " + data.name,
             "E-mail: " + data.email,
-            data.phone ? "Phone: " + data.phone : "",
-            "",
-            data.task
-        ].filter((line, i) => line !== "" || i === 3);
+            "Preferred way to contact: " + data.contact
+        ];
+        if (data.phone) lines.push("Phone: " + data.phone);
+        lines.push("", data.task);
 
         const subject = encodeURIComponent("Order service — " + data.name);
         const body = encodeURIComponent(lines.join("\r\n"));
